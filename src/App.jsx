@@ -349,31 +349,35 @@ function App() {
       {/* 2. THE PROBLEM */}
       <section className="section" style={{ background: 'var(--bg-secondary)', borderTop: '1px solid var(--border-light)' }}>
         <div className="container">
-          <motion.div 
-             initial={{ opacity: 0, y: 30 }}
-             whileInView={{ opacity: 1, y: 0 }}
-             viewport={{ once: true }}
-             style={{ textAlign: 'center', marginBottom: '5rem' }}
-                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem' }}>
-            {[
-              { icon: <Menu size={28}/>, title: 'Spreadsheets For Members' },
-              { icon: <DollarSign size={28}/>, title: 'No Nutrition Tracking' },
-              { icon: <Users size={28}/>, title: 'Poor Engagement' },
-              { icon: <LineChart size={28}/>, title: 'No Live Analytics' },
-            ].map((item, i) => (
-              <motion.div 
-                key={i} 
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', padding: '2rem', border: '1px solid rgba(255, 153, 0, 0.15)', background: 'var(--bg-primary)', borderRadius: '20px' }}
-              >
-                <div style={{ color: 'var(--accent-orange)', background: 'rgba(255,153,0,0.1)', padding: '12px', borderRadius: '12px' }}>{item.icon}</div>
-                <h3 style={{ fontSize: '1.2rem', margin: 0, color: 'var(--text-primary)' }}>{item.title}</h3>
-              </motion.div>
-            ))}
-          </div>div>
+           <motion.div 
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              style={{ textAlign: 'center', marginBottom: '5rem' }}
+           >
+              <h2>Gyms Are Running on <span style={{ color: 'var(--accent-orange)' }}>Broken Systems</span></h2>
+           </motion.div>
+ 
+           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem' }}>
+             {[
+               { icon: <Menu size={28}/>, title: 'Spreadsheets For Members' },
+               { icon: <DollarSign size={28}/>, title: 'No Nutrition Tracking' },
+               { icon: <Users size={28}/>, title: 'Poor Engagement' },
+               { icon: <LineChart size={28}/>, title: 'No Live Analytics' },
+             ].map((item, i) => (
+               <motion.div 
+                 key={i} 
+                 initial={{ opacity: 0, y: 30 }}
+                 whileInView={{ opacity: 1, y: 0 }}
+                 viewport={{ once: true }}
+                 transition={{ delay: i * 0.1 }}
+                 style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', padding: '2rem', border: '1px solid rgba(255, 153, 0, 0.15)', background: 'var(--bg-primary)', borderRadius: '20px' }}
+               >
+                 <div style={{ color: 'var(--accent-orange)', background: 'rgba(255,153,0,0.1)', padding: '12px', borderRadius: '12px' }}>{item.icon}</div>
+                 <h3 style={{ fontSize: '1.2rem', margin: 0, color: 'var(--text-primary)' }}>{item.title}</h3>
+               </motion.div>
+             ))}
+           </div>
         </div>
       </section>
 
