@@ -1067,7 +1067,7 @@ function App() {
               initial={{ opacity: 0 }} 
               animate={{ opacity: 1 }} 
               transition={{ duration: 1, delay: 0.4 }}
-              style={{ fontSize: '1.15rem', marginBottom: '1.5rem', maxWidth: '750px', margin: '0 auto 1.5rem auto', color: 'var(--text-secondary)' }}
+              style={{ fontSize: '1.25rem', marginBottom: '1.5rem', maxWidth: '750px', margin: '0 auto 1.5rem auto', color: 'var(--text-secondary)', lineHeight: '1.7', letterSpacing: '-0.01em' }}
             >
               With Yuguyu, members scan in, log workouts, track diet, join the gym community, and instantly buy protein or supplements from smart vending machines — all through one app.
             </motion.p>
@@ -1075,7 +1075,7 @@ function App() {
               initial={{ opacity: 0 }} 
               animate={{ opacity: 1 }} 
               transition={{ duration: 1, delay: 0.5 }}
-              style={{ fontSize: '1.15rem', marginBottom: '3rem', maxWidth: '750px', margin: '0 auto 3rem auto', color: 'var(--text-secondary)' }}
+              style={{ fontSize: '1.2rem', marginBottom: '3rem', maxWidth: '750px', margin: '0 auto 3rem auto', color: 'var(--text-secondary)', lineHeight: '1.7', fontStyle: 'italic', opacity: 0.85 }}
             >
               Meanwhile gym owners get a powerful dashboard to manage members, engagement, and revenue.
             </motion.p>
