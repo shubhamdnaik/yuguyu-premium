@@ -762,58 +762,61 @@ function App() {
       {/* 2. HORIZONTAL SCROLL PRODUCT JOURNEY */}
       <ProductJourney isMobile={isMobile} />
 
-      {/* 4. INTERACTIVE FEATURES SECTION */}
-      <section className="section" style={{ background: 'var(--bg-secondary)', borderTop: '1px solid var(--border-light)' }}>
-        <div className="container">
-          <div style={{ textAlign: 'center', marginBottom: '6rem' }}>
-             <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-               A Premium Ecosystem <br/><span className="text-gradient">Built For Growth</span>
-             </motion.h2>
-          </div>
+      {/* 4. LIVE GYM INSIGHTS DASHBOARD */}
+      <LiveGymInsights isMobile={isMobile} />
 
-          <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, 1fr)', gap: '2rem' }}>
-             
-             {/* Feature Card 1 */}
-             <motion.div 
-               whileHover={{ y: -10, scale: 1.02 }} 
-               className="glass-card" 
-               style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', border: '1px solid rgba(255, 59, 59, 0.2)' }}
-             >
-                <div style={{ width: '60px', height: '60px', borderRadius: '16px', background: 'rgba(225, 29, 72, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                   <Activity size={28} color="var(--accent-red)"/>
-                </div>
-                <h3 style={{ fontSize: '1.5rem' }}>Intelligent Tracking</h3>
-                <p style={{ fontSize: '1rem', color: 'var(--text-secondary)' }}>Automated logging of dietary macros and workout sets directly from user interactions within the gym.</p>
-             </motion.div>
+      {/* 4. GYM OWNER BENEFITS */}
+      <section className="section" style={{ background: 'var(--bg-primary)', position: 'relative', overflow: 'hidden' }}>
+         <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '1px', background: 'linear-gradient(90deg, transparent, rgba(225, 29, 72, 0.3), transparent)' }}></div>
+         <div className="container" style={{ position: 'relative', zIndex: 10 }}>
+{/* 5.1 GYM OWNER BENEFITS (Replacing Hardware Focus) */}
+            <div style={{ padding: isMobile ? '4rem 1.5rem' : '8rem 4rem', background: 'var(--bg-tertiary)', borderRadius: isMobile ? '20px' : '40px', border: '1px solid rgba(147, 51, 234, 0.15)', marginBottom: 0, marginTop: 0 }}>
+               <div style={{ textAlign: 'center', maxWidth: '800px', margin: isMobile ? '0 auto 3rem auto' : '0 auto 6rem auto' }}>
+                  <motion.h2 initial={{ opacity:0, y:30 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true }} style={{ fontSize: isMobile ? '2.5rem' : '3rem', marginBottom: '1.5rem', lineHeight: 1.1 }}>
+                    Stop Managing. <br/><span className="text-gradient">Start Growing.</span>
+                  </motion.h2>
+                  <motion.p initial={{ opacity:0, y:20 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true }} transition={{ delay: 0.2 }} style={{ fontSize: '1.1rem', color: 'var(--text-secondary)' }}>
+                     Transform your gym into a data-driven business. Yuguyu's ecosystem provides the tools to engage members deeply and open entirely new automated revenue streams.
+                  </motion.p>
+               </div>
 
-             {/* Feature Card 2 */}
-             <motion.div 
-               whileHover={{ y: -10, scale: 1.02 }} 
-               className="glass-card" 
-               style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', border: '1px solid rgba(147, 51, 234, 0.2)' }}
-             >
-                <div style={{ width: '60px', height: '60px', borderRadius: '16px', background: 'rgba(147, 51, 234, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                   <Users size={28} color="var(--accent-purple)"/>
-                </div>
-                <h3 style={{ fontSize: '1.5rem' }}>Community Engine</h3>
-                <p style={{ fontSize: '1rem', color: 'var(--text-secondary)' }}>Drive member retention with built-in challenges, leaderboards, and automated remarketing flows.</p>
-             </motion.div>
+               <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(2, 1fr)', gap: isMobile ? '2rem' : '3rem', alignItems: 'center' }}>
+                    <motion.div initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once:true }} transition={{ type: 'spring', stiffness: 50 }} className="glass-card" style={{ display: 'flex', gap: '1.5rem', padding: '2rem', border: '1px solid rgba(255, 59, 59, 0.2)' }}>
+                        <div style={{ padding: '1rem', background: 'rgba(225, 29, 72, 0.1)', borderRadius: '16px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Users size={28} color="var(--brand-red)" /></div>
+                        <div>
+                           <h4 style={{ fontSize: '1.25rem', marginBottom: '0.5rem' }}>Higher Retention</h4>
+                           <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem' }}>Identify at-risk members and engage them with native community challenges before they churn.</p>
+                        </div>
+                    </motion.div>
+                    
+                    <motion.div initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once:true }} transition={{ type: 'spring', stiffness: 50, delay: 0.1 }} className="glass-card" style={{ display: 'flex', gap: '1.5rem', padding: '2rem', border: '1px solid rgba(147, 51, 234, 0.2)' }}>
+                        <div style={{ padding: '1rem', background: 'rgba(147, 51, 234, 0.1)', borderRadius: '16px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Activity size={28} color="var(--accent-purple)" /></div>
+                        <div>
+                           <h4 style={{ fontSize: '1.25rem', marginBottom: '0.5rem' }}>Better Engagement</h4>
+                           <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem' }}>Members track their own progress natively, building a habit loop that keeps them tied to your gym.</p>
+                        </div>
+                    </motion.div>
 
-             {/* Feature Card 3 */}
-             <motion.div 
-               whileHover={{ y: -10, scale: 1.02 }} 
-               className="glass-card" 
-               style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', border: '1px solid rgba(234, 88, 12, 0.2)' }}
-             >
-                <div style={{ width: '60px', height: '60px', borderRadius: '16px', background: 'rgba(234, 88, 12, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                   <Database size={28} color="var(--accent-orange)"/>
-                </div>
-                <h3 style={{ fontSize: '1.5rem' }}>Unified Data</h3>
-                <p style={{ fontSize: '1rem', color: 'var(--text-secondary)' }}>Every interaction generates structured data, transforming your gym into a powerful data platform.</p>
-             </motion.div>
+                    <motion.div initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once:true }} transition={{ type: 'spring', stiffness: 50, delay: 0.2 }} className="glass-card" style={{ display: 'flex', gap: '1.5rem', padding: '2rem', border: '1px solid rgba(234, 88, 12, 0.2)' }}>
+                        <div style={{ padding: '1rem', background: 'rgba(234, 88, 12, 0.1)', borderRadius: '16px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Box size={28} color="var(--accent-orange)" /></div>
+                        <div>
+                           <h4 style={{ fontSize: '1.25rem', marginBottom: '0.5rem' }}>Additional Revenue</h4>
+                           <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem' }}>Smart vending modules act as ultra-convenient points of sale, opening new passive revenue streams.</p>
+                        </div>
+                    </motion.div>
 
-          </div>
-        </div>
+                    <motion.div initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once:true }} transition={{ type: 'spring', stiffness: 50, delay: 0.3 }} className="glass-card" style={{ display: 'flex', gap: '1.5rem', padding: '2rem', border: '1px solid rgba(34, 197, 94, 0.2)' }}>
+                        <div style={{ padding: '1rem', background: 'rgba(34, 197, 94, 0.1)', borderRadius: '16px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Database size={28} color="var(--accent-green)" /></div>
+                        <div>
+                           <h4 style={{ fontSize: '1.25rem', marginBottom: '0.5rem' }}>Member Analytics</h4>
+                           <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem' }}>Every interaction generates structured data, transforming your gym into a powerful enterprise asset.</p>
+                        </div>
+                    </motion.div>
+               </div>
+            </div>
+         </div>
+
+            
       </section>
 
       {/* 5. ECOSYSTEM VISUAL FLOW */}
@@ -896,63 +899,13 @@ function App() {
         </div>
       </section>
 
-      {/* 4. LIVE GYM INSIGHTS DASHBOARD */}
-      <LiveGymInsights isMobile={isMobile} />
+      
+
+      
 
       {/* 5. FOOTER & GYM OWNER BENEFITS */}
-      <footer style={{ padding: '0', background: 'var(--bg-primary)', position: 'relative', overflow: 'hidden' }}>
-         <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '1px', background: 'linear-gradient(90deg, transparent, rgba(225, 29, 72, 0.3), transparent)' }}></div>
-         
-         <div className="container" style={{ position: 'relative', zIndex: 10 }}>
-            {/* 5.1 GYM OWNER BENEFITS (Replacing Hardware Focus) */}
-            <div style={{ padding: isMobile ? '4rem 1.5rem' : '8rem 4rem', background: 'var(--bg-tertiary)', borderRadius: isMobile ? '20px' : '40px', border: '1px solid rgba(147, 51, 234, 0.15)', marginBottom: '4rem', marginTop: isMobile ? '2rem' : '4rem' }}>
-               <div style={{ textAlign: 'center', maxWidth: '800px', margin: isMobile ? '0 auto 3rem auto' : '0 auto 6rem auto' }}>
-                  <motion.h2 initial={{ opacity:0, y:30 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true }} style={{ fontSize: isMobile ? '2.5rem' : '3rem', marginBottom: '1.5rem', lineHeight: 1.1 }}>
-                    Stop Managing. <br/><span className="text-gradient">Start Growing.</span>
-                  </motion.h2>
-                  <motion.p initial={{ opacity:0, y:20 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true }} transition={{ delay: 0.2 }} style={{ fontSize: '1.1rem', color: 'var(--text-secondary)' }}>
-                     Transform your gym into a data-driven business. Yuguyu's ecosystem provides the tools to engage members deeply and open entirely new automated revenue streams.
-                  </motion.p>
-               </div>
-
-               <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(2, 1fr)', gap: isMobile ? '2rem' : '3rem', alignItems: 'center' }}>
-                    <motion.div initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once:true }} transition={{ type: 'spring', stiffness: 50 }} className="glass-card" style={{ display: 'flex', gap: '1.5rem', padding: '2rem', border: '1px solid rgba(255, 59, 59, 0.2)' }}>
-                        <div style={{ padding: '1rem', background: 'rgba(225, 29, 72, 0.1)', borderRadius: '16px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Users size={28} color="var(--brand-red)" /></div>
-                        <div>
-                           <h4 style={{ fontSize: '1.25rem', marginBottom: '0.5rem' }}>Higher Retention</h4>
-                           <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem' }}>Identify at-risk members and engage them with native community challenges before they churn.</p>
-                        </div>
-                    </motion.div>
-                    
-                    <motion.div initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once:true }} transition={{ type: 'spring', stiffness: 50, delay: 0.1 }} className="glass-card" style={{ display: 'flex', gap: '1.5rem', padding: '2rem', border: '1px solid rgba(147, 51, 234, 0.2)' }}>
-                        <div style={{ padding: '1rem', background: 'rgba(147, 51, 234, 0.1)', borderRadius: '16px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Activity size={28} color="var(--accent-purple)" /></div>
-                        <div>
-                           <h4 style={{ fontSize: '1.25rem', marginBottom: '0.5rem' }}>Better Engagement</h4>
-                           <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem' }}>Members track their own progress natively, building a habit loop that keeps them tied to your gym.</p>
-                        </div>
-                    </motion.div>
-
-                    <motion.div initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once:true }} transition={{ type: 'spring', stiffness: 50, delay: 0.2 }} className="glass-card" style={{ display: 'flex', gap: '1.5rem', padding: '2rem', border: '1px solid rgba(234, 88, 12, 0.2)' }}>
-                        <div style={{ padding: '1rem', background: 'rgba(234, 88, 12, 0.1)', borderRadius: '16px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Box size={28} color="var(--accent-orange)" /></div>
-                        <div>
-                           <h4 style={{ fontSize: '1.25rem', marginBottom: '0.5rem' }}>Additional Revenue</h4>
-                           <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem' }}>Smart vending modules act as ultra-convenient points of sale, opening new passive revenue streams.</p>
-                        </div>
-                    </motion.div>
-
-                    <motion.div initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once:true }} transition={{ type: 'spring', stiffness: 50, delay: 0.3 }} className="glass-card" style={{ display: 'flex', gap: '1.5rem', padding: '2rem', border: '1px solid rgba(34, 197, 94, 0.2)' }}>
-                        <div style={{ padding: '1rem', background: 'rgba(34, 197, 94, 0.1)', borderRadius: '16px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Database size={28} color="var(--accent-green)" /></div>
-                        <div>
-                           <h4 style={{ fontSize: '1.25rem', marginBottom: '0.5rem' }}>Member Analytics</h4>
-                           <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem' }}>Every interaction generates structured data, transforming your gym into a powerful enterprise asset.</p>
-                        </div>
-                    </motion.div>
-               </div>
-            </div>
-         </div>
-
-            {/* 5.2 Footer Links Map */}
-            <div className="container" style={{ position: 'relative', zIndex: 10, marginTop: '6rem', paddingTop: '2rem', borderTop: '1px solid rgba(255,255,255,0.05)', display: 'flex', flexDirection: isMobile ? 'column' : 'row', justifyContent: 'space-between', alignItems: isMobile ? 'center' : 'flex-start', gap: '1rem', color: 'var(--text-tertiary)', fontSize: '0.85rem', textAlign: isMobile ? 'center' : 'left' }}>
+      <footer style={{ padding: '2rem 0', background: 'var(--bg-primary)', position: 'relative', overflow: 'hidden', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
+         <div className="container" style={{ position: 'relative', zIndex: 10, display: 'flex', flexDirection: isMobile ? 'column' : 'row', justifyContent: 'space-between', alignItems: isMobile ? 'center' : 'flex-start', gap: '1rem', color: 'var(--text-tertiary)', fontSize: '0.85rem', textAlign: isMobile ? 'center' : 'left' }}>
             <div>© 2026 Yuguyu Technologies. All rights reserved.</div>
             <div style={{ display: 'flex', gap: '2.5rem' }}>
                <span style={{ cursor: 'pointer' }}>Privacy Policy</span>
