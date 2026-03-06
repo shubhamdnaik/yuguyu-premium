@@ -760,7 +760,7 @@ const ProductJourney = ({ isMobile }) => {
           <div style={{ width: '80vw', maxWidth: '1000px', flexShrink: 0, display: 'flex', flexDirection: isMobile ? 'column' : 'row', alignItems: 'center', gap: '4rem' }}>
              <div style={{ flex: 1, order: isMobile ? 1 : 2 }}>
                <h2 style={{ fontSize: isMobile ? '2.5rem' : '4rem', marginBottom: '1rem' }}><span className="text-gradient">Step 5:</span> <br/>Refuel.</h2>
-               <p style={{ fontSize: '1.25rem' }}>Post-workout, members can conveniently purchase a premium protein shake or snack directly from the smart vendor using their app. Revenue for the gym, instant fuel for the member.</p>
+               <p style={{ fontSize: '1.25rem' }}>Post-workout, members can conveniently purchase a premium protein shake or snack directly from the smart vendor. Revenue for the gym, instant fuel for the member.</p>
              </div>
              <div className="device-frame" style={{ order: isMobile ? 2 : 1, width: isMobile ? '280px' : '360px', height: isMobile ? '350px' : '400px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <AppVendingUI />
