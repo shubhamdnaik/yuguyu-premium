@@ -141,7 +141,10 @@ img {
   background-clip: text;
 }
 body.light-theme .text-gradient {
-  background: linear-gradient(180deg, #09090B 0%, #71717A 100%);
+  background: linear-gradient(180deg, var(--accent-red) 0%, #71717A 100%);
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
 }
 
 .text-gradient-accent {

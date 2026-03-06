@@ -960,7 +960,7 @@ const HeroScene = ({ isMobile }) => {
            width: isMobile ? '200px' : '280px', 
            height: isMobile ? '200px' : '240px', 
            zIndex: 2, 
-           transform: isMobile ? 'translateX(-70px) scale(0.85)' : 'none'
+           display: isMobile ? 'none' : 'block'
          }}
       >
         <LeftWingWidget />
@@ -980,7 +980,7 @@ const HeroScene = ({ isMobile }) => {
            width: isMobile ? '160px' : '220px', 
            height: isMobile ? '160px' : '180px', 
            zIndex: 11, 
-           transform: isMobile ? 'translateX(80px) scale(0.85)' : 'none'
+           display: isMobile ? 'none' : 'block'
          }}
       >
          <RightWingWidget />
