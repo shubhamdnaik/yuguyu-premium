@@ -453,6 +453,39 @@ const AppProfileUI = () => (
   </div>
 );
 
+const AppVendingUI = () => (
+  <div style={{ padding: '1.5rem', height: '100%', overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: '1rem', background: 'var(--bg-primary)', scrollbarWidth: 'none', paddingBottom: '6rem' }}>
+     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
+        <div className="ui-text-bold" style={{ fontSize: '1.1rem' }}>Smart Vendor 04</div>
+        <div style={{ background: 'rgba(225, 29, 72, 0.1)', color: 'var(--accent-red)', padding: '4px 8px', borderRadius: '4px', fontSize: '0.7rem', fontWeight: 'bold' }}>Online</div>
+     </div>
+     
+     <div className="ui-card" style={{ background: 'var(--bg-secondary)', border: '1px solid var(--border-light)', display: 'flex', alignItems: 'center', gap: '1rem', padding: '1rem' }}>
+        <div style={{ width: '40px', height: '40px', borderRadius: '8px', background: 'var(--accent-red)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+           <Target size={20} color="#fff"/>
+        </div>
+        <div style={{ flex: 1 }}>
+           <div className="ui-text-muted" style={{ fontSize: '0.7rem' }}>Dispensing</div>
+           <div className="ui-text-bold" style={{ fontSize: '0.9rem' }}>Whey Protein Isolate</div>
+           <div style={{ width: '100%', height: '4px', background: 'var(--bg-tertiary)', borderRadius: '2px', marginTop: '6px', overflow: 'hidden' }}>
+              <motion.div animate={{ width: ['0%', '100%'] }} transition={{ duration: 3, repeat: Infinity, ease: 'linear' }} style={{ height: '100%', background: 'var(--accent-red)' }} />
+           </div>
+        </div>
+     </div>
+     
+     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem', marginTop: 'auto' }}>
+        <div className="ui-card flex-center" style={{ flexDirection: 'column', padding: '1rem' }}>
+           <div className="ui-text-muted" style={{ fontSize: '0.7rem' }}>Inventory</div>
+           <div className="ui-text-bold" style={{ fontSize: '1.2rem', color: 'var(--accent-green)' }}>84%</div>
+        </div>
+        <div className="ui-card flex-center" style={{ flexDirection: 'column', padding: '1rem' }}>
+           <div className="ui-text-muted" style={{ fontSize: '0.7rem' }}>Today's Rev</div>
+           <div className="ui-text-bold" style={{ fontSize: '1.2rem' }}>₹4,250</div>
+        </div>
+     </div>
+  </div>
+);
+
 const PhoneCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const screens = [<AppHomeScannerUI key="1" />, <AppDietTrackerUI key="2" />, <AppWorkoutUI key="3" />, <AppProfileUI key="4" />];
@@ -658,10 +691,10 @@ const ProductJourney = ({ isMobile }) => {
     target: targetRef,
   });
 
-  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-75%"]);
+  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-80%"]);
 
   return (
-    <section ref={targetRef} style={{ position: 'relative', height: '400vh', background: 'var(--bg-primary)' }}>
+    <section ref={targetRef} style={{ position: 'relative', height: '500vh', background: 'var(--bg-primary)' }}>
       <div style={{ position: 'sticky', top: 0, display: 'flex', height: '100vh', alignItems: 'center', overflow: 'hidden' }}>
         <motion.div style={{ x, display: 'flex', gap: '10vw', padding: '0 10vw' }}>
           
@@ -720,6 +753,17 @@ const ProductJourney = ({ isMobile }) => {
              </div>
              <div className="device-frame" style={{ order: isMobile ? 2 : 1, width: isMobile ? '280px' : '360px', height: isMobile ? '450px' : '550px', transform: 'scale(0.95)' }}>
                 <AppProfileUI />
+             </div>
+          </div>
+
+          {/* Scene 5: Purchase */}
+          <div style={{ width: '80vw', maxWidth: '1000px', flexShrink: 0, display: 'flex', flexDirection: isMobile ? 'column' : 'row', alignItems: 'center', gap: '4rem' }}>
+             <div style={{ flex: 1, order: isMobile ? 1 : 2 }}>
+               <h2 style={{ fontSize: isMobile ? '2.5rem' : '4rem', marginBottom: '1rem' }}><span className="text-gradient">Step 5:</span> <br/>Refuel.</h2>
+               <p style={{ fontSize: '1.25rem' }}>Post-workout, members can conveniently purchase a premium protein shake or snack directly from the smart vendor using their app. Revenue for the gym, instant fuel for the member.</p>
+             </div>
+             <div className="device-frame" style={{ order: isMobile ? 2 : 1, width: isMobile ? '280px' : '360px', height: isMobile ? '350px' : '400px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <AppVendingUI />
              </div>
           </div>
 
