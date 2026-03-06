@@ -292,269 +292,78 @@ const PhoneCarousel = () => {
   );
 };
 
-// APPLE-STYLE APP SHOWCASE COMPONENT
-const AppShowcase = ({ isMobile }) => {
-  const containerRef = useRef(null);
+// Horizontal Scroll Product Journey Component
+const ProductJourney = ({ isMobile }) => {
+  const targetRef = useRef(null);
   const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"]
+    target: targetRef,
   });
 
-  // Derived state to determine which slide is active based on scroll (0 to 1)
-  const activeIndex = useTransform(scrollYProgress, 
-    [0, 0.25, 0.5, 0.75, 1], 
-    [0, 1, 2, 3, 3]
-  );
-  
-  const [currentSlide, setCurrentSlide] = useState(0);
-
-  useEffect(() => {
-    return activeIndex.onChange((latest) => setCurrentSlide(Math.round(latest)));
-  }, [activeIndex]);
-
-  const slideData = [
-    {
-      title: "Enter Frictionless.",
-      desc: "Members unlock the turnstiles and check in instantly via the secure QR entry system built right into the app.",
-      component: <AppScannerUI />
-    },
-    {
-      title: "Log & Track.",
-      desc: "Your members track every set, rep, and macro-nutrient. All workout data lives inside your gym's custom app interface.",
-      component: <AppWorkoutUI />
-    },
-    {
-      title: "Community Feed.",
-      desc: "Live gym leaderboards and events keep engagement high. A member highly connected to your community never churns.",
-      component: <AppDietTrackerUI /> // Reusing this UI layout for now to represent generic app feed stats
-    },
-    {
-      title: "Automated Reward.",
-      desc: "The app seamlessly unlocks physical vending rewards post-workout. Seamlessly syncing purchase data to their macro tracking.",
-      component: <AppVendingUI />
-    }
-  ];
+  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-75%"]);
 
   return (
-    <section ref={containerRef} style={{ position: 'relative', height: '400vh', background: '#030303' }}>
-      <div style={{ position: 'sticky', top: 0, height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
-        
-        {/* Background Depth Effects */}
-        <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: '60vw', height: '60vw', background: 'radial-gradient(circle, var(--accent-red) 0%, transparent 60%)', filter: 'blur(120px)', opacity: 0.15 }}></div>
-
-        <div className="container" style={{ display: 'flex', flexDirection: isMobile ? 'column' : 'row', alignItems: 'center', gap: isMobile ? '2rem' : '6rem', width: '100%' }}>
-           
-           {/* Text Content Block */}
-           <div style={{ flex: 1, paddingRight: isMobile ? 0 : '4rem', textAlign: isMobile ? 'center' : 'left' }}>
-              <motion.div style={{ opacity: useTransform(scrollYProgress, [0, 0.1, 0.9, 1], [0, 1, 1, 0]) }}>
-                <div className="ui-text-bold" style={{ color: 'var(--accent-red)', letterSpacing: '2px', textTransform: 'uppercase', marginBottom: '1rem' }}>The Member Experience</div>
-                <h2 style={{ fontSize: isMobile ? '2.5rem' : '4rem', lineHeight: 1.1, marginBottom: '2rem' }}>
-                  <span style={{ color: '#fff' }}>{slideData[currentSlide]?.title}</span>
-                </h2>
-                <p style={{ fontSize: '1.25rem', color: 'var(--text-secondary)', maxWidth: '500px', margin: isMobile ? '0 auto' : '0' }}>
-                  {slideData[currentSlide]?.desc}
-                </p>
-              </motion.div>
-           </div>
-
-           {/* Floating Device Showcase */}
-           <div style={{ flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'relative' }}>
-              
-              <motion.div 
-                 style={{ 
-                   width: isMobile ? '300px' : '400px', 
-                   height: isMobile ? '600px' : '800px', 
-                   position: 'relative',
-                   boxShadow: '0 50px 100px rgba(0,0,0,0.8)',
-                   scale: useTransform(scrollYProgress, [0, 0.5, 1], [0.9, 1, 0.9])
-                 }}
-                 className="device-frame"
-              >
-                 <AnimatePresence mode="wait">
-                    <motion.div 
-                      key={currentSlide}
-                      initial={{ opacity: 0, y: 30, filter: 'blur(10px)' }}
-                      animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-                      exit={{ opacity: 0, y: -30, filter: 'blur(10px)' }}
-                      transition={{ duration: 0.5, ease: 'easeInOut' }}
-                      style={{ width: '100%', height: '100%' }}
-                    >
-                      {slideData[currentSlide]?.component}
-                    </motion.div>
-                 </AnimatePresence>
-              </motion.div>
-
-           </div>
-        </div>
-        
-        {/* Scroll Progress Dots */}
-        {!isMobile && (
-          <div style={{ position: 'absolute', right: '40px', top: '50%', transform: 'translateY(-50%)', display: 'flex', flexDirection: 'column', gap: '15px' }}>
-            {slideData.map((_, i) => (
-               <div key={i} style={{ width: '10px', height: '10px', borderRadius: '50%', background: currentSlide === i ? 'var(--brand-red)' : 'rgba(255,255,255,0.2)', transition: 'background 0.3s' }}></div>
-            ))}
-          </div>
-        )}
-      </div>
-    </section>
-  );
-};
-
-// GYM DASHBOARD SHOWCASE COMPONENT
-const DashboardShowcase = ({ isMobile }) => {
-  return (
-    <section className="section" style={{ position: 'relative', overflow: 'hidden', background: '#08080A', paddingTop: isMobile ? '6rem' : '10rem', paddingBottom: isMobile ? '6rem' : '10rem', borderTop: '1px solid var(--border-light)' }}>
-      {/* Background Gradients */}
-      <div style={{ position: 'absolute', top: '-10%', right: '-10%', width: '600px', height: '600px', background: 'radial-gradient(circle, var(--accent-purple) 0%, transparent 60%)', filter: 'blur(120px)', opacity: 0.1, zIndex: 0 }}></div>
-      <div style={{ position: 'absolute', bottom: '-10%', left: '-10%', width: '600px', height: '600px', background: 'radial-gradient(circle, var(--accent-green) 0%, transparent 60%)', filter: 'blur(120px)', opacity: 0.05, zIndex: 0 }}></div>
-
-      <div className="container" style={{ position: 'relative', zIndex: 10 }}>
-        
-        {/* Section Header */}
-        <div style={{ textAlign: 'center', maxWidth: '800px', margin: '0 auto 4rem auto' }}>
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once:true }} className="ui-text-bold" style={{ color: 'var(--accent-purple)', letterSpacing: '2px', textTransform: 'uppercase', marginBottom: '1rem' }}>The Gym Ledger</motion.div>
-          <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once:true }} transition={{ delay: 0.1 }} style={{ fontSize: isMobile ? '2.5rem' : '4rem', lineHeight: 1.1, marginBottom: '1.5rem' }}>
-            Operations, <span className="text-gradient">Automated.</span>
-          </motion.h2>
-          <motion.p initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once:true }} transition={{ delay: 0.2 }} style={{ fontSize: '1.25rem', color: 'var(--text-secondary)' }}>
-            Total visibility into member retention, revenue, and engagement. Turn your gym into a data-driven enterprise with a modern SaaS dashboard.
-          </motion.p>
-        </div>
-
-        {/* Dashboard Mockup Container */}
-        <motion.div 
-          initial={{ opacity: 0, y: 60 }} 
-          whileInView={{ opacity: 1, y: 0 }} 
-          viewport={{ once:true, margin: "-100px" }}
-          transition={{ duration: 0.8, type: 'spring', stiffness: 40 }}
-          style={{ 
-            background: 'var(--bg-secondary)', 
-            borderRadius: '24px', 
-            border: '1px solid rgba(255,255,255,0.05)', 
-            boxShadow: '0 40px 100px rgba(0,0,0,0.8), inset 0 2px 20px rgba(255,255,255,0.02)',
-            overflow: 'hidden',
-            display: 'flex',
-            flexDirection: 'column'
-          }}
-        >
-          {/* Dashboard Header Bar */}
-          <div style={{ padding: '1rem 2rem', background: '#0F1014', borderBottom: '1px solid rgba(255,255,255,0.05)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
-              <div style={{ width: '12px', height: '12px', borderRadius: '50%', background: 'var(--accent-red)' }}></div>
-              <div style={{ width: '12px', height: '12px', borderRadius: '50%', background: 'var(--accent-orange)' }}></div>
-              <div style={{ width: '12px', height: '12px', borderRadius: '50%', background: 'var(--accent-green)' }}></div>
-            </div>
-            <div className="ui-text-muted" style={{ fontSize: '0.85rem' }}>yuguyu.com / admin / dashboard</div>
-            <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
-               <div style={{ width: '32px', height: '32px', borderRadius: '50%', background: 'var(--accent-purple)', display: 'flex', justifyContent: 'center', alignItems: 'center', fontSize: '0.8rem', fontWeight: 'bold' }}>A</div>
-            </div>
+    <section ref={targetRef} style={{ position: 'relative', height: '400vh', background: 'var(--bg-primary)' }}>
+      <div style={{ position: 'sticky', top: 0, display: 'flex', height: '100vh', alignItems: 'center', overflow: 'hidden' }}>
+        <motion.div style={{ x, display: 'flex', gap: '10vw', padding: '0 10vw' }}>
+          
+          {/* Scene 1: Scan */}
+          <div style={{ width: '80vw', maxWidth: '1000px', flexShrink: 0, display: 'flex', flexDirection: isMobile ? 'column' : 'row', alignItems: 'center', gap: '4rem' }}>
+             <div style={{ flex: 1 }}>
+               <h2 style={{ fontSize: isMobile ? '2.5rem' : '4rem', marginBottom: '1rem' }}><span className="text-gradient">Step 1:</span> <br/>Scan In.</h2>
+               <p style={{ fontSize: '1.25rem' }}>Members enter the gym and seamlessly scan a QR code. Their personalized fitness journey begins the moment they walk through the doors.</p>
+             </div>
+             <div className="device-frame" style={{ width: isMobile ? '280px' : '360px', height: isMobile ? '500px' : '650px', transform: 'scale(0.9)' }}>
+                <AppScannerUI />
+             </div>
           </div>
 
-          {/* Dashboard Main Grid Workspace */}
-          <div style={{ padding: isMobile ? '1.5rem' : '3rem', display: 'flex', flexDirection: isMobile ? 'column' : 'row', gap: '2rem' }}>
-            
-            {/* Sidebar (Desktop only) */}
-            {!isMobile && (
-              <div style={{ width: '200px', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                <div style={{ padding: '0.75rem 1rem', background: 'rgba(255,255,255,0.05)', borderRadius: '8px', color: '#fff', display: 'flex', gap: '10px', alignItems: 'center' }}><LayoutDashboard size={18}/> Overview</div>
-                <div style={{ padding: '0.75rem 1rem', color: 'var(--text-tertiary)', display: 'flex', gap: '10px', alignItems: 'center' }}><Users size={18}/> Members</div>
-                <div style={{ padding: '0.75rem 1rem', color: 'var(--text-tertiary)', display: 'flex', gap: '10px', alignItems: 'center' }}><Activity size={18}/> Engagement</div>
-                <div style={{ padding: '0.75rem 1rem', color: 'var(--text-tertiary)', display: 'flex', gap: '10px', alignItems: 'center' }}><Box size={18}/> Vendor Sales</div>
-                <div style={{ padding: '0.75rem 1rem', color: 'var(--text-tertiary)', display: 'flex', gap: '10px', alignItems: 'center' }}><Database size={18}/> Settings</div>
-              </div>
-            )}
-
-            {/* Dashboard Content Grid */}
-            <div style={{ flex: 1, display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, 1fr)', gap: '1.5rem' }}>
-               
-               {/* Metric 1: Retention */}
-               <motion.div initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once:true }} transition={{ delay: 0.2 }} className="glass-card" style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column' }}>
-                  <div className="ui-text-muted" style={{ marginBottom: '0.5rem', display: 'flex', justifyContent: 'space-between' }}>
-                    <span>Active Retention</span>
-                    <span style={{ color: 'var(--accent-green)' }}>+4.2%</span>
-                  </div>
-                  <div style={{ fontSize: '2.5rem', fontWeight: 'bold', color: '#fff', marginBottom: '1.5rem' }}>92.8%</div>
-                  {/* Animated Donut Chart representation */}
-                  <div style={{ flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'flex-end', paddingBottom: '1rem' }}>
-                     <svg width="100" height="100" viewBox="0 0 100 100">
-                        <circle cx="50" cy="50" r="40" fill="none" stroke="rgba(255,255,255,0.1)" strokeWidth="12" />
-                        <motion.circle 
-                          cx="50" cy="50" r="40" fill="none" stroke="var(--accent-purple)" strokeWidth="12" 
-                          strokeDasharray="251.2"
-                          initial={{ strokeDashoffset: 251.2 }}
-                          whileInView={{ strokeDashoffset: 251.2 * (1 - 0.928) }}
-                          viewport={{ once:true }}
-                          transition={{ duration: 1.5, ease: "easeOut", delay: 0.5 }}
-                          strokeLinecap="round"
-                          transform="rotate(-90 50 50)"
-                        />
-                     </svg>
-                  </div>
-               </motion.div>
-
-               {/* Metric 2: Vending Revenue */}
-               <motion.div initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once:true }} transition={{ delay: 0.3 }} className="glass-card" style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column' }}>
-                  <div className="ui-text-muted" style={{ marginBottom: '0.5rem', display: 'flex', justifyContent: 'space-between' }}>
-                    <span>Vendor Revenue (30d)</span>
-                    <span style={{ color: 'var(--accent-green)' }}>+12%</span>
-                  </div>
-                  <div style={{ fontSize: '2.5rem', fontWeight: 'bold', color: '#fff', marginBottom: '1.5rem' }}>₹42.5k</div>
-                  {/* Animated Line Chart representation */}
-                  <div style={{ flex: 1, display: 'flex', alignItems: 'flex-end', gap: '4px' }}>
-                     {[20, 35, 25, 45, 40, 60, 55, 75, 70, 90].map((h, i) => (
-                        <motion.div 
-                          key={i} 
-                          initial={{ height: 0 }}
-                          whileInView={{ height: `${h}%` }}
-                          viewport={{ once:true }}
-                          transition={{ duration: 0.5, delay: 0.5 + (i * 0.05) }}
-                          style={{ flex: 1, background: i > 7 ? 'var(--accent-red)' : 'rgba(225, 29, 72, 0.3)', borderRadius: '2px 2px 0 0' }}
-                        />
-                     ))}
-                  </div>
-               </motion.div>
-
-               {/* Metric 3: Weekly Active Users */}
-               <motion.div initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once:true }} transition={{ delay: 0.4 }} className="glass-card" style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column' }}>
-                  <div className="ui-text-muted" style={{ marginBottom: '0.5rem', display: 'flex', justifyContent: 'space-between' }}>
-                    <span>Weekly Active Users</span>
-                    <span style={{ color: 'var(--accent-green)' }}>+8%</span>
-                  </div>
-                  <div style={{ fontSize: '2.5rem', fontWeight: 'bold', color: '#fff', marginBottom: '1.5rem' }}>1,402</div>
-                  <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '10px', justifyContent: 'flex-end' }}>
-                     <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>Top Community Event:</div>
-                     <div style={{ background: 'rgba(255,255,255,0.05)', padding: '0.75rem', borderRadius: '8px', borderLeft: '3px solid var(--accent-orange)' }}>
-                        <div className="ui-text-bold" style={{ color: '#fff', fontSize: '0.9rem' }}>Summer Shred Challenge</div>
-                        <div className="ui-text-muted" style={{ fontSize: '0.8rem' }}>342 Participants Actively Logging</div>
-                     </div>
-                  </div>
-               </motion.div>
-
-               {/* Wide Metric: Activity Stream (Spans multiple columns on desktop) */}
-               <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once:true }} transition={{ delay: 0.6 }} className="glass-card" style={{ padding: '1.5rem', gridColumn: isMobile ? '1' : '1 / -1' }}>
-                  <div className="ui-text-bold" style={{ marginBottom: '1.5rem', color: '#fff' }}>Live Ecosystem Activity</div>
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                    {[
-                      { time: 'Just now', user: 'Alex M.', action: 'Unlocked Whey Isolate', location: 'Vendor 02', icon: <Box size={16} color="var(--brand-red)" /> },
-                      { time: '2 min ago', user: 'Sarah J.', action: 'Logged "Leg Day" Workout', location: 'App (Gym Floor)', icon: <Activity size={16} color="var(--accent-purple)" /> },
-                      { time: '5 min ago', user: 'Mike T.', action: 'Scanned In', location: 'Front Desk Turnstile', icon: <QrCode size={16} color="var(--accent-green)" /> }
-                    ].map((event, i) => (
-                       <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '1rem', paddingBottom: '1rem', borderBottom: i !== 2 ? '1px solid rgba(255,255,255,0.05)' : 'none' }}>
-                         <div style={{ width: '32px', height: '32px', borderRadius: '50%', background: 'var(--bg-tertiary)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                            {event.icon}
-                         </div>
-                         <div style={{ flex: 1 }}>
-                            <div style={{ color: '#fff', fontSize: '0.95rem' }}><strong>{event.user}</strong> {event.action}</div>
-                            <div className="ui-text-muted" style={{ fontSize: '0.8rem' }}>{event.location}</div>
-                         </div>
-                         <div className="ui-text-muted" style={{ fontSize: '0.85rem' }}>{event.time}</div>
-                       </div>
-                    ))}
-                  </div>
-               </motion.div>
-
-            </div>
+          {/* Scene 2: Track */}
+          <div style={{ width: '80vw', maxWidth: '1000px', flexShrink: 0, display: 'flex', flexDirection: isMobile ? 'column' : 'row', alignItems: 'center', gap: '4rem' }}>
+             <div style={{ flex: 1, order: isMobile ? 1 : 2 }}>
+               <h2 style={{ fontSize: isMobile ? '2.5rem' : '4rem', marginBottom: '1rem' }}><span className="text-gradient">Step 2:</span> <br/>Log & Track.</h2>
+               <p style={{ fontSize: '1.25rem' }}>The Yuguyu app acts as their digital coach. Tracking every set, rep, and macro meal plan natively within your gym's walled garden.</p>
+             </div>
+             <div className="device-frame" style={{ order: isMobile ? 2 : 1, width: isMobile ? '280px' : '360px', height: isMobile ? '450px' : '550px', transform: 'scale(0.95)' }}>
+                <AppWorkoutUI />
+             </div>
           </div>
+
+          {/* Scene 3: Connect */}
+          <div style={{ width: '80vw', maxWidth: '1000px', flexShrink: 0, display: 'flex', flexDirection: isMobile ? 'column' : 'row', alignItems: 'center', gap: '4rem' }}>
+             <div style={{ flex: 1 }}>
+               <h2 style={{ fontSize: isMobile ? '2.5rem' : '4rem', marginBottom: '1rem' }}><span className="text-gradient">Step 3:</span> <br/>Community.</h2>
+               <p style={{ fontSize: '1.25rem' }}>Members engage with leaderboards, challenges, and gym-wide events. A highly engaged member is a member that never churns.</p>
+             </div>
+             <div className="glass-card" style={{ width: isMobile ? '300px' : '400px', height: isMobile ? '400px' : '500px', padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '1rem' }}>
+                  <Users size={24} color="var(--accent-purple)"/>
+                  <span className="ui-text-bold">Live Gym Leaderboard</span>
+                </div>
+                {[
+                  { name: "Alex R.", score: "2,450 pts", rank: 1, color: "var(--brand-red)" },
+                  { name: "Sarah J.", score: "2,100 pts", rank: 2, color: "var(--accent-purple)" },
+                  { name: "Mike T.", score: "1,850 pts", rank: 3, color: "var(--accent-green)" },
+                  { name: "You", score: "1,420 pts", rank: 4, color: "var(--text-primary)" }
+                ].map((u, i) => (
+                  <div key={i} style={{ display: 'flex', justifyContent: 'space-between', padding: '1rem', background: 'var(--bg-tertiary)', borderRadius: '12px', border: `1px solid ${u.color}` }}>
+                     <span className="ui-text-bold">{u.rank}. {u.name}</span>
+                     <span style={{ color: u.color }}>{u.score}</span>
+                  </div>
+                ))}
+             </div>
+          </div>
+
+          {/* Scene 4: Reward */}
+          <div style={{ width: '80vw', maxWidth: '1000px', flexShrink: 0, display: 'flex', flexDirection: isMobile ? 'column' : 'row', alignItems: 'center', gap: '4rem' }}>
+             <div style={{ flex: 1, order: isMobile ? 1 : 2 }}>
+               <h2 style={{ fontSize: isMobile ? '2.5rem' : '4rem', marginBottom: '1rem' }}><span className="text-gradient">Step 4:</span> <br/>Smart Reward.</h2>
+               <p style={{ fontSize: '1.25rem' }}>Post-workout, members unlock a premium protein shake directly from the smart vendor using their app. Instant gratification, instantly logged to their macro plan.</p>
+             </div>
+             <div className="device-frame" style={{ order: isMobile ? 2 : 1, width: isMobile ? '280px' : '360px', height: isMobile ? '350px' : '400px', padding: '1.5rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <AppVendingUI />
+             </div>
+          </div>
+
         </motion.div>
       </div>
     </section>
@@ -782,11 +591,8 @@ function App() {
         </div>
       </section>
 
-      {/* 2. APPLE-STYLE APP SHOWCASE */}
-      <AppShowcase isMobile={isMobile} />
-
-      {/* 3. SAAS GYM DASHBOARD SHOWCASE */}
-      <DashboardShowcase isMobile={isMobile} />
+      {/* 2. HORIZONTAL SCROLL PRODUCT JOURNEY */}
+      <ProductJourney isMobile={isMobile} />
 
       {/* 4. INTERACTIVE FEATURES SECTION */}
       <section className="section" style={{ background: 'var(--bg-secondary)', borderTop: '1px solid var(--border-light)' }}>
@@ -858,52 +664,46 @@ function App() {
           {/* Animated Ecosystem Diagram */}
           <div style={{ position: 'relative', height: isMobile ? 'auto' : '500px', display: 'flex', flexDirection: isMobile ? 'column' : 'row', gap: isMobile ? '2rem' : '0', alignItems: 'center', justifyContent: 'center', maxWidth: '1000px', margin: '0 auto' }}>
             
-            {/* Center Brain (Activity / OS Core) */}
+            {/* Center Brain */}
             <motion.div 
                animate={{ boxShadow: ['0 0 40px rgba(147, 51, 234, 0.2)', '0 0 80px rgba(147, 51, 234, 0.6)', '0 0 40px rgba(147, 51, 234, 0.2)'] }}
                transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
                style={{ width: isMobile ? '140px' : '200px', height: isMobile ? '140px' : '200px', background: 'var(--bg-tertiary)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', border: '3px solid var(--accent-purple)', position: 'relative', zIndex: 10, order: isMobile ? 1 : 'unset' }}
             >
-               <Activity size={isMobile ? 50 : 70} color="var(--text-primary)" />
-               <div style={{ position: 'absolute', bottom: '-40px', fontWeight: 'bold', color: 'var(--text-primary)', letterSpacing: '2px', textTransform: 'uppercase', fontSize: '0.8rem' }}>Member Activity</div>
+               <Database size={isMobile ? 50 : 70} color="var(--text-primary)" />
+               <div style={{ position: 'absolute', bottom: '-40px', fontWeight: 'bold', color: 'var(--text-primary)', letterSpacing: '2px', textTransform: 'uppercase', fontSize: '0.8rem' }}>Yuguyu OS</div>
             </motion.div>
 
             {/* Glowing Connection Lines SVG */}
             {!isMobile && (
               <svg style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0 }}>
-                 {/* App to Activity */}
                  <motion.path d="M 150 100 Q 300 150 500 250" fill="none" stroke="var(--accent-red)" strokeWidth="3" className="ecosystem-path" strokeLinecap="round" />
-                 {/* Activity to Dashboard */}
-                 <motion.path d="M 500 250 Q 700 150 850 100" fill="none" stroke="var(--accent-purple)" strokeWidth="3" className="ecosystem-path" strokeLinecap="round" />
-                 {/* Activity/Dashboard to Reward */}
-                 <motion.path d="M 500 250 L 500 450" fill="none" stroke="var(--accent-orange)" strokeWidth="3" className="ecosystem-path" strokeLinecap="round" />
+                 <motion.path d="M 850 100 Q 700 150 500 250" fill="none" stroke="var(--accent-purple)" strokeWidth="3" className="ecosystem-path" strokeLinecap="round" />
+                 <motion.path d="M 500 450 L 500 250" fill="none" stroke="var(--accent-orange)" strokeWidth="3" className="ecosystem-path" strokeLinecap="round" />
               </svg>
             )}
 
             {/* Cards */}
-            {/* Node 1: App */}
             <motion.div initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once:true }} className="glass-card" style={{ position: isMobile ? 'static' : 'absolute', top: '10%', left: '5%', padding: '1.5rem', width: isMobile ? '100%' : '240px', order: isMobile ? 2 : 'unset', backdropFilter: 'blur(30px)' }}>
                <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '10px' }}>
                   <Smartphone size={20} color="var(--accent-red)"/>
-                  <div className="ui-text-bold">1. Member App</div>
+                  <div className="ui-text-bold">Member App</div>
                </div>
-               <div className="ui-text-muted" style={{ fontSize: '0.8rem' }}>Workout logging, diets, and gym entry.</div>
+               <div className="ui-text-muted" style={{ fontSize: '0.8rem' }}>Core hub for workouts, community, and loyalty.</div>
             </motion.div>
             
-            {/* Node 3: Dashboard */}
             <motion.div initial={{ opacity: 0, x: 50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once:true }} className="glass-card" style={{ position: isMobile ? 'static' : 'absolute', top: '10%', right: '5%', padding: '1.5rem', width: isMobile ? '100%' : '240px', order: isMobile ? 3 : 'unset', backdropFilter: 'blur(30px)' }}>
                <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '10px' }}>
                   <LayoutDashboard size={20} color="var(--accent-purple)"/>
-                  <div className="ui-text-bold">3. Gym Dashboard</div>
+                  <div className="ui-text-bold">Gym Ledger</div>
                </div>
-               <div className="ui-text-muted" style={{ fontSize: '0.8rem' }}>Analytics generated from member activity.</div>
+               <div className="ui-text-muted" style={{ fontSize: '0.8rem' }}>Total visibility into member retention and revenue.</div>
             </motion.div>
 
-            {/* Node 4: Reward */}
             <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once:true }} className="glass-card" style={{ position: isMobile ? 'static' : 'absolute', bottom: 0, padding: '1.5rem', width: isMobile ? '100%' : '240px', order: isMobile ? 4 : 'unset', backdropFilter: 'blur(30px)' }}>
                <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '10px' }}>
                   <Box size={20} color="var(--accent-orange)"/>
-                  <div className="ui-text-bold">4. Reward System</div>
+                  <div className="ui-text-bold">Reward Nodes</div>
                </div>
                <div className="ui-text-muted" style={{ fontSize: '0.8rem' }}>Smart vending modules serving automated post-workout rewards.</div>
             </motion.div>
