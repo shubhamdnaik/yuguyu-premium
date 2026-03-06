@@ -694,7 +694,7 @@ const ProductJourney = ({ isMobile }) => {
   const x = useTransform(scrollYProgress, [0, 1], ["0%", "-80%"]);
 
   return (
-    <section ref={targetRef} style={{ position: 'relative', height: '500vh', background: 'var(--bg-primary)' }}>
+    <section ref={targetRef} style={{ position: 'relative', height: isMobile ? '300vh' : '500vh', background: 'var(--bg-primary)' }}>
       <div style={{ position: 'sticky', top: 0, display: 'flex', height: '100vh', alignItems: 'center', overflow: 'hidden' }}>
         <motion.div style={{ x, display: 'flex', gap: '10vw', padding: '0 10vw' }}>
           
@@ -921,7 +921,7 @@ const HeroScene = ({ isMobile }) => {
   const midY = useSpring(mousePosition.y * -20, { stiffness: 50, damping: 20 });
 
   return (
-    <div ref={containerRef} style={{ marginTop: '6rem', position: 'relative', height: '520px', display: 'flex', justifyContent: 'center', maxWidth: '1000px', margin: '6rem auto 0 auto', perspective: '1000px' }}>
+    <div ref={containerRef} style={{ marginTop: isMobile ? '3rem' : '6rem', position: 'relative', height: isMobile ? '420px' : '520px', display: 'flex', justifyContent: 'center', maxWidth: '1000px', margin: '6rem auto 0 auto', perspective: '1000px' }}>
       
       {/* Background Glow Layer */}
       <motion.div 
@@ -936,7 +936,7 @@ const HeroScene = ({ isMobile }) => {
          style={{ 
            x: isMobile ? 0 : smoothX, y: isMobile ? 0 : smoothY,
            width: isMobile ? '240px' : '320px', 
-           height: isMobile ? '500px' : '640px', 
+           height: isMobile ? '400px' : '640px', 
            zIndex: 10, 
            position: 'absolute', 
            bottom: isMobile ? '-20px' : '-80px', 
@@ -960,7 +960,7 @@ const HeroScene = ({ isMobile }) => {
            width: isMobile ? '200px' : '280px', 
            height: isMobile ? '200px' : '240px', 
            zIndex: 2, 
-           transform: isMobile ? 'translateX(-90px)' : 'none'
+           transform: isMobile ? 'translateX(-70px) scale(0.85)' : 'none'
          }}
       >
         <LeftWingWidget />
@@ -980,7 +980,7 @@ const HeroScene = ({ isMobile }) => {
            width: isMobile ? '160px' : '220px', 
            height: isMobile ? '160px' : '180px', 
            zIndex: 11, 
-           transform: isMobile ? 'translateX(100px)' : 'none'
+           transform: isMobile ? 'translateX(80px) scale(0.85)' : 'none'
          }}
       >
          <RightWingWidget />
@@ -1045,7 +1045,7 @@ function App() {
       </nav>
 
       {/* 1. CINEMATIC HERO */}
-      <section className="section flex-center" style={{ minHeight: '100vh', paddingTop: '10rem', paddingBottom: '6rem', position: 'relative', overflow: 'hidden' }}>
+      <section className="section flex-center" style={{ minHeight: '100vh', paddingTop: isMobile ? '7rem' : '10rem', paddingBottom: isMobile ? '3rem' : '6rem', position: 'relative', overflow: 'hidden' }}>
         
         {/* Spotlight behind text */}
         <div style={{ position: 'absolute', top: '20%', left: '50%', transform: 'translate(-50%, -50%)', width: '600px', height: '600px', background: 'radial-gradient(circle, var(--accent-glow-red) 0%, transparent 60%)', filter: 'blur(60px)', zIndex: 0, opacity: 0.8 }}></div>
@@ -1084,7 +1084,7 @@ function App() {
               initial={{ opacity: 0, y: 20 }} 
               animate={{ opacity: 1, y: 0 }} 
               transition={{ duration: 0.8, delay: 0.6 }}
-              style={{ display: 'flex', gap: '1rem', justifyContent: 'center' }}
+              style={{ display: 'flex', flexDirection: isMobile ? 'column' : 'row', gap: '1rem', justifyContent: 'center', alignItems: 'center' }}
             >
               <motion.button 
                 whileHover={{ scale: 1.05 }}
@@ -1162,7 +1162,7 @@ function App() {
       </section>
 
       {/* 5. ECOSYSTEM VISUAL FLOW */}
-      <section className="section" style={{ borderTop: '1px solid var(--border-light)', overflow: 'hidden', padding: '10rem 0', position: 'relative' }}>
+      <section className="section" style={{ borderTop: '1px solid var(--border-light)', overflow: 'hidden', padding: isMobile ? '5rem 0' : '10rem 0', position: 'relative' }}>
         <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: '800px', height: '800px', background: 'radial-gradient(circle, var(--accent-glow-purple) 0%, transparent 60%)', filter: 'blur(80px)', zIndex: 0, opacity: 0.5 }}></div>
 
         <div className="container" style={{ textAlign: 'center', position: 'relative', zIndex: 10 }}>
@@ -1225,7 +1225,7 @@ function App() {
       </section>
 
       {/* 9. FINAL CONVERSION SECTION */}
-      <section className="section" style={{ background: 'var(--bg-primary)', padding: isMobile ? '6rem 0' : '12rem 0', position: 'relative', overflow: 'hidden' }}>
+      <section className="section" style={{ background: 'var(--bg-primary)', padding: isMobile ? '4rem 0' : '12rem 0', position: 'relative', overflow: 'hidden' }}>
         <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '100%', background: 'radial-gradient(ellipse at bottom, var(--accent-glow-red) 0%, transparent 70%)', zIndex: 0 }}></div>
         <div className="container" style={{ textAlign: 'center', position: 'relative', zIndex: 10 }}>
           <motion.h2 initial={{ opacity:0, scale:0.95 }} whileInView={{ opacity:1, scale:1 }} viewport={{ once:true }} style={{ fontSize: isMobile ? '3rem' : '5rem', marginBottom: '2rem' }}>

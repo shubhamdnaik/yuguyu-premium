@@ -434,3 +434,56 @@ body.light-theme .nav-blur {
   0% { stroke-dashoffset: 40; }
   100% { stroke-dashoffset: 0; }
 }
+
+
+/* ===================== */
+/* MOBILE OPTIMIZATIONS  */
+/* ===================== */
+@media (max-width: 768px) {
+  h1 {
+    font-size: clamp(2.2rem, 7vw, 3.5rem) !important;
+    word-break: break-word;
+  }
+  
+  h2 {
+    font-size: clamp(1.8rem, 6vw, 2.5rem) !important;
+  }
+
+  .glass-card {
+    padding: 1.5rem;
+    border-radius: var(--radius-lg);
+  }
+
+  .btn {
+    padding: 0.8rem 1.5rem;
+    font-size: 0.95rem;
+  }
+
+  .device-frame {
+    border-width: 5px;
+    border-radius: 32px;
+  }
+  
+  .device-frame::before {
+    width: 100px;
+    height: 22px;
+    border-bottom-left-radius: 14px;
+    border-bottom-right-radius: 14px;
+  }
+}
+
+/* Extra small screens */
+@media (max-width: 400px) {
+  .container {
+    padding: 0 1rem;
+  }
+  
+  h1 {
+    font-size: clamp(1.8rem, 8vw, 2.5rem) !important;
+  }
+
+  .btn {
+    padding: 0.7rem 1.2rem;
+    font-size: 0.85rem;
+  }
+}
