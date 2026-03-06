@@ -1194,11 +1194,10 @@ function App() {
               <motion.button 
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="btn btn-accent" style={{ padding: '1.2rem 2.5rem', fontSize: '1.1rem' }}
+                onClick={() => setShowContact(true)} className="btn btn-accent" style={{ padding: '1.2rem 2.5rem', fontSize: '1.1rem' }}
               >Bring Yuguyu To Your Gym <ArrowRight size={20} style={{ marginLeft: '10px' }}/>
               </motion.button>
-              <button className="btn btn-secondary">View Demo</button>
-            </motion.div>
+              </motion.div>
           </div>
 
           {/* Mouse-Tracked Floating 3D Scene */}
