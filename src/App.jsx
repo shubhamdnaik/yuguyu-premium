@@ -555,59 +555,84 @@ function App() {
       </section>
 
       {/* 5. NETWORK EFFECT SECTION */}
-      <section className="section" style={{ borderTop: '1px solid var(--border-light)', overflow: 'hidden' }}>
+      <section className="section" style={{ borderTop: '1px solid var(--border-light)', overflow: 'hidden', padding: '10rem 0' }}>
         <div className="container" style={{ textAlign: 'center' }}>
           <motion.h2 
              initial={{ opacity:0, y:20 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true }}
-             style={{ marginBottom: '2rem', maxWidth: '800px', margin: '0 auto 1.5rem auto' }}
+             style={{ marginBottom: '6rem', maxWidth: '800px', margin: '0 auto 6rem auto' }}
           >
             The More Your Gym Runs on Yuguyu, <br/>
             <span className="text-gradient">The Smarter It Gets</span>
           </motion.h2>
           
-          <div style={{ position: 'relative', marginTop: '6rem', height: '400px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <div style={{ position: 'relative', height: '450px', display: 'flex', alignItems: 'center', justifyContent: 'center', maxWidth: '1000px', margin: '0 auto' }}>
             
-            {/* The System Core */}
+            {/* The System Core / Brain */}
             <motion.div 
-               animate={{ boxShadow: ['0 0 30px rgba(144, 65, 255, 0.2)', '0 0 60px rgba(144, 65, 255, 0.5)', '0 0 30px rgba(144, 65, 255, 0.2)'] }}
+               animate={{ boxShadow: ['0 0 40px rgba(144, 65, 255, 0.2)', '0 0 80px rgba(144, 65, 255, 0.6)', '0 0 40px rgba(144, 65, 255, 0.2)'] }}
                transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-               style={{ width: '160px', height: '160px', background: 'var(--bg-tertiary)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', border: '2px solid var(--accent-purple)', position: 'relative', zIndex: 10 }}
+               style={{ width: '180px', height: '180px', background: 'var(--bg-tertiary)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', border: '3px solid var(--accent-purple)', position: 'relative', zIndex: 10 }}
             >
-               <Database size={64} color="var(--text-primary)" />
-               <div style={{ position: 'absolute', bottom: '-40px', fontWeight: 'bold', color: 'var(--text-primary)' }}>Data Platform</div>
+               <Database size={80} color="var(--text-primary)" />
+               <div style={{ position: 'absolute', bottom: '-40px', fontWeight: 'bold', color: 'var(--text-primary)', letterSpacing: '1px', textTransform: 'uppercase', fontSize: '0.8rem' }}>Infrastructure Core</div>
             </motion.div>
 
-            {/* Inputs / Connections */}
-            <div style={{ position: 'absolute', top: '5%', left: '50%', transform: 'translateX(-50%)', display: 'flex', gap: '15rem' }}>
-                <div className="ui-card" style={{ padding: '1rem 2rem', background: 'var(--bg-primary)' }}>Workout → Data</div>
-                <div className="ui-card" style={{ padding: '1rem 2rem', background: 'var(--bg-primary)' }}>Diet → Data</div>
-            </div>
-             <div className="ui-card" style={{ position: 'absolute', bottom: '5%', left: '50%', transform: 'translateX(-50%)', padding: '1rem 2rem', background: 'var(--bg-primary)' }}>Purchase → Data</div>
+            {/* SVG Data Stream Lines */}
+            <svg style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0 }}>
+               <motion.path d="M 150 50 Q 300 100 500 225" fill="none" stroke="var(--accent-green)" strokeWidth="2" className="ecosystem-line" />
+               <motion.path d="M 850 50 Q 700 100 500 225" fill="none" stroke="var(--accent-purple)" strokeWidth="2" className="ecosystem-line" />
+               <motion.path d="M 500 400 L 500 225" fill="none" stroke="var(--accent-orange)" strokeWidth="2" className="ecosystem-line" />
+            </svg>
 
-             {/* Animated Glow Lines */}
-             <div style={{ position: 'absolute', top: '25%', left: '38%', width: '100px', height: '2px', background: 'linear-gradient(90deg, transparent, var(--accent-green))', transform: 'rotate(45deg)' }}></div>
-             <div style={{ position: 'absolute', top: '25%', right: '38%', width: '100px', height: '2px', background: 'linear-gradient(270deg, transparent, var(--accent-purple))', transform: 'rotate(-45deg)' }}></div>
-             <div style={{ position: 'absolute', bottom: '30%', left: '50%', width: '2px', height: '80px', background: 'linear-gradient(0deg, transparent, var(--accent-orange))', transform: 'translateX(-50%)' }}></div>
+            <motion.div initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once:true }} className="ui-card" style={{ position: 'absolute', top: 0, left: '5%', padding: '1.5rem', background: 'rgba(11,11,15,0.8)', border: '1px solid var(--accent-green)', borderRadius: '16px' }}>
+               <div className="ui-text-bold">Member Activity Feed</div>
+               <div className="ui-text-muted" style={{ fontSize: '0.7rem' }}>Syncing Workout Stats...</div>
+            </motion.div>
+            
+            <motion.div initial={{ opacity: 0, x: 50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once:true }} className="ui-card" style={{ position: 'absolute', top: 0, right: '5%', padding: '1.5rem', background: 'rgba(11,11,15,0.8)', border: '1px solid var(--accent-purple)', borderRadius: '16px' }}>
+               <div className="ui-text-bold">Gym Revenue Ledger</div>
+               <div className="ui-text-muted" style={{ fontSize: '0.7rem' }}>Processing Sales Data...</div>
+            </motion.div>
+
+            <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once:true }} className="ui-card" style={{ position: 'absolute', bottom: 0, padding: '1.5rem', background: 'rgba(11,11,15,0.8)', border: '1px solid var(--accent-orange)', borderRadius: '16px' }}>
+               <div className="ui-text-bold">Hardware Inventory</div>
+               <div className="ui-text-muted" style={{ fontSize: '0.7rem' }}>Monitoring Stock Levels...</div>
+            </motion.div>
           </div>
         </div>
       </section>
 
-      {/* 6. GYM OWNER VALUE */}
-      <section className="section" style={{ background: 'var(--bg-secondary)', borderTop: '1px solid var(--border-light)' }}>
-        <div className="container" style={{ textAlign: 'center' }}>
-          <h2 style={{ marginBottom: '4rem' }}>Turn Your Gym Into a <br/><span className="text-gradient">Smart Fitness Hub</span></h2>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '2rem' }}>
-            {[
-              { icon: <Users size={32} color="var(--accent-purple)"/>, title: 'Higher Member Engagement' },
-              { icon: <DollarSign size={32} color="var(--accent-green)"/>, title: 'New Revenue Streams' },
-              { icon: <Settings size={32} color="#fff"/>, title: 'Automated Operations' },
-              { icon: <LineChart size={32} color="var(--accent-orange)"/>, title: 'Real-time Insights' }
-            ].map((b, i) => (
-              <MotionCard key={i} index={i} className="flex-center" style={{ flexDirection: 'column', gap: '1.5rem', padding: '3rem 2rem' }}>
-                <div style={{ background: 'var(--bg-primary)', padding: '1.5rem', borderRadius: '50%', border: '1px solid var(--border-light)' }}>{b.icon}</div>
-                <div className="ui-text-bold" style={{ fontSize: '1.1rem' }}>{b.title}</div>
-              </MotionCard>
-            ))}
+      {/* 6. GYM OWNER VALUE (Series A Reveal) */}
+      <section className="section" style={{ background: 'var(--bg-secondary)', borderTop: '1px solid #111', padding: '10rem 0' }}>
+        <div className="container">
+          <div style={{ textAlign: 'center', marginBottom: '8rem' }}>
+            <h2 style={{ marginBottom: '1.5rem' }}>Turn Your Gym Into a <br/><span className="text-gradient">Smart Fitness Hub</span></h2>
+            <p style={{ color: 'var(--text-secondary)', maxWidth: '600px', margin: '0 auto' }}>Yuguyu replaces static operations with a dynamic ecosystem that understands your members better than they do themselves.</p>
+          </div>
+
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem' }}>
+             {[
+               { title: 'Higher Retention', desc: 'Pre-churn detection models identify at-risk members before they cancel, allowing for automated win-back campaigns.', icon: <Users color="var(--accent-purple)"/> },
+               { title: 'New Revenue', desc: 'In-gym smart vending and integrated diet logs create high-margin nutrition revenue streams without manual labor.', icon: <DollarSign color="var(--accent-green)"/> },
+               { title: 'Data Assets', desc: 'Your gym stops being a physical box and starts being a data platform, increasing the enterprise value of your business.', icon: <Database color="var(--accent-blue)"/> },
+               { title: 'Full Automation', desc: 'From door access control to inventory management, Yuguyu automates the repetitive work so you can focus on training.', icon: <Settings color="#fff"/> }
+             ].map((item, i) => (
+                <motion.div 
+                  key={i}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.1 }}
+                  className="glass-card" 
+                  style={{ display: 'flex', gap: '2rem', padding: '3rem', border: '1px solid rgba(255,255,255,0.05)', background: 'rgba(11,11,15,0.4)', alignItems: 'flex-start', borderRadius: '24px' }}
+                >
+                   <div style={{ background: 'var(--bg-tertiary)', padding: '1rem', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.1)' }}>{item.icon}</div>
+                   <div>
+                      <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem' }}>{item.title}</h3>
+                      <p style={{ color: 'var(--text-secondary)', fontSize: '1rem' }}>{item.desc}</p>
+                   </div>
+                </motion.div>
+             ))}
           </div>
         </div>
       </section>
@@ -631,15 +656,62 @@ function App() {
       </section>
 
       {/* 9. FINAL CONVERSION SECTION */}
-      <section className="section" style={{ background: 'var(--bg-secondary)', minHeight: '50vh', display: 'flex', alignItems: 'center', borderTop: '1px solid var(--border-light)' }}>
-        <div className="container" style={{ textAlign: 'center' }}>
-          <h2 style={{ fontSize: '5rem', marginBottom: '3rem' }}>Upgrade Your Gym.</h2>
+      <section className="section" style={{ background: '#050508', padding: '12rem 0', position: 'relative', overflow: 'hidden' }}>
+        <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '100%', background: 'radial-gradient(circle at 50% 100%, rgba(144, 65, 255, 0.15) 0%, rgba(0,0,0,0) 70%)', zIndex: 0 }}></div>
+        <div className="container" style={{ textAlign: 'center', position: 'relative', zIndex: 10 }}>
+          <motion.h2 initial={{ opacity:0, scale:0.95 }} whileInView={{ opacity:1, scale:1 }} viewport={{ once:true }} style={{ fontSize: '5.5rem', marginBottom: '3rem', letterSpacing: '-0.05em' }}>Upgrade Your Gym.</motion.h2>
+          <motion.p initial={{ opacity:0 }} whileInView={{ opacity:1 }} viewport={{ once:true }} transition={{ delay: 0.2 }} style={{ fontSize: '1.25rem', color: 'var(--text-secondary)', marginBottom: '4rem', maxWidth: '600px', margin: '0 auto 4rem auto' }}>Join the infrastructure powering the next generation of smart fitness hubs.</motion.p>
           <div style={{ display: 'flex', gap: '1.5rem', justifyContent: 'center' }}>
-            <button className="btn btn-primary" style={{ padding: '1.2rem 3rem', fontSize: '1.1rem' }}>Request Demo</button>
-            <button className="btn btn-secondary" style={{ padding: '1.2rem 3rem', fontSize: '1.1rem' }}>Partner With Yuguyu</button>
+            <button className="btn btn-primary" style={{ padding: '1.4rem 4rem', fontSize: '1.1rem' }}>Get Started Now <ArrowRight size={20} style={{ marginLeft: '12px' }} /></button>
+            <button className="btn btn-secondary" style={{ padding: '1.4rem 4rem', fontSize: '1.1rem' }}>Partner Inquiry</button>
           </div>
         </div>
       </section>
+
+      {/* FOOTER */}
+      <footer style={{ padding: '6rem 4rem 4rem 4rem', borderTop: '1px solid #111', background: '#0B0B0F' }}>
+         <div className="container" style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr 1fr', gap: '4rem' }}>
+            <div>
+               <div style={{ fontSize: '1.5rem', fontWeight: '800', fontFamily: 'var(--font-heading)', letterSpacing: '-0.03em', marginBottom: '1.5rem' }}>
+                  <span className="text-primary">Yugu</span><span style={{ color: 'var(--accent-purple)' }}>yu</span>
+               </div>
+               <p style={{ color: 'var(--text-tertiary)', fontSize: '0.9rem', lineHeight: 1.6 }}>The Operating System for Modern Gyms. Connecting members, infrastructure, and revenue into one intelligent ecosystem.</p>
+            </div>
+            <div>
+               <div className="ui-text-bold" style={{ marginBottom: '1.5rem', fontSize: '1rem' }}>Platform</div>
+               <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.75rem', color: 'var(--text-tertiary)', fontSize: '0.9rem' }}>
+                  <li>Member App</li>
+                  <li>Gym Admin</li>
+                  <li>Smart Vending</li>
+                  <li>Retention Engine</li>
+               </ul>
+            </div>
+            <div>
+               <div className="ui-text-bold" style={{ marginBottom: '1.5rem', fontSize: '1rem' }}>Company</div>
+               <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.75rem', color: 'var(--text-tertiary)', fontSize: '0.9rem' }}>
+                  <li>About Us</li>
+                  <li>Partners</li>
+                  <li>Careers</li>
+                  <li>Contact</li>
+               </ul>
+            </div>
+            <div>
+               <div className="ui-text-bold" style={{ marginBottom: '1.5rem', fontSize: '1rem' }}>Social</div>
+               <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.75rem', color: 'var(--text-tertiary)', fontSize: '0.9rem' }}>
+                  <li>Twitter</li>
+                  <li>LinkedIn</li>
+                  <li>Instagram</li>
+               </ul>
+            </div>
+         </div>
+         <div className="container" style={{ marginTop: '6rem', paddingTop: '2rem', borderTop: '1px solid rgba(255,255,255,0.03)', display: 'flex', justifyContent: 'space-between', color: 'var(--text-tertiary)', fontSize: '0.8rem' }}>
+            <div>© 2026 Yuguyu Technologies. All rights reserved.</div>
+            <div style={{ display: 'flex', gap: '2rem' }}>
+               <span>Privacy Policy</span>
+               <span>Terms of Service</span>
+            </div>
+         </div>
+      </footer>
 
     </div>
   );
