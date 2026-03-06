@@ -60,10 +60,10 @@ const AppDietTrackerUI = () => (
     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <div className="ui-text-bold" style={{ fontSize: '1.2rem' }}>Diet Tracker</div>
         <div style={{ display: 'flex', gap: '8px' }}>
-           <div style={{ display: 'flex', alignItems: 'center', gap: '4px', background: 'rgba(255,255,255,0.05)', padding: '4px 8px', borderRadius: '8px', fontSize: '0.7rem' }}>
+           <div style={{ display: 'flex', alignItems: 'center', gap: '4px', background: 'var(--border-light)', padding: '4px 8px', borderRadius: '8px', fontSize: '0.7rem' }}>
               <Target size={12} color="var(--accent-red)"/> Goals
            </div>
-           <div style={{ display: 'flex', alignItems: 'center', gap: '4px', background: 'rgba(255,255,255,0.05)', padding: '4px 8px', borderRadius: '8px', fontSize: '0.7rem' }}>
+           <div style={{ display: 'flex', alignItems: 'center', gap: '4px', background: 'var(--border-light)', padding: '4px 8px', borderRadius: '8px', fontSize: '0.7rem' }}>
               <Calendar size={12} color="var(--accent-red)"/> Today
            </div>
         </div>
@@ -154,7 +154,7 @@ const AppWorkoutUI = () => (
   <div style={{ padding: '0 1.25rem 1.5rem 1.25rem', height: '100%', overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: '1rem', paddingTop: '2.5rem', background: 'var(--bg-primary)', scrollbarWidth: 'none', paddingBottom: '6rem' }}>
      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <div className="ui-text-bold" style={{ fontSize: '1.2rem' }}>Workout</div>
-        <div style={{ background: 'rgba(255,255,255,0.05)', display: 'flex', alignItems: 'center', gap: '6px', padding: '4px 10px', borderRadius: '8px', fontSize: '0.7rem' }}>
+        <div style={{ background: 'var(--border-light)', display: 'flex', alignItems: 'center', gap: '6px', padding: '4px 10px', borderRadius: '8px', fontSize: '0.7rem' }}>
            <Calendar size={12} color="var(--accent-red)"/> Today
         </div>
      </div>
@@ -336,7 +336,7 @@ const AppHomeScannerUI = () => (
              <div style={{ display: 'flex', alignItems: 'center', gap: '4px', marginBottom: '4px' }}><Calendar size={10} color="var(--text-secondary)"/><span className="ui-text-muted" style={{ fontSize: '0.7rem' }}>Tomorrow 7AM</span></div>
              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '1rem' }}>
                <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}><Users size={10} color="var(--text-secondary)"/><span className="ui-text-muted" style={{ fontSize: '0.7rem' }}>18 joined</span></div>
-               <div style={{ background: 'rgba(255,255,255,0.05)', color: 'var(--text-muted)', fontSize: '0.7rem', padding: '4px 12px', borderRadius: '100px', fontWeight: 'bold' }}>Join</div>
+               <div style={{ background: 'var(--border-light)', color: 'var(--text-muted)', fontSize: '0.7rem', padding: '4px 12px', borderRadius: '100px', fontWeight: 'bold' }}>Join</div>
              </div>
            </div>
          </div>
@@ -349,7 +349,7 @@ const AppHomeScannerUI = () => (
            <Trophy size={16} color="var(--accent-red)"/>
            <span className="ui-text-bold" style={{ fontSize: '1rem' }}>Leaderboard</span>
         </div>
-        <div style={{ background: 'rgba(255,255,255,0.05)', display: 'flex', alignItems: 'center', gap: '6px', padding: '4px 10px', borderRadius: '8px', fontSize: '0.7rem' }}>
+        <div style={{ background: 'var(--border-light)', display: 'flex', alignItems: 'center', gap: '6px', padding: '4px 10px', borderRadius: '8px', fontSize: '0.7rem' }}>
            Weekly <ChevronRight size={12}/>
         </div>
      </div>
@@ -422,7 +422,7 @@ const AppProfileUI = () => (
            { icon: <Bell size={16}/>, label: "Notifications" },
            { icon: <CreditCard size={16}/>, label: "Payment Methods" }
         ].map((item, i) => (
-           <div key={i} style={{ display: 'flex', justifyContent: 'space-between', padding: '1rem 1.25rem', borderBottom: i < 2 ? '1px solid rgba(255,255,255,0.05)' : 'none' }}>
+           <div key={i} style={{ display: 'flex', justifyContent: 'space-between', padding: '1rem 1.25rem', borderBottom: i < 2 ? '1px solid var(--border-light)' : 'none' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                  <div style={{ color: 'var(--text-muted)' }}>{item.icon}</div>
                  <span className="ui-text-muted" style={{ fontSize: '0.9rem' }}>{item.label}</span>
@@ -538,10 +538,10 @@ const LiveGymInsights = ({ isMobile }) => {
             {/* Main Application Window */}
             <motion.div 
                initial={{ opacity: 0, y: 60 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once:true, margin: "-100px" }} transition={{ duration: 0.8, type: 'spring', stiffness: 40 }}
-               style={{ background: 'var(--bg-secondary)', borderRadius: '24px', border: '1px solid rgba(255,255,255,0.05)', boxShadow: '0 40px 100px rgba(0,0,0,0.8), inset 0 2px 20px rgba(255,255,255,0.02)', overflow: 'hidden' }}
+               style={{ background: 'var(--bg-secondary)', borderRadius: '24px', border: '1px solid var(--border-light)', boxShadow: '0 40px 100px var(--shadow-str, rgba(0,0,0,0.8)), inset 0 2px 20px rgba(255,255,255,0.02)', overflow: 'hidden' }}
             >
                {/* App Header */}
-               <div style={{ padding: '1rem 2rem', background: '#0F1014', borderBottom: '1px solid rgba(255,255,255,0.05)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+               <div style={{ padding: '1rem 2rem', background: 'var(--bg-tertiary)', borderBottom: '1px solid var(--border-light)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                   <div style={{ display: 'flex', gap: '0.8rem' }}>
                      <div style={{ width: '12px', height: '12px', borderRadius: '50%', background: 'var(--accent-red)' }}></div>
                      <div style={{ width: '12px', height: '12px', borderRadius: '50%', background: 'var(--accent-orange)' }}></div>
@@ -603,7 +603,7 @@ const LiveGymInsights = ({ isMobile }) => {
                      <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
                         <svg width="140" height="140" viewBox="0 0 100 100">
                            {/* Base Circle */}
-                           <circle cx="50" cy="50" r="40" fill="none" stroke="rgba(255,255,255,0.05)" strokeWidth="16" />
+                           <circle cx="50" cy="50" r="40" fill="none" stroke="var(--border-light)" strokeWidth="16" />
                            {/* Highlight Donut */}
                            <motion.circle 
                               cx="50" cy="50" r="40" fill="none" stroke="var(--brand-red)" strokeWidth="16" 
@@ -622,14 +622,14 @@ const LiveGymInsights = ({ isMobile }) => {
                      </div>
                      <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '1rem', fontSize: '0.8rem', color: 'var(--text-muted)' }}>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}><div style={{ width:'8px', height:'8px', borderRadius:'50%', background:'var(--brand-red)' }}></div> Strict Logging</div>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}><div style={{ width:'8px', height:'8px', borderRadius:'50%', background:'rgba(255,255,255,0.1)' }}></div> Casual</div>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}><div style={{ width:'8px', height:'8px', borderRadius:'50%', background:'var(--border-focus)' }}></div> Casual</div>
                      </div>
                   </motion.div>
 
                   {/* CHART 3: BAR GRAPH (Workout Categories) */}
                   <motion.div initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once:true }} transition={{ delay: 0.5 }} className="glass-card" style={{ padding: '2rem', display: 'flex', flexDirection: 'column' }}>
                      <div className="ui-text-muted" style={{ marginBottom: '1.5rem' }}>Daily Completed Workouts</div>
-                     <div style={{ flex: 1, display: 'flex', alignItems: 'flex-end', justifyContent: 'space-around', paddingBottom: '1rem', borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
+                     <div style={{ flex: 1, display: 'flex', alignItems: 'flex-end', justifyContent: 'space-around', paddingBottom: '1rem', borderBottom: '1px solid var(--border-focus)' }}>
                         {[
                            { name: 'Strength', val: 80, col: 'var(--accent-purple)' },
                            { name: 'HIIT', val: 45, col: 'var(--accent-orange)' },
@@ -663,9 +663,9 @@ const LiveGymInsights = ({ isMobile }) => {
                            { rank: 2, name: "Jessica Chen", workouts: 5, rewards: 3 },
                            { rank: 3, name: "David Kim", workouts: 5, rewards: 1 },
                         ].map((u, i) => (
-                           <div key={i} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0.8rem 1rem', background: 'rgba(255,255,255,0.03)', borderRadius: '8px' }}>
+                           <div key={i} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0.8rem 1rem', background: 'var(--bg-tertiary)', borderRadius: '8px' }}>
                               <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                                 <div style={{ width: '24px', height: '24px', borderRadius: '50%', background: i === 0 ? 'var(--accent-orange)' : 'rgba(255,255,255,0.1)', display: 'flex', justifyContent: 'center', alignItems: 'center', fontSize: '0.7rem', fontWeight: 'bold' }}>{u.rank}</div>
+                                 <div style={{ width: '24px', height: '24px', borderRadius: '50%', background: i === 0 ? 'var(--accent-orange)' : 'var(--border-focus)', display: 'flex', justifyContent: 'center', alignItems: 'center', fontSize: '0.7rem', fontWeight: 'bold' }}>{u.rank}</div>
                                  <strong style={{ fontSize: '0.95rem' }}>{u.name}</strong>
                               </div>
                               <div style={{ display: 'flex', gap: '2rem', fontSize: '0.85rem' }}>
@@ -818,7 +818,7 @@ const HeroScene = ({ isMobile }) => {
            zIndex: 10, 
            position: 'absolute', 
            bottom: isMobile ? '-20px' : '-80px', 
-           boxShadow: '0 40px 80px rgba(0,0,0,0.8), 0 0 0 1px rgba(255,255,255,0.1) inset' 
+           boxShadow: '0 40px 80px var(--shadow-str, rgba(0,0,0,0.8)), 0 0 0 1px var(--border-focus) inset' 
          }}
          className="device-frame"
       >
@@ -877,7 +877,7 @@ const HeroScene = ({ isMobile }) => {
            transform: isMobile ? 'translateX(100px)' : 'none'
          }}
       >
-         <div className="glass-card" style={{ width: '100%', padding: '1.5rem', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem', border: '1px solid rgba(225, 29, 72, 0.3)', background: 'linear-gradient(180deg, rgba(225, 29, 72, 0.05), rgba(0,0,0,0.4))' }}>
+         <div className="glass-card" style={{ width: '100%', padding: '1.5rem', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem', border: '1px solid rgba(225, 29, 72, 0.3)', background: 'linear-gradient(180deg, rgba(225, 29, 72, 0.05), var(--card-shade, rgba(10,10,15,0.4)))' }}>
            <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'rgba(225, 29, 72, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '0.5rem' }}>
               <Trophy size={20} color="var(--brand-red)"/>
            </div>
@@ -982,10 +982,9 @@ function App() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="btn btn-accent" style={{ padding: '1.2rem 2.5rem', fontSize: '1.1rem' }}
-              >
-                Request Access <ArrowRight size={20} style={{ marginLeft: '10px' }}/>
+              >Bring Yuguyu To Your Gym <ArrowRight size={20} style={{ marginLeft: '10px' }}/>
               </motion.button>
-              <button className="btn btn-secondary">Explore Platform</button>
+              <button className="btn btn-secondary">View Demo</button>
             </motion.div>
           </div>
 
@@ -1139,7 +1138,7 @@ function App() {
       
 
       {/* 5. FOOTER & GYM OWNER BENEFITS */}
-      <footer style={{ padding: '2rem 0', background: 'var(--bg-primary)', position: 'relative', overflow: 'hidden', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
+      <footer style={{ padding: '2rem 0', background: 'var(--bg-primary)', position: 'relative', overflow: 'hidden', borderTop: '1px solid var(--border-light)' }}>
          <div className="container" style={{ position: 'relative', zIndex: 10, display: 'flex', flexDirection: isMobile ? 'column' : 'row', justifyContent: 'space-between', alignItems: isMobile ? 'center' : 'flex-start', gap: '1rem', color: 'var(--text-tertiary)', fontSize: '0.85rem', textAlign: isMobile ? 'center' : 'left' }}>
             <div>© 2026 Yuguyu Technologies. All rights reserved.</div>
             <div style={{ display: 'flex', gap: '2.5rem' }}>

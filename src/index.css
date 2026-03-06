@@ -1,6 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&family=Inter:wght@300..700&family=Outfit:wght@700&family=Satoshi:wght@400;500;700;900&display=swap');
 
 :root {
+  --device-rim: #1A1C23;
+  --device-notch: #1A1C23;
   /* Dark Theme (Default) - Deep Cinematic */
   --bg-primary: #050505;
   --bg-secondary: #0A0A0F;
@@ -10,6 +12,8 @@
   --text-secondary: #A1A1AA;
   --text-tertiary: #52525B;
   
+  --card-shade: rgba(10, 10, 15, 0.4);
+  --shadow-str: rgba(0,0,0,0.8);
   --border-light: rgba(255, 255, 255, 0.08);
   --border-focus: rgba(255, 255, 255, 0.2);
   --glass-bg: rgba(10, 10, 15, 0.4);
@@ -38,6 +42,8 @@
 }
 
 body.light-theme {
+  --device-rim: #E4E4E7;
+  --device-notch: #E4E4E7;
   --bg-primary: #FAFAFA;
   --bg-secondary: #FFFFFF;
   --bg-tertiary: #F4F4F5;
@@ -46,6 +52,8 @@ body.light-theme {
   --text-secondary: #71717A;
   --text-tertiary: #A1A1AA;
   
+  --card-shade: rgba(255, 255, 255, 0.4);
+  --shadow-str: rgba(0,0,0,0.1);
   --border-light: rgba(0, 0, 0, 0.08);
   --border-focus: rgba(0, 0, 0, 0.2);
   --glass-bg: rgba(255, 255, 255, 0.6);
@@ -340,7 +348,7 @@ body.light-theme .btn-primary {
 /* Hardware / App Replicas (Premiumized) */
 .device-frame {
   background: var(--bg-primary);
-  border: 8px solid #1A1C23;
+  border: 8px solid var(--device-rim, #1A1C23);
   border-radius: 48px;
   overflow: hidden;
   box-shadow: 0 30px 60px rgba(0,0,0,0.8), inset 0 0 0 2px rgba(255,255,255,0.05);
@@ -355,7 +363,7 @@ body.light-theme .btn-primary {
   transform: translateX(-50%);
   width: 140px;
   height: 30px;
-  background: #1A1C23;
+  background: var(--device-notch, #1A1C23);
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
   z-index: 20;
