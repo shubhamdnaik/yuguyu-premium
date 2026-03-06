@@ -77,8 +77,8 @@ const AppWorkoutUI = () => (
      </div>
      
      <div className="ui-card" style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
-        <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'rgba(255, 51, 102, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-           <Activity size={20} color="#ff3366"/>
+        <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'rgba(255, 59, 59, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+           <Activity size={20} color="var(--accent-green)"/>
         </div>
         <div>
            <div className="ui-text-muted" style={{ fontSize: '0.75rem' }}>Avg Heart Rate</div>
@@ -109,7 +109,7 @@ const AppScannerUI = () => (
      <div className="ui-text-bold" style={{ fontSize: '1.2rem', marginBottom: '0.5rem' }}>Access Gym</div>
      <div className="ui-text-muted" style={{ textAlign: 'center', marginBottom: '2rem' }}>Scan QR at the turnstile <br/>to unlock the door</div>
      
-     <div style={{ width: '200px', height: '200px', background: '#fff', borderRadius: '16px', padding: '1rem', position: 'relative', boxShadow: '0 0 40px rgba(187, 255, 34, 0.2)', display: 'flex', alignItems:'center', justifyContent: 'center' }}>
+     <div style={{ width: '200px', height: '200px', background: '#fff', borderRadius: '16px', padding: '1rem', position: 'relative', boxShadow: '0 0 40px rgba(255, 59, 59, 0.2)', display: 'flex', alignItems:'center', justifyContent: 'center' }}>
         <QrCode size={150} color="var(--accent-purple)"/>
         {/* Scanner Line Animation */}
         <motion.div 
@@ -121,7 +121,7 @@ const AppScannerUI = () => (
      
      <div style={{ marginTop: 'auto', width: '100%', display: 'flex', justifyContent: 'space-between', padding: '1rem', background: 'var(--bg-secondary)', borderRadius: '100px', border: '1px solid var(--border-light)' }}>
          <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'var(--bg-tertiary)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><User size={18}/></div>
-         <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'var(--accent-purple)', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 0 15px rgba(144, 65, 255, 0.4)' }}><Box size={18} color="#fff"/></div>
+         <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'var(--accent-purple)', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 0 15px rgba(196, 30, 58, 0.4)' }}><Box size={18} color="#fff"/></div>
          <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'var(--bg-tertiary)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Settings size={18}/></div>
      </div>
   </div>
@@ -147,7 +147,7 @@ const AppHomeScannerUI = () => (
      
      {/* QR Scanner Card */}
      <div className="ui-card flex-center" style={{ flexDirection: 'column', gap: '1rem', padding: '1.5rem', borderRadius: '24px' }}>
-       <div style={{ width: '120px', height: '120px', background: 'rgba(144, 65, 255, 0.1)', borderRadius: '16px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+       <div style={{ width: '120px', height: '120px', background: 'rgba(196, 30, 58, 0.1)', borderRadius: '16px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
          <QrCode size={80} color="var(--accent-purple)"/>
        </div>
        <div style={{ textAlign: 'center' }}>
@@ -166,9 +166,9 @@ const AppHomeScannerUI = () => (
        
        <div style={{ display: 'flex', gap: '0.75rem', overflowX: 'auto', paddingBottom: '0.5rem', scrollbarWidth: 'none' }}>
          <div style={{ minWidth: '160px', background: 'var(--bg-tertiary)', borderRadius: '16px', overflow: 'hidden', paddingBottom: '1rem' }}>
-           <div style={{ height: '70px', background: 'linear-gradient(180deg, rgba(144,65,255,0.4) 0%, var(--bg-tertiary) 100%)' }}></div>
+           <div style={{ height: '70px', background: 'linear-gradient(180deg, rgba(196, 30, 58, 0.4) 0%, var(--bg-tertiary) 100%)' }}></div>
            <div style={{ padding: '0 0.75rem' }}>
-             <div style={{ background: 'rgba(187,255,34,0.1)', color: 'var(--accent-green)', fontSize: '0.6rem', padding: '2px 6px', borderRadius: '4px', display: 'inline-block', marginBottom: '4px' }}>Gym Hosted</div>
+             <div style={{ background: 'rgba(255, 59, 59, 0.1)', color: 'var(--accent-green)', fontSize: '0.6rem', padding: '2px 6px', borderRadius: '4px', display: 'inline-block', marginBottom: '4px' }}>Gym Hosted</div>
              <div className="ui-text-bold" style={{ fontSize: '0.9rem', marginBottom: '8px' }}>HIIT Challenge</div>
              <div style={{ display: 'flex', alignItems: 'center', gap: '4px', marginBottom: '4px' }}><Calendar size={10} color="var(--text-secondary)"/><span className="ui-text-muted" style={{ fontSize: '0.7rem' }}>Today 6PM</span></div>
              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '1rem' }}>
@@ -402,12 +402,12 @@ function App() {
                </defs>
             </svg>
             
-            <MotionCard index={0} style={{ padding: '2rem 1.5rem', width: '220px', textAlign: 'center', background: 'var(--bg-secondary)', border: '1px solid var(--accent-green)', zIndex: 2, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem', boxShadow: '0 0 30px rgba(187, 255, 34, 0.15)' }}>
+            <MotionCard index={0} style={{ padding: '2rem 1.5rem', width: '220px', textAlign: 'center', background: 'var(--bg-secondary)', border: '1px solid var(--accent-green)', zIndex: 2, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem', boxShadow: '0 0 30px rgba(255, 59, 59, 0.15)' }}>
                <Smartphone size={32} color="var(--accent-green)"/>
                <div className="ui-text-bold" style={{ fontSize: '1.1rem' }}>Member App</div>
             </MotionCard>
             
-            <MotionCard index={1} style={{ padding: '2rem 1.5rem', width: '260px', textAlign: 'center', background: 'var(--bg-tertiary)', border: '2px solid var(--accent-purple)', zIndex: 2, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem', boxShadow: '0 0 40px rgba(144, 65, 255, 0.3)' }}>
+            <MotionCard index={1} style={{ padding: '2rem 1.5rem', width: '260px', textAlign: 'center', background: 'var(--bg-tertiary)', border: '2px solid var(--accent-purple)', zIndex: 2, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem', boxShadow: '0 0 40px rgba(196, 30, 58, 0.3)' }}>
                <Database size={40} color="var(--accent-purple)"/>
                <div className="ui-text-bold" style={{ fontSize: '1.4rem' }}>Data Engine</div>
                <div className="ui-text-muted" style={{ fontSize: '0.8rem' }}>The Central Brain</div>
@@ -502,7 +502,7 @@ function App() {
             </div>
 
             {/* 4.3 CINEMATIC HARDWARE REVEAL */}
-            <div style={{ marginTop: '10rem', position: 'relative', padding: '6rem 0', background: 'radial-gradient(ellipse at center, rgba(144, 65, 255, 0.1) 0%, rgba(0,0,0,0) 70%)', borderRadius: '40px', border: '1px solid rgba(144, 65, 255, 0.1)' }}>
+            <div style={{ marginTop: '10rem', position: 'relative', padding: '6rem 0', background: 'radial-gradient(ellipse at center, rgba(196, 30, 58, 0.1) 0%, rgba(0,0,0,0) 70%)', borderRadius: '40px', border: '1px solid rgba(196, 30, 58, 0.1)' }}>
                <div style={{ textAlign: 'center', maxWidth: '800px', margin: '0 auto 6rem auto' }}>
                   <motion.h2 initial={{ opacity:0, y:30 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true }} style={{ fontSize: '3rem', marginBottom: '1.5rem', lineHeight: 1.1 }}>
                     Hardware That Acts <br/><span className="text-gradient">Like Software.</span>
@@ -524,13 +524,13 @@ function App() {
                            <div style={{ position: 'absolute', top: '66%', left: 0, width: '100%', height: '6px', background: '#111', boxShadow: '0 10px 20px rgba(0,0,0,0.8)' }}></div>
                            
                            {/* Simulated Products emitting neon glow */}
-                           <div style={{ position: 'absolute', top: '15%', left: '20%', width: '40px', height: '80px', background: 'linear-gradient(180deg, #333, #111)', borderRadius: '6px', boxShadow: '0 0 30px rgba(187, 255, 34, 0.4)' }}></div>
-                           <div style={{ position: 'absolute', top: '48%', left: '50%', width: '40px', height: '80px', background: 'linear-gradient(180deg, #333, #111)', borderRadius: '6px', boxShadow: '0 0 30px rgba(187, 255, 34, 0.4)' }}></div>
-                           <div style={{ position: 'absolute', top: '48%', left: '70%', width: '40px', height: '80px', background: 'linear-gradient(180deg, #333, #111)', borderRadius: '6px', boxShadow: '0 0 30px rgba(144, 65, 255, 0.4)' }}></div>
+                           <div style={{ position: 'absolute', top: '15%', left: '20%', width: '40px', height: '80px', background: 'linear-gradient(180deg, #333, #111)', borderRadius: '6px', boxShadow: '0 0 30px rgba(255, 59, 59, 0.4)' }}></div>
+                           <div style={{ position: 'absolute', top: '48%', left: '50%', width: '40px', height: '80px', background: 'linear-gradient(180deg, #333, #111)', borderRadius: '6px', boxShadow: '0 0 30px rgba(255, 59, 59, 0.4)' }}></div>
+                           <div style={{ position: 'absolute', top: '48%', left: '70%', width: '40px', height: '80px', background: 'linear-gradient(180deg, #333, #111)', borderRadius: '6px', boxShadow: '0 0 30px rgba(196, 30, 58, 0.4)' }}></div>
                         </div>
                         {/* Hardware screen panel */}
                         <div style={{ width: '100%', flex: 1, background: '#0B0B0F', borderRadius: '16px', marginTop: '1.5rem', border: '1px solid #333', overflow: 'hidden', padding: '0.5rem', display: 'flex', flexDirection: 'column' }}>
-                           <div style={{ flex: 1, border: '1px solid rgba(187, 255, 34, 0.3)', borderRadius: '12px', padding: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', background: 'rgba(187, 255, 34, 0.05)' }}>
+                           <div style={{ flex: 1, border: '1px solid rgba(255, 59, 59, 0.3)', borderRadius: '12px', padding: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', background: 'rgba(255, 59, 59, 0.05)' }}>
                               <QrCode size={40} color="var(--accent-green)" style={{ marginBottom: '1rem' }} />
                               <div className="ui-text-bold" style={{ color: 'var(--accent-green)', fontSize: '1.2rem', textAlign: 'center' }}>Scan App to Purchase</div>
                            </div>
@@ -576,7 +576,7 @@ function App() {
             
             {/* The System Core / Brain */}
             <motion.div 
-               animate={{ boxShadow: ['0 0 40px rgba(144, 65, 255, 0.2)', '0 0 80px rgba(144, 65, 255, 0.6)', '0 0 40px rgba(144, 65, 255, 0.2)'] }}
+               animate={{ boxShadow: ['0 0 40px rgba(196, 30, 58, 0.2)', '0 0 80px rgba(196, 30, 58, 0.6)', '0 0 40px rgba(196, 30, 58, 0.2)'] }}
                transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
                style={{ width: '180px', height: '180px', background: 'var(--bg-tertiary)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', border: '3px solid var(--accent-purple)', position: 'relative', zIndex: 10 }}
             >
@@ -664,7 +664,7 @@ function App() {
 
       {/* 9. FINAL CONVERSION SECTION */}
       <section className="section" style={{ background: '#050508', padding: '12rem 0', position: 'relative', overflow: 'hidden' }}>
-        <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '100%', background: 'radial-gradient(circle at 50% 100%, rgba(144, 65, 255, 0.15) 0%, rgba(0,0,0,0) 70%)', zIndex: 0 }}></div>
+        <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '100%', background: 'radial-gradient(circle at 50% 100%, rgba(196, 30, 58, 0.15) 0%, rgba(0,0,0,0) 70%)', zIndex: 0 }}></div>
         <div className="container" style={{ textAlign: 'center', position: 'relative', zIndex: 10 }}>
           <motion.h2 initial={{ opacity:0, scale:0.95 }} whileInView={{ opacity:1, scale:1 }} viewport={{ once:true }} style={{ fontSize: '5.5rem', marginBottom: '3rem', letterSpacing: '-0.05em' }}>Upgrade Your Gym.</motion.h2>
           <motion.p initial={{ opacity:0 }} whileInView={{ opacity:1 }} viewport={{ once:true }} transition={{ delay: 0.2 }} style={{ fontSize: '1.25rem', color: 'var(--text-secondary)', marginBottom: '4rem', maxWidth: '600px', margin: '0 auto 4rem auto' }}>Join the infrastructure powering the next generation of smart fitness hubs.</motion.p>
