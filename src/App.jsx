@@ -1335,7 +1335,7 @@ function App() {
              Join the ecosystem powering the most advanced, connected fitness hubs in the world.
           </motion.p>
           <div style={{ display: 'flex', flexDirection: isMobile ? 'column' : 'row', gap: '1.5rem', justifyContent: 'center' }}>
-            <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="btn btn-accent" style={{ padding: '1.25rem 3rem', fontSize: '1.1rem' }}onClick={() => setShowContact(true)}>Get Started <ArrowRight size={20} style={{ marginLeft: '12px' }} /></motion.button>
+            <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="btn btn-accent" onClick={() => setShowContact(true)} style={{ padding: '1.25rem 3rem', fontSize: '1.1rem' }}>Get Started <ArrowRight size={20} style={{ marginLeft: '12px' }} /></motion.button>
             
           </div>
         </div>
