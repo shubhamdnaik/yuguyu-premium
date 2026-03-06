@@ -1,0 +1,264 @@
+:root {
+  /* Core Colors based on provided Yuguyu App UI screenshots */
+  --bg-primary: #0F121C; /* Deep navy from the screenshots */
+  --bg-secondary: #161A28; /* Slightly lighter navy for cards */
+  --bg-tertiary: #1E2336; 
+  
+  --accent-blue: #00E6F0; /* Replaced with Neon Green */
+  --accent-green: #BBFF22; /* High-viz lime green from hydration/protein */
+  --accent-purple: #9041FF; /* Bright violet from buttons/carbs */
+  --accent-orange: #FF9900; /* Orange from fats/calories */
+  
+  --accent-glow-green: rgba(187, 255, 34, 0.4);
+  --accent-glow-purple: rgba(144, 65, 255, 0.4);
+  
+  --text-primary: #FFFFFF;
+  --text-secondary: #8B94AD; /* Muted blue-gray text from screenshots */
+  --text-tertiary: #525C76;
+  
+  /* Radii */
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-xl: 32px;
+
+  /* Typography */
+  --font-heading: 'Space Grotesk', 'Satoshi', 'Inter', sans-serif;
+  --font-body: 'Inter', -apple-system, sans-serif;
+  
+  /* Borders */
+  --border-light: #282D42; /* Distinct inner card borders seen in the UI */
+  --border-glow: rgba(187, 255, 34, 0.3);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+h1 { font-size: clamp(2.5rem, 5vw, 4.5rem); }
+h2 { font-size: clamp(2rem, 4vw, 3.5rem); }
+h3 { font-size: clamp(1.2rem, 2.5vw, 2rem); }
+
+p {
+  font-size: 1.125rem;
+  color: var(--text-secondary);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: var(--font-body);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Base App Colors instead of glassmorphism for authenticity */
+.glass-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  transition: all 0.2s ease-out;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+}
+
+/* Gradients */
+.text-gradient {
+  background: linear-gradient(to right, #FFFFFF, var(--text-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-accent {
+  background: linear-gradient(135deg, var(--accent-green), var(--accent-purple));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.bg-gradient-purple {
+  background: linear-gradient(135deg, #A855F7, #7E22CE);
+}
+
+/* Layout Utilities */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.section {
+  padding: 6rem 0;
+  position: relative;
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 2rem;
+  border-radius: 100px;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary {
+  background: var(--accent-purple);
+  color: #fff;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  background: #A155FF;
+  box-shadow: 0 4px 20px rgba(144, 65, 255, 0.4);
+}
+
+.btn-secondary {
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+  border: 1px solid var(--border-light);
+}
+
+.btn-secondary:hover {
+  background: var(--border-light);
+  transform: translateY(-2px);
+}
+
+/* Glowing Mesh Background */
+.mesh-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: -1;
+  background: var(--bg-primary);
+}
+
+.mesh-blob {
+  position: absolute;
+  filter: blur(120px);
+  opacity: 0.15;
+  border-radius: 50%;
+  animation: float 25s infinite alternate ease-in-out;
+}
+
+.blob-1 {
+  top: -10%;
+  left: -10%;
+  width: 500px;
+  height: 500px;
+  background: var(--accent-purple);
+}
+
+.blob-2 {
+  bottom: 0%;
+  right: -10%;
+  width: 600px;
+  height: 600px;
+  background: var(--accent-green);
+  animation-delay: -5s;
+}
+
+@keyframes float {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(5%, 5%) scale(1.1); }
+  100% { transform: translate(-5%, -5%) scale(0.9); }
+}
+
+/* Authentic Device Frame */
+.device-frame {
+  background: var(--bg-primary);
+  border: 6px solid #23283B;
+  border-radius: 40px; /* iPhone like */
+  overflow: hidden;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.05) inset;
+  position: relative;
+}
+
+.device-frame::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 25px;
+  background: #23283B;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  z-index: 20;
+}
+
+/* Custom UI Pieces matching Screenshots */
+.ui-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-light);
+  border-radius: 16px;
+  padding: 1rem;
+}
+
+.ui-text-muted {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+}
+
+.ui-text-bold {
+  font-weight: 700;
+  color: #fff;
+}
+
+.progress-bar {
+  height: 8px;
+  background: var(--bg-tertiary);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-top: 6px;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: 4px;
+}
