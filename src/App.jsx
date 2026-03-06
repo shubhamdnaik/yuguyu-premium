@@ -773,6 +773,128 @@ const ProductJourney = ({ isMobile }) => {
   );
 };
 
+const LeftWingWidget = () => {
+  const [idx, setIdx] = useState(0);
+  const items = [
+    <div key="1" style={{ display: 'flex', flexDirection: 'column', gap: '1rem', width: '100%', height: '100%', justifyContent: 'space-between' }}>
+      <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+        <Activity size={20} color="var(--accent-red)"/>
+        <span className="ui-text-bold" style={{ fontSize: '1rem' }}>Active Members Live</span>
+      </div>
+      <div style={{ display: 'flex', alignItems: 'flex-end', gap: '0.5rem' }}>
+        <div className="ui-text-bold" style={{ fontSize: '2.5rem', color: '#fff', lineHeight: '1' }}>142</div>
+        <div style={{ color: 'var(--accent-red)', fontWeight: 'bold', fontSize: '1rem', marginBottom: '0.2rem' }}>↑ +12%</div>
+      </div>
+      <div style={{ flex: 1, display: 'flex', alignItems: 'flex-end', gap: '6px' }}>
+        {[40, 60, 45, 80, 75, 90, 95].map((h, i) => (
+          <div key={i} style={{ flex: 1, height: `${h}%`, background: i === 6 ? 'var(--accent-red)' : 'var(--bg-tertiary)', borderRadius: '4px' }}></div>
+        ))}
+      </div>
+    </div>,
+    <div key="2" style={{ display: 'flex', flexDirection: 'column', gap: '1rem', width: '100%', height: '100%', justifyContent: 'space-between' }}>
+       <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+        <Users size={20} color="var(--accent-purple)"/>
+        <span className="ui-text-bold" style={{ fontSize: '1rem' }}>Current Capacity</span>
+      </div>
+      <div style={{ display: 'flex', alignItems: 'flex-end', gap: '0.5rem' }}>
+        <div className="ui-text-bold" style={{ fontSize: '2.5rem', color: '#fff', lineHeight: '1' }}>65%</div>
+        <div className="ui-text-muted" style={{ fontWeight: 'bold', fontSize: '1rem', marginBottom: '0.2rem' }}>Full</div>
+      </div>
+      <div style={{ width: '100%', background: 'var(--bg-tertiary)', height: '6px', borderRadius: '4px', overflow: 'hidden' }}>
+         <div style={{ width: '65%', height: '100%', background: 'var(--accent-purple)' }}></div>
+      </div>
+    </div>,
+    <div key="3" style={{ display: 'flex', flexDirection: 'column', gap: '1rem', width: '100%', height: '100%', justifyContent: 'space-between' }}>
+       <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+        <TrendingUp size={20} color="var(--accent-green)"/>
+        <span className="ui-text-bold" style={{ fontSize: '1rem' }}>Recent Check-ins</span>
+      </div>
+      <div style={{ display: 'flex', alignItems: 'flex-end', gap: '0.5rem' }}>
+        <div className="ui-text-bold" style={{ fontSize: '2.5rem', color: '#fff', lineHeight: '1' }}>5</div>
+        <div className="ui-text-muted" style={{ fontWeight: 'bold', fontSize: '1rem', marginBottom: '0.2rem' }}>in last 10 mins</div>
+      </div>
+      <div style={{ display: 'flex', gap: '6px' }}>
+         <div style={{ width: '12px', height: '12px', borderRadius: '50%', background: 'var(--accent-green)' }}></div>
+         <div style={{ width: '12px', height: '12px', borderRadius: '50%', background: 'var(--accent-green)' }}></div>
+         <div style={{ width: '12px', height: '12px', borderRadius: '50%', background: 'var(--accent-green)' }}></div>
+         <div style={{ width: '12px', height: '12px', borderRadius: '50%', background: 'var(--accent-green)' }}></div>
+         <div style={{ width: '12px', height: '12px', borderRadius: '50%', background: 'var(--accent-green)' }}></div>
+      </div>
+    </div>
+  ];
+
+  useEffect(() => {
+    const timer = setInterval(() => setIdx(prev => (prev + 1) % items.length), 3500);
+    return () => clearInterval(timer);
+  }, [items.length]);
+
+  return (
+    <div className="glass-card" style={{ width: '100%', height: '100%', padding: '1.5rem', position: 'relative', overflow: 'hidden', border: '1px solid rgba(225, 29, 72, 0.3)' }}>
+      <AnimatePresence mode="wait">
+         <motion.div
+           key={idx}
+           initial={{ opacity: 0, y: 20 }}
+           animate={{ opacity: 1, y: 0 }}
+           exit={{ opacity: 0, y: -20 }}
+           transition={{ duration: 0.3 }}
+           style={{ position: 'absolute', top: '1.5rem', left: '1.5rem', right: '1.5rem', bottom: '1.5rem' }}
+         >
+           {items[idx]}
+         </motion.div>
+      </AnimatePresence>
+    </div>
+  );
+};
+
+const RightWingWidget = () => {
+  const [idx, setIdx] = useState(0);
+  const items = [
+    <div key="1" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem', width: '100%' }}>
+      <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'rgba(225, 29, 72, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '0.5rem' }}>
+        <Trophy size={20} color="var(--brand-red)"/>
+      </div>
+      <span className="ui-text-bold" style={{ fontSize: '1rem', textAlign: 'center' }}>Challenge Alert</span>
+      <span className="ui-text-muted" style={{ fontSize: '0.8rem', textAlign: 'center' }}>Yoga Sunrise is Full</span>
+    </div>,
+    <div key="2" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem', width: '100%' }}>
+      <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'rgba(234, 88, 12, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '0.5rem' }}>
+        <Zap size={20} color="var(--accent-orange)"/>
+      </div>
+      <span className="ui-text-bold" style={{ fontSize: '1rem', textAlign: 'center' }}>New Milestone</span>
+      <span className="ui-text-muted" style={{ fontSize: '0.8rem', textAlign: 'center' }}>Alex R. hit 2000 pts</span>
+    </div>,
+    <div key="3" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem', width: '100%' }}>
+      <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'rgba(56, 189, 248, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '0.5rem' }}>
+        <Smartphone size={20} color="#38bdf8"/>
+      </div>
+      <span className="ui-text-bold" style={{ fontSize: '1rem', textAlign: 'center' }}>Reward Unlocked</span>
+      <span className="ui-text-muted" style={{ fontSize: '0.8rem', textAlign: 'center' }}>Profile Badge for Top 10</span>
+    </div>
+  ];
+
+  useEffect(() => {
+    const timer = setInterval(() => setIdx(prev => (prev + 1) % items.length), 4000);
+    return () => clearInterval(timer);
+  }, [items.length]);
+
+  return (
+    <div className="glass-card" style={{ width: '100%', height: '100%', padding: '1.5rem', position: 'relative', overflow: 'hidden', border: '1px solid rgba(225, 29, 72, 0.3)', background: 'linear-gradient(180deg, rgba(225, 29, 72, 0.05), var(--card-shade, rgba(10,10,15,0.4)))' }}>
+      <AnimatePresence mode="wait">
+         <motion.div
+           key={idx}
+           initial={{ opacity: 0, x: 20 }}
+           animate={{ opacity: 1, x: 0 }}
+           exit={{ opacity: 0, x: -20 }}
+           transition={{ duration: 0.3 }}
+           style={{ position: 'absolute', top: '1.5rem', left: '1.5rem', right: '1.5rem' }}
+         >
+           {items[idx]}
+         </motion.div>
+      </AnimatePresence>
+    </div>
+  );
+};
+
 const HeroScene = ({ isMobile }) => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const containerRef = useRef(null);
@@ -841,23 +963,7 @@ const HeroScene = ({ isMobile }) => {
            transform: isMobile ? 'translateX(-90px)' : 'none'
          }}
       >
-        <div className="glass-card" style={{ width: '100%', height: '100%', padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem', border: '1px solid rgba(225, 29, 72, 0.3)' }}>
-           <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
-             <Activity size={20} color="var(--accent-red)"/>
-             <span className="ui-text-bold" style={{ fontSize: '1rem' }}>Active Members Live</span>
-           </div>
-           
-           <div style={{ display: 'flex', alignItems: 'flex-end', gap: '0.5rem' }}>
-             <div className="ui-text-bold" style={{ fontSize: '2.5rem', color: '#fff', lineHeight: '1' }}>142</div>
-             <div style={{ color: 'var(--accent-red)', fontWeight: 'bold', fontSize: '1rem', marginBottom: '0.2rem' }}>↑ +12%</div>
-           </div>
-           
-           <div style={{ flex: 1, display: 'flex', alignItems: 'flex-end', gap: '6px' }}>
-              {[40, 60, 45, 80, 75, 90, 95].map((h, i) => (
-                 <div key={i} style={{ flex: 1, height: `${h}%`, background: i === 6 ? 'var(--accent-red)' : 'var(--bg-tertiary)', borderRadius: '4px' }}></div>
-              ))}
-           </div>
-        </div>
+        <LeftWingWidget />
       </motion.div>
 
 
@@ -877,13 +983,7 @@ const HeroScene = ({ isMobile }) => {
            transform: isMobile ? 'translateX(100px)' : 'none'
          }}
       >
-         <div className="glass-card" style={{ width: '100%', padding: '1.5rem', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem', border: '1px solid rgba(225, 29, 72, 0.3)', background: 'linear-gradient(180deg, rgba(225, 29, 72, 0.05), var(--card-shade, rgba(10,10,15,0.4)))' }}>
-           <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'rgba(225, 29, 72, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '0.5rem' }}>
-              <Trophy size={20} color="var(--brand-red)"/>
-           </div>
-           <span className="ui-text-bold" style={{ fontSize: '1rem', textAlign: 'center' }}>Challenge Alert</span>
-           <span className="ui-text-muted" style={{ fontSize: '0.8rem', textAlign: 'center' }}>Yoga Sunrise is Full</span>
-         </div>
+         <RightWingWidget />
       </motion.div>
     </div>
   );
