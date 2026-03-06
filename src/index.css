@@ -1,19 +1,19 @@
 :root {
-  /* Core Colors based on provided Yuguyu App UI screenshots */
-  --bg-primary: #0F121C; /* Deep navy from the screenshots */
-  --bg-secondary: #161A28; /* Slightly lighter navy for cards */
-  --bg-tertiary: #1E2336; 
+  /* Ultra-Premium Series A Colors */
+  --bg-primary: #0B0B0F; /* Deepest layered dark */
+  --bg-secondary: #12121A; /* Layer 2 dark */
+  --bg-tertiary: #1B1B2A; /* Layer 3 dark */
   
-  --accent-blue: #00E6F0; /* Replaced with Neon Green */
-  --accent-green: #BBFF22; /* High-viz lime green from hydration/protein */
-  --accent-purple: #9041FF; /* Bright violet from buttons/carbs */
-  --accent-orange: #FF9900; /* Orange from fats/calories */
+  --accent-blue: #00E6F0;
+  --accent-green: #BBFF22; 
+  --accent-purple: #9041FF; 
+  --accent-orange: #FF9900; 
   
   --accent-glow-green: rgba(187, 255, 34, 0.4);
   --accent-glow-purple: rgba(144, 65, 255, 0.4);
   
   --text-primary: #FFFFFF;
-  --text-secondary: #8B94AD; /* Muted blue-gray text from screenshots */
+  --text-secondary: #8B94AD; 
   --text-tertiary: #525C76;
   
   /* Radii */
@@ -54,9 +54,9 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1.2;
 }
 
-h1 { font-size: clamp(2.5rem, 5vw, 4.5rem); }
-h2 { font-size: clamp(2rem, 4vw, 3.5rem); }
-h3 { font-size: clamp(1.2rem, 2.5vw, 2rem); }
+h1 { font-size: clamp(3rem, 6vw, 5.5rem); letter-spacing: -0.04em; }
+h2 { font-size: clamp(2.5rem, 5vw, 4rem); letter-spacing: -0.03em; }
+h3 { font-size: clamp(1.5rem, 3vw, 2.5rem); }
 
 p {
   font-size: 1.125rem;
@@ -206,6 +206,19 @@ img {
   0% { transform: translate(0, 0) scale(1); }
   50% { transform: translate(5%, 5%) scale(1.1); }
   100% { transform: translate(-5%, -5%) scale(0.9); }
+}
+
+/* Ecosystem SVG Animations */
+.ecosystem-line {
+  stroke-dasharray: 10 10;
+  animation: dash 20s linear infinite;
+  opacity: 0.5;
+}
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: -1000;
+  }
 }
 
 /* Authentic Device Frame */
