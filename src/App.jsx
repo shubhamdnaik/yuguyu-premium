@@ -54,86 +54,202 @@ const MotionCard = ({ children, className = '', index = 0, style={} }) => {
 };
 
 // Custom UI Replicas based on User Screenshots
+// Custom UI Replicas based on User Screenshots
 const AppDietTrackerUI = () => (
-  <div style={{ padding: '0 1.25rem 1.5rem 1.25rem', height: '100%', overflow: 'hidden', display: 'flex', flexDirection: 'column', gap: '1rem', paddingTop: '2.5rem', background: 'var(--bg-primary)' }}>
+  <div style={{ padding: '0 1.25rem 1.5rem 1.25rem', height: '100%', overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: '1rem', paddingTop: '2.5rem', background: 'var(--bg-primary)', scrollbarWidth: 'none', paddingBottom: '6rem' }}>
+    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <div className="ui-text-bold" style={{ fontSize: '1.2rem' }}>Diet Tracker</div>
+        <div style={{ display: 'flex', gap: '8px' }}>
+           <div style={{ display: 'flex', alignItems: 'center', gap: '4px', background: 'rgba(255,255,255,0.05)', padding: '4px 8px', borderRadius: '8px', fontSize: '0.7rem' }}>
+              <Target size={12} color="var(--accent-red)"/> Goals
+           </div>
+           <div style={{ display: 'flex', alignItems: 'center', gap: '4px', background: 'rgba(255,255,255,0.05)', padding: '4px 8px', borderRadius: '8px', fontSize: '0.7rem' }}>
+              <Calendar size={12} color="var(--accent-red)"/> Today
+           </div>
+        </div>
+    </div>
+
     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-      <div className="ui-card" style={{ textAlign: 'center', padding: '1.25rem 1rem' }}>
-         <div className="ui-text-bold" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '5px' }}>
+      <div className="ui-card" style={{ display: 'flex', flexDirection: 'column', padding: '1.25rem 1rem' }}>
+         <div className="ui-text-bold" style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
            <Activity size={14} color="var(--accent-red)"/> Hydration
          </div>
-         <div className="ui-text-muted" style={{ fontSize: '0.7rem', marginTop: '2px' }}>Streak: 3 Days</div>
-         <div style={{ width: '40px', height: '80px', background: 'var(--bg-tertiary)', borderRadius: '8px', margin: '1rem auto', position: 'relative', overflow: 'hidden' }}>
+         <div className="ui-text-muted" style={{ fontSize: '0.7rem', marginTop: '2px' }}>Streak: 3 Days 💧</div>
+         <div style={{ width: '40px', height: '80px', border: '2px solid var(--text-muted)', borderTop: 'none', borderBottomLeftRadius: '8px', borderBottomRightRadius: '8px', margin: '1rem auto', position: 'relative', overflow: 'hidden' }}>
+            <div style={{ position: 'absolute', top: '-10px', left: '10px', width: '20px', height: '10px', border: '2px solid var(--text-muted)', borderBottom: 'none' }}></div>
             <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '70%', background: 'var(--accent-red)' }}></div>
          </div>
-         <div className="ui-text-bold" style={{ fontSize: '1.2rem' }}>2.1L</div>
-         <div className="ui-text-muted" style={{ fontSize: '0.7rem' }}>/ 3L</div>
+         <div className="ui-text-bold" style={{ fontSize: '1.2rem', textAlign: 'center' }}>2.1L</div>
+         <div className="ui-text-muted" style={{ fontSize: '0.7rem', textAlign: 'center', marginBottom: '0.5rem' }}>/ 3L</div>
+         <div style={{ background: 'var(--accent-crimson)', color: '#fff', textAlign: 'center', padding: '6px 0', borderRadius: '6px', fontSize: '0.8rem', fontWeight: 'bold' }}>+ 250ml</div>
       </div>
       
-      <div className="ui-card" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '1.25rem 1rem' }}>
-         <div className="ui-text-bold" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '5px', marginBottom: '1rem' }}>
-           <Zap size={14} color="var(--accent-red)"/> Calories
+      <div className="ui-card" style={{ display: 'flex', flexDirection: 'column', padding: '1.25rem 1rem' }}>
+         <div className="ui-text-bold" style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
+           <Flame size={14} color="var(--accent-red)"/> Calories
          </div>
-         <div style={{ width: '80px', height: '80px', borderRadius: '50%', border: '6px solid var(--bg-tertiary)', borderTopColor: 'var(--accent-red)', borderRightColor: 'var(--accent-crimson)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}>
-            <span className="ui-text-bold" style={{ fontSize: '1.2rem', lineHeight: '1' }}>1850</span>
+         <div className="ui-text-muted" style={{ fontSize: '0.7rem', marginTop: '2px' }}>350 kcal left</div>
+         <div style={{ width: '80px', height: '80px', borderRadius: '50%', border: '8px solid var(--bg-tertiary)', borderTopColor: 'var(--accent-red)', borderRightColor: 'var(--accent-crimson)', borderBottomColor: 'var(--brand-red)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', margin: '1rem auto' }}>
+            <span className="ui-text-bold" style={{ fontSize: '1rem', lineHeight: '1' }}>1850</span>
             <span className="ui-text-muted" style={{ fontSize: '0.6rem' }}>/ 2200</span>
          </div>
-         <div className="ui-text-muted" style={{ fontSize: '0.7rem', marginTop: '1rem' }}>84% consumed</div>
+         <div className="ui-text-muted" style={{ fontSize: '0.7rem', textAlign: 'center', marginTop: 'auto' }}>84% consumed</div>
       </div>
     </div>
     
      <div className="ui-card">
-       <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '2px' }}>
+       <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '4px' }}>
           <span className="ui-text-bold" style={{ fontSize: '0.8rem' }}>Protein</span>
           <span className="ui-text-muted" style={{ fontSize: '0.8rem' }}>130g / 150g</span>
        </div>
        <div className="progress-bar"><div className="progress-fill" style={{ width: '85%', background: 'var(--accent-red)' }}></div></div>
        
-       <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '2px', marginTop: '1rem' }}>
+       <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '4px', marginTop: '1rem' }}>
           <span className="ui-text-bold" style={{ fontSize: '0.8rem' }}>Carbs</span>
           <span className="ui-text-muted" style={{ fontSize: '0.8rem' }}>170g / 250g</span>
        </div>
-       <div className="progress-bar"><div className="progress-fill" style={{ width: '65%', background: 'var(--accent-red)' }}></div></div>
+       <div className="progress-bar"><div className="progress-fill" style={{ width: '65%', background: 'var(--accent-crimson)' }}></div></div>
        
-       <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '2px', marginTop: '1rem' }}>
+       <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '4px', marginTop: '1rem' }}>
           <span className="ui-text-bold" style={{ fontSize: '0.8rem' }}>Fats</span>
           <span className="ui-text-muted" style={{ fontSize: '0.8rem' }}>66g / 70g</span>
        </div>
-       <div className="progress-bar"><div className="progress-fill" style={{ width: '90%', background: 'var(--accent-crimson)' }}></div></div>
+       <div className="progress-bar"><div className="progress-fill" style={{ width: '90%', background: 'var(--brand-red)' }}></div></div>
     </div>
+
+    <div className="ui-card" style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem' }}>
+        <div className="ui-text-bold" style={{ fontSize: '1.1rem', marginBottom: '0.5rem' }}>Macro Split</div>
+        <div style={{ position: 'relative', width: '120px', height: '120px' }}>
+           <svg width="100%" height="100%" viewBox="0 0 100 100" style={{ transform: 'rotate(-90deg)' }}>
+              <circle cx="50" cy="50" r="40" fill="transparent" stroke="var(--accent-red)" strokeWidth="16" strokeDasharray="100 251.2" />
+              <circle cx="50" cy="50" r="40" fill="transparent" stroke="var(--accent-crimson)" strokeWidth="16" strokeDasharray="80 251.2" strokeDashoffset="-100" />
+              <circle cx="50" cy="50" r="40" fill="transparent" stroke="var(--brand-red)" strokeWidth="16" strokeDasharray="71.2 251.2" strokeDashoffset="-180" />
+           </svg>
+           <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}>
+              <span className="ui-text-bold" style={{ fontSize: '0.75rem', textAlign: 'center' }}>Balanced<br/>Intake</span>
+           </div>
+        </div>
+        <div style={{ display: 'flex', gap: '1rem', fontSize: '0.75rem', marginTop: '1rem' }}>
+           <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}><div style={{ width: '8px', height: '8px', borderRadius: '50%', background: 'var(--accent-red)' }}></div> Protein</div>
+           <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}><div style={{ width: '8px', height: '8px', borderRadius: '50%', background: 'var(--accent-crimson)' }}></div> Carbs</div>
+           <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}><div style={{ width: '8px', height: '8px', borderRadius: '50%', background: 'var(--brand-red)' }}></div> Fats</div>
+        </div>
+    </div>
+
+     {/* Bottom Nav */}
+     <div style={{ position: 'absolute', bottom: '0', left: '0', width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: 'rgba(22, 26, 40, 0.95)', padding: '0.75rem 1.5rem', backdropFilter: 'blur(10px)', borderTop: '1px solid var(--border-light)', zIndex: 10 }}>
+       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '4px', color: 'var(--text-secondary)' }}><Home size={20}/><span style={{ fontSize: '0.6rem' }}>Home</span></div>
+       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '4px', color: 'var(--accent-red)', position: 'relative' }}>
+         <div style={{ position: 'absolute', bottom: '10px', width: '30px', height: '30px', background: 'var(--accent-red)', filter: 'blur(15px)', opacity: 0.5 }}></div>
+         <Utensils size={20} style={{ position: 'relative', zIndex: 2 }}/><span style={{ fontSize: '0.6rem', fontWeight: 'bold', position: 'relative', zIndex: 2 }}>Diet</span>
+       </div>
+       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '4px', color: 'var(--text-secondary)' }}><Activity size={20}/><span style={{ fontSize: '0.6rem' }}>Workout</span></div>
+       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '4px', color: 'var(--text-secondary)' }}><Users size={20}/><span style={{ fontSize: '0.6rem' }}>Partner</span></div>
+       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '4px', color: 'var(--text-secondary)' }}><Users size={20}/><span style={{ fontSize: '0.6rem' }}>Profile</span></div>
+     </div>
   </div>
 );
 
 const AppWorkoutUI = () => (
-  <div style={{ padding: '0 1.25rem 1.5rem 1.25rem', height: '100%', overflow: 'hidden', display: 'flex', flexDirection: 'column', gap: '1rem', paddingTop: '2.5rem', background: 'var(--bg-primary)' }}>
-     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
-        <div className="ui-text-bold" style={{ fontSize: '1.2rem' }}>Push Day</div>
-        <div style={{ background: 'var(--accent-red)', color: '#fff', padding: '4px 10px', borderRadius: '100px', fontSize: '0.7rem', fontWeight: 'bold' }}>55 min</div>
-     </div>
-     
-     <div className="ui-card" style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
-        <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'rgba(225, 29, 72, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-           <Activity size={20} color="var(--accent-red)"/>
-        </div>
-        <div>
-           <div className="ui-text-muted" style={{ fontSize: '0.75rem' }}>Avg Heart Rate</div>
-           <div className="ui-text-bold" style={{ fontSize: '1.1rem' }}>142 BPM</div>
+  <div style={{ padding: '0 1.25rem 1.5rem 1.25rem', height: '100%', overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: '1rem', paddingTop: '2.5rem', background: 'var(--bg-primary)', scrollbarWidth: 'none', paddingBottom: '6rem' }}>
+     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <div className="ui-text-bold" style={{ fontSize: '1.2rem' }}>Workout</div>
+        <div style={{ background: 'rgba(255,255,255,0.05)', display: 'flex', alignItems: 'center', gap: '6px', padding: '4px 10px', borderRadius: '8px', fontSize: '0.7rem' }}>
+           <Calendar size={12} color="var(--accent-red)"/> Today
         </div>
      </div>
 
-     <div className="ui-card">
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
-           <span className="ui-text-bold" style={{ fontSize: '0.9rem' }}>Bench Press</span>
-           <span className="ui-text-muted" style={{ fontSize: '0.7rem' }}>3 Sets</span>
+     <div style={{ display: 'flex', justifyContent: 'space-between', background: 'var(--bg-tertiary)', padding: '4px', borderRadius: '8px' }}>
+        <div style={{ flex: 1, textAlign: 'center', background: 'var(--accent-red)', color: '#fff', padding: '6px 0', borderRadius: '6px', fontSize: '0.8rem', fontWeight: 'bold' }}>Strength</div>
+        <div style={{ flex: 1, textAlign: 'center', color: 'var(--text-muted)', padding: '6px 0', fontSize: '0.8rem' }}>Steps</div>
+        <div style={{ flex: 1, textAlign: 'center', color: 'var(--text-muted)', padding: '6px 0', fontSize: '0.8rem' }}>Running</div>
+     </div>
+     
+     <div className="ui-card" style={{ padding: '1.5rem 1rem' }}>
+        <div className="ui-text-muted" style={{ fontSize: '0.75rem', marginBottom: '4px' }}>Today's Workout</div>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '0.5rem' }}>
+           <div>
+              <div className="ui-text-bold" style={{ fontSize: '1.4rem', lineHeight: '1.2' }}>Push Day</div>
+              <div style={{ color: 'var(--accent-red)', fontSize: '0.8rem', marginTop: '4px' }}>Chest • Shoulders • Triceps</div>
+           </div>
+           <div style={{ background: 'var(--accent-red)', color: '#fff', padding: '8px 16px', borderRadius: '8px', display: 'flex', alignItems: 'center', gap: '6px', fontWeight: 'bold' }}>
+              ▶ Start
+           </div>
         </div>
-        
-        {[ { reps: 10, weight: 60, rpe: 8 }, { reps: 8, weight: 65, rpe: 8.5 }, { reps: 6, weight: 70, rpe: 9 } ].map((set, i) => (
-           <div key={i} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem', padding: '0.5rem', background: 'var(--bg-primary)', borderRadius: '8px' }}>
-              <span className="ui-text-muted" style={{ width: '20px' }}>{i+1}</span>
-              <span className="ui-text-bold">{set.weight}kg</span>
-              <span className="ui-text-muted">x {set.reps}</span>
-              <span style={{ fontSize: '0.75rem', color: 'var(--accent-red)' }}>RPE {set.rpe}</span>
+        <div style={{ display: 'flex', gap: '1rem', marginTop: '1rem', color: 'var(--text-muted)', fontSize: '0.75rem' }}>
+           <span>~45 min</span>
+           <span>6 exercises</span>
+           <span>Intermediate</span>
+        </div>
+     </div>
+
+     <div style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '0 4px', marginTop: '0.5rem' }}>
+        <Zap size={16} color="var(--accent-red)"/>
+        <span className="ui-text-bold" style={{ fontSize: '1rem' }}>Personal Records</span>
+     </div>
+
+     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem' }}>
+        {[
+           { name: "Bench Press", weight: "100kg", time: "2 days ago" },
+           { name: "Squat", weight: "140kg", time: "Last week" },
+           { name: "Deadlift", weight: "180kg", time: "3 days ago" },
+           { name: "OHP", weight: "65kg", time: "Today!" }
+        ].map((pr, i) => (
+           <div key={i} className="ui-card" style={{ padding: '1rem', display: 'flex', flexDirection: 'column', gap: '4px' }}>
+              <span className="ui-text-bold" style={{ fontSize: '0.85rem' }}>{pr.name}</span>
+              <span style={{ fontSize: '1.2rem', color: 'var(--accent-red)', fontWeight: 'bold' }}>{pr.weight}</span>
+              <span className="ui-text-muted" style={{ fontSize: '0.7rem' }}>{pr.time}</span>
            </div>
         ))}
+     </div>
+
+     <div className="ui-card" style={{ padding: '1.25rem 1rem' }}>
+        <div className="ui-text-bold" style={{ fontSize: '1rem', marginBottom: '1rem' }}>Weekly Summary</div>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+           <div style={{ textAlign: 'center' }}>
+              <div style={{ color: 'var(--accent-red)', fontSize: '1.5rem', fontWeight: 'bold' }}>5</div>
+              <div className="ui-text-muted" style={{ fontSize: '0.7rem' }}>Workouts</div>
+           </div>
+           <div style={{ textAlign: 'center' }}>
+              <div style={{ color: 'var(--accent-crimson)', fontSize: '1.5rem', fontWeight: 'bold' }}>18</div>
+              <div className="ui-text-muted" style={{ fontSize: '0.7rem' }}>Sets/Day Avg</div>
+           </div>
+           <div style={{ textAlign: 'center' }}>
+              <div style={{ color: 'var(--brand-red)', fontSize: '1.5rem', fontWeight: 'bold' }}>+8%</div>
+              <div className="ui-text-muted" style={{ fontSize: '0.7rem' }}>Growth</div>
+           </div>
+        </div>
+     </div>
+
+     <div style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '0 4px', marginTop: '0.5rem' }}>
+        <TrendingUp size={16} color="var(--accent-red)"/>
+        <span className="ui-text-bold" style={{ fontSize: '1rem' }}>Workout Insights</span>
+     </div>
+     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '0.5rem' }}>
+        <div className="ui-card flex-center" style={{ flexDirection: 'column', padding: '0.75rem 0' }}>
+           <div style={{ color: 'var(--accent-red)', fontSize: '1.2rem', fontWeight: 'bold' }}>5</div>
+           <div className="ui-text-muted" style={{ fontSize: '0.65rem' }}>This Week</div>
+        </div>
+        <div className="ui-card flex-center" style={{ flexDirection: 'column', padding: '0.75rem 0' }}>
+           <div style={{ color: 'var(--accent-crimson)', fontSize: '1.2rem', fontWeight: 'bold' }}>+12%</div>
+           <div className="ui-text-muted" style={{ fontSize: '0.65rem' }}>PR Growth</div>
+        </div>
+        <div className="ui-card flex-center" style={{ flexDirection: 'column', padding: '0.75rem 0' }}>
+           <div style={{ color: 'var(--accent-red)', fontSize: '1.2rem', fontWeight: 'bold' }}>92</div>
+           <div className="ui-text-muted" style={{ fontSize: '0.65rem' }}>Score</div>
+        </div>
+     </div>
+
+     {/* Bottom Nav */}
+     <div style={{ position: 'absolute', bottom: '0', left: '0', width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: 'rgba(22, 26, 40, 0.95)', padding: '0.75rem 1.5rem', backdropFilter: 'blur(10px)', borderTop: '1px solid var(--border-light)', zIndex: 10 }}>
+       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '4px', color: 'var(--text-secondary)' }}><Home size={20}/><span style={{ fontSize: '0.6rem' }}>Home</span></div>
+       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '4px', color: 'var(--text-secondary)' }}><Utensils size={20}/><span style={{ fontSize: '0.6rem' }}>Diet</span></div>
+       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '4px', color: 'var(--accent-red)', position: 'relative' }}>
+         <div style={{ position: 'absolute', bottom: '10px', width: '30px', height: '30px', background: 'var(--accent-red)', filter: 'blur(15px)', opacity: 0.5 }}></div>
+         <Activity size={20} style={{ position: 'relative', zIndex: 2 }}/><span style={{ fontSize: '0.6rem', fontWeight: 'bold', position: 'relative', zIndex: 2 }}>Workout</span>
+       </div>
+       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '4px', color: 'var(--text-secondary)' }}><Users size={20}/><span style={{ fontSize: '0.6rem' }}>Partner</span></div>
+       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '4px', color: 'var(--text-secondary)' }}><Users size={20}/><span style={{ fontSize: '0.6rem' }}>Profile</span></div>
      </div>
   </div>
 );
@@ -155,14 +271,14 @@ const AppScannerUI = () => (
      
      <div style={{ marginTop: 'auto', width: '100%', display: 'flex', justifyContent: 'space-between', padding: '1rem', background: 'var(--bg-secondary)', borderRadius: '100px', border: '1px solid var(--border-light)' }}>
          <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'var(--bg-tertiary)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Users size={18}/></div>
-         <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'var(--accent-red)', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 0 15px rgba(225, 29, 72, 0.4)' }}><Box size={18} color="#fff"/></div>
+         <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'var(--accent-red)', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 0 15px rgba(225, 29, 72, 0.4)' }}><QrCode size={18} color="#fff"/></div>
          <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'var(--bg-tertiary)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Settings size={18}/></div>
      </div>
   </div>
 );
 
 const AppHomeScannerUI = () => (
-  <div style={{ padding: '0 1.25rem 1.5rem 1.25rem', height: '100%', overflow: 'hidden', display: 'flex', flexDirection: 'column', gap: '1.25rem', paddingTop: '2.5rem', background: 'var(--bg-primary)' }}>
+  <div style={{ padding: '0 1.25rem 1.5rem 1.25rem', height: '100%', overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: '1.25rem', paddingTop: '2.5rem', background: 'var(--bg-primary)', scrollbarWidth: 'none', paddingBottom: '6rem' }}>
      {/* Top Header */}
      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
        <div style={{ lineHeight: '1.2' }}>
@@ -192,7 +308,7 @@ const AppHomeScannerUI = () => (
      </div>
      
      {/* Community Events */}
-     <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
+     <div style={{ display: 'flex', flexDirection: 'column' }}>
        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
          <div className="ui-text-bold" style={{ fontSize: '1rem' }}>Community Events</div>
          <div style={{ color: 'var(--accent-red)', fontSize: '0.8rem', fontWeight: 'bold' }}>View All {'>'}</div>
@@ -200,7 +316,7 @@ const AppHomeScannerUI = () => (
        
        <div style={{ display: 'flex', gap: '0.75rem', overflowX: 'auto', paddingBottom: '0.5rem', scrollbarWidth: 'none' }}>
          <div style={{ minWidth: '160px', background: 'var(--bg-tertiary)', borderRadius: '16px', overflow: 'hidden', paddingBottom: '1rem' }}>
-           <div style={{ height: '70px', background: 'linear-gradient(180deg, rgba(225, 29, 72, 0.4) 0%, var(--bg-tertiary) 100%)' }}></div>
+           <div style={{ height: '70px', background: 'linear-gradient(180deg, rgba(225, 29, 72, 0.3) 0%, var(--bg-tertiary) 100%)' }}></div>
            <div style={{ padding: '0 0.75rem' }}>
              <div style={{ background: 'rgba(225, 29, 72, 0.1)', color: 'var(--accent-red)', fontSize: '0.6rem', padding: '2px 6px', borderRadius: '4px', display: 'inline-block', marginBottom: '4px' }}>Gym Hosted</div>
              <div className="ui-text-bold" style={{ fontSize: '0.9rem', marginBottom: '8px' }}>HIIT Challenge</div>
@@ -211,11 +327,39 @@ const AppHomeScannerUI = () => (
              </div>
            </div>
          </div>
+
+         <div style={{ minWidth: '160px', background: 'var(--bg-tertiary)', borderRadius: '16px', overflow: 'hidden', paddingBottom: '1rem' }}>
+           <div style={{ height: '70px', background: 'linear-gradient(180deg, rgba(153, 27, 27, 0.3) 0%, var(--bg-tertiary) 100%)' }}></div>
+           <div style={{ padding: '0 0.75rem' }}>
+             <div style={{ background: 'rgba(225, 29, 72, 0.1)', color: 'var(--accent-crimson)', fontSize: '0.6rem', padding: '2px 6px', borderRadius: '4px', display: 'inline-block', marginBottom: '4px' }}>Yuguyu Hosted</div>
+             <div className="ui-text-bold" style={{ fontSize: '0.9rem', marginBottom: '8px' }}>Yoga Sunrise</div>
+             <div style={{ display: 'flex', alignItems: 'center', gap: '4px', marginBottom: '4px' }}><Calendar size={10} color="var(--text-secondary)"/><span className="ui-text-muted" style={{ fontSize: '0.7rem' }}>Tomorrow 7AM</span></div>
+             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '1rem' }}>
+               <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}><Users size={10} color="var(--text-secondary)"/><span className="ui-text-muted" style={{ fontSize: '0.7rem' }}>18 joined</span></div>
+               <div style={{ background: 'rgba(255,255,255,0.05)', color: 'var(--text-muted)', fontSize: '0.7rem', padding: '4px 12px', borderRadius: '100px', fontWeight: 'bold' }}>Join</div>
+             </div>
+           </div>
+         </div>
        </div>
+     </div>
+
+     {/* Leaderboard Card Fragment */}
+     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+           <Trophy size={16} color="var(--accent-red)"/>
+           <span className="ui-text-bold" style={{ fontSize: '1rem' }}>Leaderboard</span>
+        </div>
+        <div style={{ background: 'rgba(255,255,255,0.05)', display: 'flex', alignItems: 'center', gap: '6px', padding: '4px 10px', borderRadius: '8px', fontSize: '0.7rem' }}>
+           Weekly <ChevronRight size={12}/>
+        </div>
+     </div>
+     <div className="ui-card flex-center" style={{ height: '80px', overflow: 'hidden', position: 'relative' }}>
+         <div style={{ position: 'absolute', top: '10px', width: '60px', height: '60px', borderRadius: '50%', border: '2px solid var(--accent-red)', opacity: 0.5 }}></div>
+         <span className="ui-text-muted" style={{ position: 'relative', zIndex: 1, fontSize: '0.8rem' }}>Leaderboard loading...</span>
      </div>
      
      {/* Bottom Nav */}
-     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: 'rgba(22, 26, 40, 0.95)', padding: '0.75rem 1.5rem', borderRadius: '100px', margin: 'auto -0.5rem -0.5rem -0.5rem', border: '1px solid var(--border-light)' }}>
+     <div style={{ position: 'absolute', bottom: '0', left: '0', width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: 'rgba(22, 26, 40, 0.95)', padding: '0.75rem 1.5rem', backdropFilter: 'blur(10px)', borderTop: '1px solid var(--border-light)', zIndex: 10 }}>
        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '4px', color: 'var(--accent-red)', position: 'relative' }}>
          {/* glow behind active indicator */}
          <div style={{ position: 'absolute', bottom: '10px', width: '30px', height: '30px', background: 'var(--accent-red)', filter: 'blur(15px)', opacity: 0.5 }}></div>
@@ -230,42 +374,88 @@ const AppHomeScannerUI = () => (
   </div>
 );
 
-const AppVendingUI = () => (
-  <div style={{ padding: '1.5rem', height: '100%', overflow: 'hidden', display: 'flex', flexDirection: 'column', gap: '1rem', background: 'var(--bg-primary)' }}>
-     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
-        <div className="ui-text-bold" style={{ fontSize: '1.1rem' }}>Smart Vendor 04</div>
-        <div style={{ background: 'rgba(225, 29, 72, 0.1)', color: 'var(--accent-red)', padding: '4px 8px', borderRadius: '4px', fontSize: '0.7rem', fontWeight: 'bold' }}>Online</div>
-     </div>
-     
-     <div className="ui-card" style={{ background: 'var(--bg-secondary)', border: '1px solid var(--border-light)', display: 'flex', alignItems: 'center', gap: '1rem', padding: '1rem' }}>
-        <div style={{ width: '40px', height: '40px', borderRadius: '8px', background: 'var(--accent-red)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-           <Box size={20} color="#fff"/>
+const AppProfileUI = () => (
+  <div style={{ padding: '0 1.25rem 1.5rem 1.25rem', height: '100%', overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: '1rem', paddingTop: '2.5rem', background: 'var(--bg-primary)', scrollbarWidth: 'none', paddingBottom: '6rem' }}>
+     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '1rem' }}>
+        <div style={{ width: '80px', height: '80px', borderRadius: '50%', background: 'rgba(225, 29, 72, 0.1)', border: '2px solid var(--accent-red)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '0.5rem' }}>
+           <span className="ui-text-bold" style={{ fontSize: '1.5rem', color: 'var(--accent-red)' }}>SK</span>
         </div>
-        <div style={{ flex: 1 }}>
-           <div className="ui-text-muted" style={{ fontSize: '0.7rem' }}>Dispensing</div>
-           <div className="ui-text-bold" style={{ fontSize: '0.9rem' }}>Whey Protein Isolate</div>
-           <div style={{ width: '100%', height: '4px', background: 'var(--bg-tertiary)', borderRadius: '2px', marginTop: '6px', overflow: 'hidden' }}>
-              <motion.div animate={{ width: ['0%', '100%'] }} transition={{ duration: 3, repeat: Infinity, ease: 'linear' }} style={{ height: '100%', background: 'var(--accent-red)' }} />
+        <div className="ui-text-bold" style={{ fontSize: '1.2rem' }}>Shubham K.</div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '4px', background: 'rgba(225, 29, 72, 0.1)', color: 'var(--accent-red)', padding: '4px 10px', borderRadius: '100px', fontSize: '0.7rem', fontWeight: 'bold', marginTop: '4px' }}>
+           <Shield size={12}/> Premium Member
+        </div>
+     </div>
+
+     <div className="ui-card" style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+           <div className="ui-text-bold" style={{ fontSize: '1.1rem' }}>Membership</div>
+           <div style={{ background: 'rgba(225, 29, 72, 0.1)', color: 'var(--accent-red)', padding: '2px 8px', borderRadius: '4px', fontSize: '0.7rem', fontWeight: 'bold' }}>Active</div>
+        </div>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+           <span className="ui-text-muted" style={{ fontSize: '0.85rem' }}>Plan</span>
+           <span className="ui-text-bold" style={{ fontSize: '0.9rem' }}>Premium Annual</span>
+        </div>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+           <span className="ui-text-muted" style={{ fontSize: '0.85rem' }}>Renewal</span>
+           <span className="ui-text-bold" style={{ fontSize: '0.9rem' }}>March 15, 2026</span>
+        </div>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+           <span className="ui-text-muted" style={{ fontSize: '0.85rem' }}>Billing</span>
+           <span className="ui-text-bold" style={{ fontSize: '0.9rem' }}>₹8,999/year</span>
+        </div>
+        <div style={{ background: 'var(--accent-red)', color: '#fff', textAlign: 'center', padding: '0.8rem', borderRadius: '8px', fontWeight: 'bold', fontSize: '0.9rem', marginTop: '0.5rem' }}>Upgrade Plan</div>
+     </div>
+
+     <div className="ui-card" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+           <span style={{ color: 'var(--text-muted)' }}>⏸</span>
+           <span className="ui-text-bold" style={{ fontSize: '0.9rem' }}>Pause Membership</span>
+        </div>
+        <div style={{ width: '40px', height: '20px', borderRadius: '100px', background: 'var(--bg-tertiary)', position: 'relative' }}>
+           <div style={{ width: '16px', height: '16px', borderRadius: '50%', background: 'var(--text-muted)', position: 'absolute', top: '2px', left: '2px' }}></div>
+        </div>
+     </div>
+
+     <div className="ui-card" style={{ padding: '0.5rem 0' }}>
+        {[
+           { icon: <Settings size={16}/>, label: "Edit Profile" },
+           { icon: <Bell size={16}/>, label: "Notifications" },
+           { icon: <CreditCard size={16}/>, label: "Payment Methods" }
+        ].map((item, i) => (
+           <div key={i} style={{ display: 'flex', justifyContent: 'space-between', padding: '1rem 1.25rem', borderBottom: i < 2 ? '1px solid rgba(255,255,255,0.05)' : 'none' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                 <div style={{ color: 'var(--text-muted)' }}>{item.icon}</div>
+                 <span className="ui-text-muted" style={{ fontSize: '0.9rem' }}>{item.label}</span>
+              </div>
+              <ChevronRight size={16} color="var(--text-muted)"/>
            </div>
+        ))}
+     </div>
+
+     <div className="ui-card" style={{ padding: '1rem', border: '1px solid rgba(225, 29, 72, 0.3)', marginBottom: '4rem', display: 'flex', justifyContent: 'center' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--accent-red)' }}>
+           <span style={{ transform: 'rotate(180deg)', display: 'inline-block' }}>↪</span>
+           <span className="ui-text-bold" style={{ fontSize: '0.9rem' }}>Log Out</span>
         </div>
      </div>
-     
-     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem', marginTop: 'auto' }}>
-        <div className="ui-card flex-center" style={{ flexDirection: 'column', padding: '1rem' }}>
-           <div className="ui-text-muted" style={{ fontSize: '0.7rem' }}>Inventory</div>
-           <div className="ui-text-bold" style={{ fontSize: '1.2rem', color: 'var(--accent-green)' }}>84%</div>
-        </div>
-        <div className="ui-card flex-center" style={{ flexDirection: 'column', padding: '1rem' }}>
-           <div className="ui-text-muted" style={{ fontSize: '0.7rem' }}>Today's Rev</div>
-           <div className="ui-text-bold" style={{ fontSize: '1.2rem' }}>₹4,250</div>
-        </div>
+
+     {/* Bottom Nav */}
+     <div style={{ position: 'absolute', bottom: '0', left: '0', width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: 'rgba(22, 26, 40, 0.95)', padding: '0.75rem 1.5rem', backdropFilter: 'blur(10px)', borderTop: '1px solid var(--border-light)', zIndex: 10 }}>
+       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '4px', color: 'var(--text-secondary)' }}><Home size={20}/><span style={{ fontSize: '0.6rem' }}>Home</span></div>
+       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '4px', color: 'var(--text-secondary)' }}><Utensils size={20}/><span style={{ fontSize: '0.6rem' }}>Diet</span></div>
+       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '4px', color: 'var(--text-secondary)' }}><Activity size={20}/><span style={{ fontSize: '0.6rem' }}>Workout</span></div>
+       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '4px', color: 'var(--text-secondary)' }}><Users size={20}/><span style={{ fontSize: '0.6rem' }}>Partner</span></div>
+       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '4px', color: 'var(--accent-red)', position: 'relative' }}>
+         <div style={{ position: 'absolute', bottom: '10px', width: '30px', height: '30px', background: 'var(--accent-red)', filter: 'blur(15px)', opacity: 0.5 }}></div>
+         <Users size={20} style={{ position: 'relative', zIndex: 2 }}/><span style={{ fontSize: '0.6rem', fontWeight: 'bold', position: 'relative', zIndex: 2 }}>Profile</span>
+       </div>
      </div>
   </div>
 );
 
 const PhoneCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const screens = [<AppHomeScannerUI key="1" />, <AppDietTrackerUI key="2" />, <AppWorkoutUI key="3" />];
+  const screens = [<AppHomeScannerUI key="1" />, <AppDietTrackerUI key="2" />, <AppWorkoutUI key="3" />, <AppProfileUI key="4" />];
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -291,6 +481,7 @@ const PhoneCarousel = () => {
     </div>
   );
 };
+
 
 // ----- LIVE GYM INSIGHTS DASHBOARD COMPONENT -----
 const LiveGymInsights = ({ isMobile }) => {
@@ -521,14 +712,14 @@ const ProductJourney = ({ isMobile }) => {
              </div>
           </div>
 
-          {/* Scene 4: Purchase */}
+          {/* Scene 4: Subscriptions */}
           <div style={{ width: '80vw', maxWidth: '1000px', flexShrink: 0, display: 'flex', flexDirection: isMobile ? 'column' : 'row', alignItems: 'center', gap: '4rem' }}>
              <div style={{ flex: 1, order: isMobile ? 1 : 2 }}>
-               <h2 style={{ fontSize: isMobile ? '2.5rem' : '4rem', marginBottom: '1rem' }}><span className="text-gradient">Step 4:</span> <br/>Purchase Fuel.</h2>
-               <p style={{ fontSize: '1.25rem' }}>Post-workout, members can conveniently purchase a premium protein shake directly from the smart vendor using their app. Revenue for the gym, instant fuel for the member.</p>
+               <h2 style={{ fontSize: isMobile ? '2.5rem' : '4rem', marginBottom: '1rem' }}><span className="text-gradient">Step 4:</span> <br/>Manage & Grow.</h2>
+               <p style={{ fontSize: '1.25rem' }}>Give members full control over their memberships natively within the app. Automated renewals, seamless upgrades, and reduced admin overhead.</p>
              </div>
-             <div className="device-frame" style={{ order: isMobile ? 2 : 1, width: isMobile ? '280px' : '360px', height: isMobile ? '350px' : '400px', padding: '1.5rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <AppVendingUI />
+             <div className="device-frame" style={{ order: isMobile ? 2 : 1, width: isMobile ? '280px' : '360px', height: isMobile ? '450px' : '550px', transform: 'scale(0.95)' }}>
+                <AppProfileUI />
              </div>
           </div>
 
@@ -608,13 +799,13 @@ const HeroScene = ({ isMobile }) => {
       >
         <div className="glass-card" style={{ width: '100%', height: '100%', padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem', border: '1px solid rgba(225, 29, 72, 0.3)' }}>
            <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
-             <LayoutDashboard size={20} color="var(--accent-red)"/>
-             <span className="ui-text-bold" style={{ fontSize: '1rem' }}>Retention Rate</span>
+             <Activity size={20} color="var(--accent-red)"/>
+             <span className="ui-text-bold" style={{ fontSize: '1rem' }}>Active Members Live</span>
            </div>
            
            <div style={{ display: 'flex', alignItems: 'flex-end', gap: '0.5rem' }}>
-             <div className="ui-text-bold" style={{ fontSize: '2.5rem', color: '#fff', lineHeight: '1' }}>94%</div>
-             <div style={{ color: 'var(--accent-red)', fontWeight: 'bold', fontSize: '1rem', marginBottom: '0.2rem' }}>↑ +2%</div>
+             <div className="ui-text-bold" style={{ fontSize: '2.5rem', color: '#fff', lineHeight: '1' }}>142</div>
+             <div style={{ color: 'var(--accent-red)', fontWeight: 'bold', fontSize: '1rem', marginBottom: '0.2rem' }}>↑ +12%</div>
            </div>
            
            <div style={{ flex: 1, display: 'flex', alignItems: 'flex-end', gap: '6px' }}>
@@ -644,10 +835,10 @@ const HeroScene = ({ isMobile }) => {
       >
          <div className="glass-card" style={{ width: '100%', padding: '1.5rem', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem', border: '1px solid rgba(225, 29, 72, 0.3)', background: 'linear-gradient(180deg, rgba(225, 29, 72, 0.05), rgba(0,0,0,0.4))' }}>
            <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'rgba(225, 29, 72, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '0.5rem' }}>
-              <Box size={20} color="var(--brand-red)"/>
+              <Trophy size={20} color="var(--brand-red)"/>
            </div>
-           <span className="ui-text-bold" style={{ fontSize: '1rem', textAlign: 'center' }}>Smart Reward Unlocked</span>
-           <span className="ui-text-muted" style={{ fontSize: '0.8rem', textAlign: 'center' }}>Post-Workout</span>
+           <span className="ui-text-bold" style={{ fontSize: '1rem', textAlign: 'center' }}>Challenge Alert</span>
+           <span className="ui-text-muted" style={{ fontSize: '0.8rem', textAlign: 'center' }}>Yoga Sunrise is Full</span>
          </div>
       </motion.div>
     </div>
@@ -734,7 +925,7 @@ function App() {
               transition={{ duration: 1, delay: 0.4 }}
               style={{ fontSize: '1.25rem', marginBottom: '3rem', maxWidth: '750px', margin: '0 auto 3rem auto', color: 'var(--text-secondary)' }}
             >
-              A member app, deeply integrated workout tracking, native community features, and automated smart vending for the modern gym.
+              A member app, deeply integrated workout tracking, native community features, and streamlined membership tools for the modern gym.
             </motion.p>
             
             <motion.div 
@@ -798,10 +989,10 @@ function App() {
                     </motion.div>
 
                     <motion.div initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once:true }} transition={{ type: 'spring', stiffness: 50, delay: 0.2 }} className="glass-card" style={{ display: 'flex', gap: '1.5rem', padding: '2rem', border: '1px solid rgba(234, 88, 12, 0.2)' }}>
-                        <div style={{ padding: '1rem', background: 'rgba(234, 88, 12, 0.1)', borderRadius: '16px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Box size={28} color="var(--accent-orange)" /></div>
+                        <div style={{ padding: '1rem', background: 'rgba(234, 88, 12, 0.1)', borderRadius: '16px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><CreditCard size={28} color="var(--accent-orange)" /></div>
                         <div>
-                           <h4 style={{ fontSize: '1.25rem', marginBottom: '0.5rem' }}>Additional Revenue</h4>
-                           <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem' }}>Smart vending modules act as ultra-convenient points of sale, opening new passive revenue streams.</p>
+                           <h4 style={{ fontSize: '1.25rem', marginBottom: '0.5rem' }}>Streamlined Revenue</h4>
+                           <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem' }}>Frictionless native upgrades and simplified billing workflows boost overall revenue conversion.</p>
                         </div>
                     </motion.div>
 
@@ -873,10 +1064,10 @@ function App() {
 
             <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once:true }} className="glass-card" style={{ position: isMobile ? 'static' : 'absolute', bottom: 0, padding: '1.5rem', width: isMobile ? '100%' : '240px', order: isMobile ? 4 : 'unset', backdropFilter: 'blur(30px)' }}>
                <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '10px' }}>
-                  <Box size={20} color="var(--accent-orange)"/>
-                  <div className="ui-text-bold">Smart Vending</div>
+                  <Target size={20} color="var(--accent-orange)"/>
+                  <div className="ui-text-bold">Automated Growth</div>
                </div>
-               <div className="ui-text-muted" style={{ fontSize: '0.8rem' }}>Connected modules serving automated post-workout nutrition.</div>
+               <div className="ui-text-muted" style={{ fontSize: '0.8rem' }}>AI-driven retention paths and frictionless member upgrades.</div>
             </motion.div>
           </div>
         </div>
