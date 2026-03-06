@@ -59,11 +59,11 @@ const AppDietTrackerUI = () => (
     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
       <div className="ui-card" style={{ textAlign: 'center', padding: '1.25rem 1rem' }}>
          <div className="ui-text-bold" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '5px' }}>
-           <Activity size={14} color="var(--accent-green)"/> Hydration
+           <Activity size={14} color="var(--accent-red)"/> Hydration
          </div>
          <div className="ui-text-muted" style={{ fontSize: '0.7rem', marginTop: '2px' }}>Streak: 3 Days</div>
          <div style={{ width: '40px', height: '80px', background: 'var(--bg-tertiary)', borderRadius: '8px', margin: '1rem auto', position: 'relative', overflow: 'hidden' }}>
-            <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '70%', background: 'var(--accent-green)' }}></div>
+            <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '70%', background: 'var(--accent-red)' }}></div>
          </div>
          <div className="ui-text-bold" style={{ fontSize: '1.2rem' }}>2.1L</div>
          <div className="ui-text-muted" style={{ fontSize: '0.7rem' }}>/ 3L</div>
@@ -71,9 +71,9 @@ const AppDietTrackerUI = () => (
       
       <div className="ui-card" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '1.25rem 1rem' }}>
          <div className="ui-text-bold" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '5px', marginBottom: '1rem' }}>
-           <Zap size={14} color="var(--accent-purple)"/> Calories
+           <Zap size={14} color="var(--accent-red)"/> Calories
          </div>
-         <div style={{ width: '80px', height: '80px', borderRadius: '50%', border: '6px solid var(--bg-tertiary)', borderTopColor: 'var(--accent-green)', borderRightColor: 'var(--accent-purple)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}>
+         <div style={{ width: '80px', height: '80px', borderRadius: '50%', border: '6px solid var(--bg-tertiary)', borderTopColor: 'var(--accent-red)', borderRightColor: 'var(--accent-crimson)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}>
             <span className="ui-text-bold" style={{ fontSize: '1.2rem', lineHeight: '1' }}>1850</span>
             <span className="ui-text-muted" style={{ fontSize: '0.6rem' }}>/ 2200</span>
          </div>
@@ -86,19 +86,19 @@ const AppDietTrackerUI = () => (
           <span className="ui-text-bold" style={{ fontSize: '0.8rem' }}>Protein</span>
           <span className="ui-text-muted" style={{ fontSize: '0.8rem' }}>130g / 150g</span>
        </div>
-       <div className="progress-bar"><div className="progress-fill" style={{ width: '85%', background: 'var(--accent-green)' }}></div></div>
+       <div className="progress-bar"><div className="progress-fill" style={{ width: '85%', background: 'var(--accent-red)' }}></div></div>
        
        <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '2px', marginTop: '1rem' }}>
           <span className="ui-text-bold" style={{ fontSize: '0.8rem' }}>Carbs</span>
           <span className="ui-text-muted" style={{ fontSize: '0.8rem' }}>170g / 250g</span>
        </div>
-       <div className="progress-bar"><div className="progress-fill" style={{ width: '65%', background: 'var(--accent-purple)' }}></div></div>
+       <div className="progress-bar"><div className="progress-fill" style={{ width: '65%', background: 'var(--accent-red)' }}></div></div>
        
        <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '2px', marginTop: '1rem' }}>
           <span className="ui-text-bold" style={{ fontSize: '0.8rem' }}>Fats</span>
           <span className="ui-text-muted" style={{ fontSize: '0.8rem' }}>66g / 70g</span>
        </div>
-       <div className="progress-bar"><div className="progress-fill" style={{ width: '90%', background: 'var(--accent-orange)' }}></div></div>
+       <div className="progress-bar"><div className="progress-fill" style={{ width: '90%', background: 'var(--accent-crimson)' }}></div></div>
     </div>
   </div>
 );
@@ -107,12 +107,12 @@ const AppWorkoutUI = () => (
   <div style={{ padding: '0 1.25rem 1.5rem 1.25rem', height: '100%', overflow: 'hidden', display: 'flex', flexDirection: 'column', gap: '1rem', paddingTop: '2.5rem', background: 'var(--bg-primary)' }}>
      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
         <div className="ui-text-bold" style={{ fontSize: '1.2rem' }}>Push Day</div>
-        <div style={{ background: 'var(--accent-purple)', color: '#fff', padding: '4px 10px', borderRadius: '100px', fontSize: '0.7rem', fontWeight: 'bold' }}>55 min</div>
+        <div style={{ background: 'var(--accent-red)', color: '#fff', padding: '4px 10px', borderRadius: '100px', fontSize: '0.7rem', fontWeight: 'bold' }}>55 min</div>
      </div>
      
      <div className="ui-card" style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
-        <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'rgba(255, 59, 59, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-           <Activity size={20} color="var(--accent-green)"/>
+        <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'rgba(225, 29, 72, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+           <Activity size={20} color="var(--accent-red)"/>
         </div>
         <div>
            <div className="ui-text-muted" style={{ fontSize: '0.75rem' }}>Avg Heart Rate</div>
@@ -131,7 +131,7 @@ const AppWorkoutUI = () => (
               <span className="ui-text-muted" style={{ width: '20px' }}>{i+1}</span>
               <span className="ui-text-bold">{set.weight}kg</span>
               <span className="ui-text-muted">x {set.reps}</span>
-              <span style={{ fontSize: '0.75rem', color: 'var(--accent-green)' }}>RPE {set.rpe}</span>
+              <span style={{ fontSize: '0.75rem', color: 'var(--accent-red)' }}>RPE {set.rpe}</span>
            </div>
         ))}
      </div>
@@ -143,19 +143,19 @@ const AppScannerUI = () => (
      <div className="ui-text-bold" style={{ fontSize: '1.2rem', marginBottom: '0.5rem' }}>Access Gym</div>
      <div className="ui-text-muted" style={{ textAlign: 'center', marginBottom: '2rem' }}>Scan QR at the turnstile <br/>to unlock the door</div>
      
-     <div style={{ width: '200px', height: '200px', background: '#fff', borderRadius: '16px', padding: '1rem', position: 'relative', boxShadow: '0 0 40px rgba(255, 59, 59, 0.2)', display: 'flex', alignItems:'center', justifyContent: 'center' }}>
-        <QrCode size={150} color="var(--accent-purple)"/>
+     <div style={{ width: '200px', height: '200px', background: '#fff', borderRadius: '16px', padding: '1rem', position: 'relative', boxShadow: '0 0 40px rgba(225, 29, 72, 0.2)', display: 'flex', alignItems:'center', justifyContent: 'center' }}>
+        <QrCode size={150} color="var(--accent-red)"/>
         {/* Scanner Line Animation */}
         <motion.div 
            animate={{ top: ['0%', '98%', '0%'] }}
            transition={{ duration: 3, repeat: Infinity, ease: 'linear' }}
-           style={{ position: 'absolute', left: 0, width: '100%', height: '2px', background: 'var(--accent-green)', boxShadow: '0 0 10px var(--accent-green)' }}
+           style={{ position: 'absolute', left: 0, width: '100%', height: '2px', background: 'var(--accent-red)', boxShadow: '0 0 10px var(--accent-red)' }}
         />
      </div>
      
      <div style={{ marginTop: 'auto', width: '100%', display: 'flex', justifyContent: 'space-between', padding: '1rem', background: 'var(--bg-secondary)', borderRadius: '100px', border: '1px solid var(--border-light)' }}>
          <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'var(--bg-tertiary)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Users size={18}/></div>
-         <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'var(--accent-purple)', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 0 15px rgba(196, 30, 58, 0.4)' }}><Box size={18} color="#fff"/></div>
+         <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'var(--accent-red)', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 0 15px rgba(225, 29, 72, 0.4)' }}><Box size={18} color="#fff"/></div>
          <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'var(--bg-tertiary)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Settings size={18}/></div>
      </div>
   </div>
@@ -170,9 +170,9 @@ const AppHomeScannerUI = () => (
          <div className="ui-text-bold" style={{ fontSize: '1.2rem' }}>Shubham</div>
        </div>
        <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
-         <div style={{ display: 'flex', alignItems: 'center', gap: '4px', background: 'rgba(255,153,0,0.1)', border: '1px solid rgba(255,153,0,0.2)', padding: '4px 8px', borderRadius: '100px' }}>
-           <Flame size={14} color="var(--accent-orange)"/>
-           <span style={{ fontSize: '0.75rem', fontWeight: 'bold', color: 'var(--accent-green)' }}>5 Day Streak</span>
+         <div style={{ display: 'flex', alignItems: 'center', gap: '4px', background: 'rgba(225, 29, 72, 0.1)', border: '1px solid rgba(225, 29, 72, 0.2)', padding: '4px 8px', borderRadius: '100px' }}>
+           <Flame size={14} color="var(--accent-red)"/>
+           <span style={{ fontSize: '0.75rem', fontWeight: 'bold', color: 'var(--text-primary)' }}>5 Day Streak</span>
          </div>
          <div style={{ width: '32px', height: '32px', borderRadius: '50%', border: '1px solid var(--border-light)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Sun size={14} color="var(--text-secondary)"/></div>
          <div style={{ width: '32px', height: '32px', borderRadius: '50%', border: '1px solid var(--border-light)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Bell size={14} color="var(--text-secondary)"/></div>
@@ -181,13 +181,13 @@ const AppHomeScannerUI = () => (
      
      {/* QR Scanner Card */}
      <div className="ui-card flex-center" style={{ flexDirection: 'column', gap: '1rem', padding: '1.5rem', borderRadius: '24px' }}>
-       <div style={{ width: '120px', height: '120px', background: 'rgba(196, 30, 58, 0.1)', borderRadius: '16px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-         <QrCode size={80} color="var(--accent-purple)"/>
+       <div style={{ width: '120px', height: '120px', background: 'rgba(225, 29, 72, 0.1)', borderRadius: '16px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+         <QrCode size={80} color="var(--accent-red)"/>
        </div>
        <div style={{ textAlign: 'center' }}>
          <div className="ui-text-bold" style={{ fontSize: '1.1rem' }}>Scan to Enter Gym</div>
-         <div className="ui-text-muted" style={{ fontSize: '0.8rem', marginTop: '4px' }}>Refreshes in <span style={{ color: 'var(--accent-green)', fontWeight: 'bold' }}>26s</span></div>
-         <div style={{ fontSize: '0.7rem', color: 'var(--accent-green)', marginTop: '8px' }}>+5 Consistency Points on scan</div>
+         <div className="ui-text-muted" style={{ fontSize: '0.8rem', marginTop: '4px' }}>Refreshes in <span style={{ color: 'var(--accent-red)', fontWeight: 'bold' }}>26s</span></div>
+         <div style={{ fontSize: '0.7rem', color: 'var(--accent-red)', marginTop: '8px' }}>+5 Consistency Points on scan</div>
        </div>
      </div>
      
@@ -195,19 +195,19 @@ const AppHomeScannerUI = () => (
      <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
          <div className="ui-text-bold" style={{ fontSize: '1rem' }}>Community Events</div>
-         <div style={{ color: 'var(--accent-purple)', fontSize: '0.8rem', fontWeight: 'bold' }}>View All {'>'}</div>
+         <div style={{ color: 'var(--accent-red)', fontSize: '0.8rem', fontWeight: 'bold' }}>View All {'>'}</div>
        </div>
        
        <div style={{ display: 'flex', gap: '0.75rem', overflowX: 'auto', paddingBottom: '0.5rem', scrollbarWidth: 'none' }}>
          <div style={{ minWidth: '160px', background: 'var(--bg-tertiary)', borderRadius: '16px', overflow: 'hidden', paddingBottom: '1rem' }}>
-           <div style={{ height: '70px', background: 'linear-gradient(180deg, rgba(196, 30, 58, 0.4) 0%, var(--bg-tertiary) 100%)' }}></div>
+           <div style={{ height: '70px', background: 'linear-gradient(180deg, rgba(225, 29, 72, 0.4) 0%, var(--bg-tertiary) 100%)' }}></div>
            <div style={{ padding: '0 0.75rem' }}>
-             <div style={{ background: 'rgba(255, 59, 59, 0.1)', color: 'var(--accent-green)', fontSize: '0.6rem', padding: '2px 6px', borderRadius: '4px', display: 'inline-block', marginBottom: '4px' }}>Gym Hosted</div>
+             <div style={{ background: 'rgba(225, 29, 72, 0.1)', color: 'var(--accent-red)', fontSize: '0.6rem', padding: '2px 6px', borderRadius: '4px', display: 'inline-block', marginBottom: '4px' }}>Gym Hosted</div>
              <div className="ui-text-bold" style={{ fontSize: '0.9rem', marginBottom: '8px' }}>HIIT Challenge</div>
              <div style={{ display: 'flex', alignItems: 'center', gap: '4px', marginBottom: '4px' }}><Calendar size={10} color="var(--text-secondary)"/><span className="ui-text-muted" style={{ fontSize: '0.7rem' }}>Today 6PM</span></div>
              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '1rem' }}>
                <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}><Users size={10} color="var(--text-secondary)"/><span className="ui-text-muted" style={{ fontSize: '0.7rem' }}>24 joined</span></div>
-               <div style={{ background: 'var(--accent-purple)', color: '#fff', fontSize: '0.7rem', padding: '4px 12px', borderRadius: '100px', fontWeight: 'bold' }}>Join</div>
+               <div style={{ background: 'var(--accent-red)', color: '#fff', fontSize: '0.7rem', padding: '4px 12px', borderRadius: '100px', fontWeight: 'bold' }}>Join</div>
              </div>
            </div>
          </div>
@@ -216,9 +216,9 @@ const AppHomeScannerUI = () => (
      
      {/* Bottom Nav */}
      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: 'rgba(22, 26, 40, 0.95)', padding: '0.75rem 1.5rem', borderRadius: '100px', margin: 'auto -0.5rem -0.5rem -0.5rem', border: '1px solid var(--border-light)' }}>
-       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '4px', color: 'var(--accent-purple)', position: 'relative' }}>
+       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '4px', color: 'var(--accent-red)', position: 'relative' }}>
          {/* glow behind active indicator */}
-         <div style={{ position: 'absolute', bottom: '10px', width: '30px', height: '30px', background: 'var(--accent-purple)', filter: 'blur(15px)', opacity: 0.5 }}></div>
+         <div style={{ position: 'absolute', bottom: '10px', width: '30px', height: '30px', background: 'var(--accent-red)', filter: 'blur(15px)', opacity: 0.5 }}></div>
          <Home size={20} style={{ position: 'relative', zIndex: 2 }}/>
          <span style={{ fontSize: '0.6rem', fontWeight: 'bold', position: 'relative', zIndex: 2 }}>Home</span>
        </div>
@@ -234,18 +234,18 @@ const AppVendingUI = () => (
   <div style={{ padding: '1.5rem', height: '100%', overflow: 'hidden', display: 'flex', flexDirection: 'column', gap: '1rem', background: 'var(--bg-primary)' }}>
      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
         <div className="ui-text-bold" style={{ fontSize: '1.1rem' }}>Smart Vendor 04</div>
-        <div style={{ background: 'rgba(187,255,34,0.1)', color: 'var(--accent-green)', padding: '4px 8px', borderRadius: '4px', fontSize: '0.7rem', fontWeight: 'bold' }}>Online</div>
+        <div style={{ background: 'rgba(225, 29, 72, 0.1)', color: 'var(--accent-red)', padding: '4px 8px', borderRadius: '4px', fontSize: '0.7rem', fontWeight: 'bold' }}>Online</div>
      </div>
      
      <div className="ui-card" style={{ background: 'var(--bg-secondary)', border: '1px solid var(--border-light)', display: 'flex', alignItems: 'center', gap: '1rem', padding: '1rem' }}>
-        <div style={{ width: '40px', height: '40px', borderRadius: '8px', background: 'var(--accent-purple)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <div style={{ width: '40px', height: '40px', borderRadius: '8px', background: 'var(--accent-red)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
            <Box size={20} color="#fff"/>
         </div>
         <div style={{ flex: 1 }}>
            <div className="ui-text-muted" style={{ fontSize: '0.7rem' }}>Dispensing</div>
            <div className="ui-text-bold" style={{ fontSize: '0.9rem' }}>Whey Protein Isolate</div>
            <div style={{ width: '100%', height: '4px', background: 'var(--bg-tertiary)', borderRadius: '2px', marginTop: '6px', overflow: 'hidden' }}>
-              <motion.div animate={{ width: ['0%', '100%'] }} transition={{ duration: 3, repeat: Infinity, ease: 'linear' }} style={{ height: '100%', background: 'var(--accent-green)' }} />
+              <motion.div animate={{ width: ['0%', '100%'] }} transition={{ duration: 3, repeat: Infinity, ease: 'linear' }} style={{ height: '100%', background: 'var(--accent-red)' }} />
            </div>
         </div>
      </div>
@@ -504,13 +504,13 @@ const ProductJourney = ({ isMobile }) => {
              </div>
              <div className="glass-card" style={{ width: isMobile ? '300px' : '400px', height: isMobile ? '400px' : '500px', padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '1rem' }}>
-                  <Users size={24} color="var(--accent-purple)"/>
+                  <Users size={24} color="var(--accent-red)"/>
                   <span className="ui-text-bold">Live Gym Leaderboard</span>
                 </div>
                 {[
-                  { name: "Alex R.", score: "2,450 pts", rank: 1, color: "var(--brand-red)" },
-                  { name: "Sarah J.", score: "2,100 pts", rank: 2, color: "var(--accent-purple)" },
-                  { name: "Mike T.", score: "1,850 pts", rank: 3, color: "var(--accent-green)" },
+                  { name: "Alex R.", score: "2,450 pts", rank: 1, color: "var(--accent-red)" },
+                  { name: "Sarah J.", score: "2,100 pts", rank: 2, color: "var(--accent-crimson)" },
+                  { name: "Mike T.", score: "1,850 pts", rank: 3, color: "rgba(225, 29, 72, 0.5)" },
                   { name: "You", score: "1,420 pts", rank: 4, color: "var(--text-primary)" }
                 ].map((u, i) => (
                   <div key={i} style={{ display: 'flex', justifyContent: 'space-between', padding: '1rem', background: 'var(--bg-tertiary)', borderRadius: '12px', border: `1px solid ${u.color}` }}>
@@ -606,20 +606,20 @@ const HeroScene = ({ isMobile }) => {
            transform: isMobile ? 'translateX(-90px)' : 'none'
          }}
       >
-        <div className="glass-card" style={{ width: '100%', height: '100%', padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem', border: '1px solid rgba(147, 51, 234, 0.3)' }}>
+        <div className="glass-card" style={{ width: '100%', height: '100%', padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem', border: '1px solid rgba(225, 29, 72, 0.3)' }}>
            <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
-             <LayoutDashboard size={20} color="var(--accent-purple)"/>
+             <LayoutDashboard size={20} color="var(--accent-red)"/>
              <span className="ui-text-bold" style={{ fontSize: '1rem' }}>Retention Rate</span>
            </div>
            
            <div style={{ display: 'flex', alignItems: 'flex-end', gap: '0.5rem' }}>
              <div className="ui-text-bold" style={{ fontSize: '2.5rem', color: '#fff', lineHeight: '1' }}>94%</div>
-             <div style={{ color: 'var(--accent-green)', fontWeight: 'bold', fontSize: '1rem', marginBottom: '0.2rem' }}>↑ +2%</div>
+             <div style={{ color: 'var(--accent-red)', fontWeight: 'bold', fontSize: '1rem', marginBottom: '0.2rem' }}>↑ +2%</div>
            </div>
            
            <div style={{ flex: 1, display: 'flex', alignItems: 'flex-end', gap: '6px' }}>
               {[40, 60, 45, 80, 75, 90, 95].map((h, i) => (
-                 <div key={i} style={{ flex: 1, height: `${h}%`, background: i === 6 ? 'var(--accent-purple)' : 'var(--bg-tertiary)', borderRadius: '4px' }}></div>
+                 <div key={i} style={{ flex: 1, height: `${h}%`, background: i === 6 ? 'var(--accent-red)' : 'var(--bg-tertiary)', borderRadius: '4px' }}></div>
               ))}
            </div>
         </div>
