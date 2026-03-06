@@ -1069,7 +1069,7 @@ function App() {
               transition={{ duration: 1, delay: 0.4 }}
               style={{ fontSize: '1.25rem', marginBottom: '1.5rem', maxWidth: '750px', margin: '0 auto 1.5rem auto', color: 'var(--text-secondary)', lineHeight: '1.7', letterSpacing: '-0.01em' }}
             >
-              With Yuguyu, members scan in, log workouts, track diet, join the gym community, and instantly buy protein or supplements from smart vending machines — all through one app.
+              With Yuguyu, members scan in, log workouts, track diet, join the gym community, and instantly buy protein or supplements from smart vending machines.
             </motion.p>
             <motion.p 
               initial={{ opacity: 0 }} 
