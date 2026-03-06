@@ -989,9 +989,88 @@ const HeroScene = ({ isMobile }) => {
   );
 };
 
+
+const ContactPage = ({ onClose, isMobile }) => {
+  const [formData, setFormData] = useState({ name: '', email: '', gymName: '', phone: '', message: '' });
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setSubmitted(true);
+  };
+
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      style={{ position: 'fixed', inset: 0, zIndex: 200, background: 'var(--bg-primary)', overflowY: 'auto' }}
+    >
+      <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'radial-gradient(ellipse at top right, var(--accent-glow-red) 0%, transparent 50%)', pointerEvents: 'none' }}></div>
+      
+      <div style={{ position: 'relative', zIndex: 10, maxWidth: '700px', margin: '0 auto', padding: isMobile ? '5rem 1.5rem 3rem' : '6rem 2rem 4rem' }}>
+        
+        <button onClick={onClose} style={{ position: 'absolute', top: isMobile ? '1.5rem' : '2rem', right: isMobile ? '1.5rem' : '2rem', width: '44px', height: '44px', borderRadius: '50%', background: 'var(--glass-bg)', border: '1px solid var(--border-light)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--text-primary)', fontSize: '1.2rem', cursor: 'pointer', backdropFilter: 'blur(10px)' }}>✕</button>
+        
+        <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+          <h2 style={{ fontSize: isMobile ? '2rem' : '3rem', marginBottom: '0.75rem', lineHeight: 1.1 }}>
+            Get In <span className="text-gradient">Touch</span>
+          </h2>
+          <p style={{ color: 'var(--text-secondary)', fontSize: '1.1rem', marginBottom: '3rem', lineHeight: 1.6 }}>
+            Ready to transform your gym? Fill in your details and our team will reach out within 24 hours.
+          </p>
+        </motion.div>
+
+        {submitted ? (
+          <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} className="glass-card" style={{ textAlign: 'center', padding: '3rem 2rem' }}>
+            <div style={{ width: '60px', height: '60px', borderRadius: '50%', background: 'rgba(34, 197, 94, 0.1)', border: '2px solid rgba(34, 197, 94, 0.4)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1.5rem' }}>
+              <CheckCircle2 size={30} color="var(--accent-green)" />
+            </div>
+            <h3 style={{ marginBottom: '0.75rem' }}>Message Sent!</h3>
+            <p style={{ color: 'var(--text-secondary)', marginBottom: '2rem' }}>We'll get back to you within 24 hours.</p>
+            <button onClick={onClose} className="btn btn-accent" style={{ padding: '0.8rem 2rem' }}>Back to Home</button>
+          </motion.div>
+        ) : (
+          <motion.form initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: '1.25rem' }}>
+              <div>
+                <label style={{ display: 'block', fontSize: '0.85rem', color: 'var(--text-secondary)', marginBottom: '0.5rem', fontWeight: 600 }}>Full Name *</label>
+                <input required value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} placeholder="John Doe" style={{ width: '100%', padding: '0.9rem 1rem', borderRadius: '12px', background: 'var(--bg-secondary)', border: '1px solid var(--border-light)', color: 'var(--text-primary)', fontSize: '1rem', fontFamily: 'var(--font-body)', outline: 'none', transition: 'border 0.2s' }} />
+              </div>
+              <div>
+                <label style={{ display: 'block', fontSize: '0.85rem', color: 'var(--text-secondary)', marginBottom: '0.5rem', fontWeight: 600 }}>Email *</label>
+                <input required type="email" value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})} placeholder="john@gym.com" style={{ width: '100%', padding: '0.9rem 1rem', borderRadius: '12px', background: 'var(--bg-secondary)', border: '1px solid var(--border-light)', color: 'var(--text-primary)', fontSize: '1rem', fontFamily: 'var(--font-body)', outline: 'none', transition: 'border 0.2s' }} />
+              </div>
+            </div>
+            <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: '1.25rem' }}>
+              <div>
+                <label style={{ display: 'block', fontSize: '0.85rem', color: 'var(--text-secondary)', marginBottom: '0.5rem', fontWeight: 600 }}>Gym / Business Name</label>
+                <input value={formData.gymName} onChange={e => setFormData({...formData, gymName: e.target.value})} placeholder="Elite Fitness" style={{ width: '100%', padding: '0.9rem 1rem', borderRadius: '12px', background: 'var(--bg-secondary)', border: '1px solid var(--border-light)', color: 'var(--text-primary)', fontSize: '1rem', fontFamily: 'var(--font-body)', outline: 'none', transition: 'border 0.2s' }} />
+              </div>
+              <div>
+                <label style={{ display: 'block', fontSize: '0.85rem', color: 'var(--text-secondary)', marginBottom: '0.5rem', fontWeight: 600 }}>Phone</label>
+                <input type="tel" value={formData.phone} onChange={e => setFormData({...formData, phone: e.target.value})} placeholder="+91 98765 43210" style={{ width: '100%', padding: '0.9rem 1rem', borderRadius: '12px', background: 'var(--bg-secondary)', border: '1px solid var(--border-light)', color: 'var(--text-primary)', fontSize: '1rem', fontFamily: 'var(--font-body)', outline: 'none', transition: 'border 0.2s' }} />
+              </div>
+            </div>
+            <div>
+              <label style={{ display: 'block', fontSize: '0.85rem', color: 'var(--text-secondary)', marginBottom: '0.5rem', fontWeight: 600 }}>Message *</label>
+              <textarea required value={formData.message} onChange={e => setFormData({...formData, message: e.target.value})} placeholder="Tell us about your gym and how we can help..." rows={4} style={{ width: '100%', padding: '0.9rem 1rem', borderRadius: '12px', background: 'var(--bg-secondary)', border: '1px solid var(--border-light)', color: 'var(--text-primary)', fontSize: '1rem', fontFamily: 'var(--font-body)', outline: 'none', resize: 'vertical', transition: 'border 0.2s' }} />
+            </div>
+            <motion.button whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} type="submit" className="btn btn-accent" style={{ padding: '1rem', fontSize: '1.05rem', marginTop: '0.5rem', width: '100%' }}>
+              Send Message <ArrowRight size={18} style={{ marginLeft: '8px' }} />
+            </motion.button>
+            <p style={{ fontSize: '0.8rem', color: 'var(--text-tertiary)', textAlign: 'center' }}>By submitting, you agree to our Privacy Policy.</p>
+          </motion.form>
+        )}
+      </div>
+    </motion.div>
+  );
+};
+
 function App() {
   const isMobile = useMediaQuery('(max-width: 768px)');
   const [isLightMode, setIsLightMode] = useState(false);
+  const [showContact, setShowContact] = useState(false);
 
   useEffect(() => {
     if (isLightMode) {
@@ -1010,7 +1089,7 @@ function App() {
       </div>
 
       <nav className="nav-blur" style={{ 
-        padding: '1rem 2rem', 
+        padding: isMobile ? '0.75rem 1rem' : '0.75rem 2rem', 
         display: 'flex', 
         justifyContent: 'space-between', 
         alignItems: 'center', 
@@ -1023,12 +1102,26 @@ function App() {
         <div style={{ fontSize: '1.75rem', fontWeight: '800', fontFamily: 'var(--font-logo)', letterSpacing: '-0.04em' }}>
           <span style={{ color: 'var(--text-primary)' }}>Yugu</span><span style={{ color: 'var(--accent-red)' }}>yu</span>
         </div>
-        <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+        
+        {!isMobile && (
+          <div style={{ display: 'flex', gap: '2rem', alignItems: 'center' }}>
+            {[
+              { label: 'Features', href: '#features' },
+              { label: 'For Gyms', href: '#for-gyms' },
+              { label: 'Ecosystem', href: '#ecosystem' }
+            ].map((link) => (
+              <a key={link.label} href={link.href} style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', fontWeight: 500, fontFamily: 'var(--font-heading)', letterSpacing: '-0.01em', transition: 'color 0.2s', cursor: 'pointer' }} onMouseEnter={e => e.target.style.color = 'var(--text-primary)'} onMouseLeave={e => e.target.style.color = 'var(--text-secondary)'}>{link.label}</a>
+            ))}
+            <a onClick={() => setShowContact(true)} style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', fontWeight: 500, fontFamily: 'var(--font-heading)', letterSpacing: '-0.01em', transition: 'color 0.2s', cursor: 'pointer' }} onMouseEnter={e => e.target.style.color = 'var(--text-primary)'} onMouseLeave={e => e.target.style.color = 'var(--text-secondary)'}>Contact</a>
+          </div>
+        )}
+
+        <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'center' }}>
           <button 
             onClick={() => setIsLightMode(!isLightMode)}
             style={{ 
-              width: '40px', 
-              height: '40px', 
+              width: '36px', 
+              height: '36px', 
               borderRadius: '50%', 
               background: 'var(--glass-bg)', 
               display: 'flex', 
@@ -1038,9 +1131,21 @@ function App() {
               transition: 'all 0.2s ease'
             }}
           >
-            {isLightMode ? <Sun size={18} color="var(--text-primary)"/> : <Moon size={18} color="var(--text-primary)"/>}
+            {isLightMode ? <Sun size={16} color="var(--text-primary)"/> : <Moon size={16} color="var(--text-primary)"/>}
           </button>
-          <button className="btn btn-primary" style={{ padding: '0.6rem 1.5rem', fontSize: '0.9rem' }}>Demo</button>
+          {isMobile && (
+            <button onClick={() => setShowContact(true)} style={{ width: '36px', height: '36px', borderRadius: '50%', background: 'var(--glass-bg)', display: 'flex', alignItems: 'center', justifyContent: 'center', border: '1px solid var(--border-light)', transition: 'all 0.2s ease' }}>
+              <Menu size={16} color="var(--text-primary)"/>
+            </button>
+          )}
+          <motion.button 
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="btn btn-accent" 
+            style={{ padding: isMobile ? '0.5rem 1rem' : '0.6rem 1.5rem', fontSize: isMobile ? '0.8rem' : '0.9rem', boxShadow: '0 0 20px var(--accent-glow-red), 0 0 60px rgba(225, 29, 72, 0.1)' }}
+          >
+            <Zap size={14} style={{ marginRight: '6px' }}/> Book Demo
+          </motion.button>
         </div>
       </nav>
 
@@ -1102,12 +1207,14 @@ function App() {
       </section>
 
       {/* 2. HORIZONTAL SCROLL PRODUCT JOURNEY */}
+      <div id="features"></div>
       <ProductJourney isMobile={isMobile} />
 
       {/* 4. LIVE GYM INSIGHTS DASHBOARD */}
       <LiveGymInsights isMobile={isMobile} />
 
       {/* 4. GYM OWNER BENEFITS */}
+      <div id="for-gyms"></div>
       <section className="section" style={{ background: 'var(--bg-primary)', position: 'relative', overflow: 'hidden' }}>
          <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '1px', background: 'linear-gradient(90deg, transparent, rgba(225, 29, 72, 0.3), transparent)' }}></div>
          <div className="container" style={{ position: 'relative', zIndex: 10 }}>
@@ -1162,6 +1269,7 @@ function App() {
       </section>
 
       {/* 5. ECOSYSTEM VISUAL FLOW */}
+      <div id="ecosystem"></div>
       <section className="section" style={{ borderTop: '1px solid var(--border-light)', overflow: 'hidden', padding: isMobile ? '5rem 0' : '10rem 0', position: 'relative' }}>
         <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: '800px', height: '800px', background: 'radial-gradient(circle, var(--accent-glow-purple) 0%, transparent 60%)', filter: 'blur(80px)', zIndex: 0, opacity: 0.5 }}></div>
 
@@ -1244,6 +1352,11 @@ function App() {
       
 
       
+
+      {/* CONTACT PAGE OVERLAY */}
+      <AnimatePresence>
+        {showContact && <ContactPage onClose={() => setShowContact(false)} isMobile={isMobile} />}
+      </AnimatePresence>
 
       {/* 5. FOOTER & GYM OWNER BENEFITS */}
       <footer style={{ padding: '2rem 0', background: 'var(--bg-primary)', position: 'relative', overflow: 'hidden', borderTop: '1px solid var(--border-light)' }}>

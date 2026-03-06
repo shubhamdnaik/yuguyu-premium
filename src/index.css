@@ -490,3 +490,13 @@ body.light-theme .nav-blur {
     font-size: 0.85rem;
   }
 }
+
+/* Form Inputs */
+input:focus, textarea:focus {
+  border-color: var(--accent-red) !important;
+  box-shadow: 0 0 0 3px var(--accent-glow-red);
+}
+
+input::placeholder, textarea::placeholder {
+  color: var(--text-tertiary);
+}
