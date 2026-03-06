@@ -1103,19 +1103,12 @@ function App() {
           <span style={{ color: 'var(--text-primary)' }}>Yugu</span><span style={{ color: 'var(--accent-red)' }}>yu</span>
         </div>
         
-        {!isMobile && (
-          <div style={{ display: 'flex', gap: '2rem', alignItems: 'center' }}>
-            {[
-              { label: 'Features', href: '#features' },
-              { label: 'For Gyms', href: '#insights' },
-              { label: 'Ecosystem', href: '#ecosystem' }
-            ].map((link) => (
-              <a key={link.label} href={link.href} style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', fontWeight: 500, fontFamily: 'var(--font-heading)', letterSpacing: '-0.01em', transition: 'color 0.2s', cursor: 'pointer' }} onMouseEnter={e => e.target.style.color = 'var(--text-primary)'} onMouseLeave={e => e.target.style.color = 'var(--text-secondary)'}>{link.label}</a>
-            ))}
-          </div>
-        )}
+        
 
         <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'center' }}>
+          {!isMobile && ['Features', 'For Gyms', 'Ecosystem'].map((label) => (
+            <a key={label} href={label === 'For Gyms' ? '#insights' : '#' + label.toLowerCase()} style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', fontWeight: 500, fontFamily: 'var(--font-heading)', letterSpacing: '-0.01em', transition: 'color 0.2s', cursor: 'pointer', marginRight: '0.5rem' }} onMouseEnter={e => e.target.style.color = 'var(--text-primary)'} onMouseLeave={e => e.target.style.color = 'var(--text-secondary)'}>{label}</a>
+          ))}
           <button 
             onClick={() => setIsLightMode(!isLightMode)}
             style={{ 
