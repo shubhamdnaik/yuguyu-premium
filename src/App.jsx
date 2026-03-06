@@ -22,7 +22,7 @@ import {
   CreditCard,
   DollarSign, Settings, LineChart, Database, LayoutDashboard, Utensils, RefreshCw, SmartphoneNfc, Menu, Home, Bell, Flame, Calendar
 } from 'lucide-react';
-import vendingMockup from './assets/vending_machine_user.png';
+import vendingMockup from './assets/vending_machine_new.jpg';
 import './index.css';
  
 // Hook for responsive JSX
@@ -589,7 +589,7 @@ function App() {
                     Partner Hardware <br/><span className="text-gradient">Seamlessly Integrated.</span>
                   </motion.h2>
                   <motion.p initial={{ opacity:0, y:20 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true }} transition={{ delay: 0.2 }} style={{ fontSize: '1.1rem', color: 'var(--text-secondary)' }}>
-                    Yuguyu integrates with category-leading vending providers. Hardware is managed via a dedicated provider app for specialized inventory control.
+                     Yuguyu provides a complete hardware ecosystem. Inventory and unit operations are managed directly through the Yuguyu platform, ensuring total control and seamless data integration.
                   </motion.p>
                </div>
 
@@ -604,8 +604,7 @@ function App() {
                              width: '100%', 
                              height: 'auto', 
                              display: 'block',
-                             filter: 'drop-shadow(0 40px 100px rgba(0,0,0,0.8))',
-                             mixBlendMode: 'multiply'
+                             filter: 'drop-shadow(0 40px 100px rgba(0,0,0,0.8))'
                            }} 
                          />
                       </div>
@@ -615,8 +614,8 @@ function App() {
                      <h3 style={{ fontSize: '1.1rem', color: 'var(--accent-green)', marginBottom: '2rem', textTransform: 'uppercase', letterSpacing: '2px' }}>Independent Hardware Success</h3>
                      <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
                          <div>
-                            <h4 style={{ fontSize: '1.25rem', marginBottom: '0.5rem' }}>Specialized Control App</h4>
-                            <p style={{ color: 'var(--text-secondary)', fontSize: '1rem' }}>Managed by a dedicated unit-specific app from the machine provider.</p>
+                            <h4 style={{ fontSize: '1.25rem', marginBottom: '0.5rem' }}>Full Inventory Control</h4>
+                            <p style={{ color: 'var(--text-secondary)', fontSize: '1rem' }}>Managed directly through your Yuguyu admin dashboard. No third-party apps required.</p>
                          </div>
                          <div>
                             <h4 style={{ fontSize: '1.25rem', marginBottom: '0.5rem' }}>Ecosystem Bridge</h4>
