@@ -305,7 +305,7 @@ function App() {
         background: 'var(--glass-bg)' 
       }}>
         <div style={{ fontSize: '1.75rem', fontWeight: '800', fontFamily: 'var(--font-logo)', letterSpacing: '-0.04em' }}>
-          <span style={{ color: 'var(--text-primary)' }}>Yugu</span><span style={{ color: 'var(--accent-green)' }}>yu</span>
+          <span style={{ color: '#FFFFFF' }}>Yugu</span><span style={{ color: '#FF3B3B' }}>yu</span>
         </div>
         <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
           <button 
@@ -744,7 +744,7 @@ function App() {
          <div className="container" style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '2fr 1fr 1fr 1fr', gap: isMobile ? '3rem' : '4rem' }}>
             <div>
                <div style={{ fontSize: '1.75rem', fontWeight: '800', fontFamily: 'var(--font-logo)', letterSpacing: '-0.04em', marginBottom: '1.5rem' }}>
-                  <span style={{ color: 'var(--text-primary)' }}>Yugu</span><span style={{ color: 'var(--accent-green)' }}>yu</span>
+                  <span style={{ color: '#FFFFFF' }}>Yugu</span><span style={{ color: '#FF3B3B' }}>yu</span>
                </div>
                <p style={{ color: 'var(--text-tertiary)', fontSize: '0.9rem', lineHeight: 1.6 }}>The Operating System for Modern Gyms. Connecting members, infrastructure, and revenue into one intelligent ecosystem.</p>
             </div>

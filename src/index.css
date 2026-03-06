@@ -16,12 +16,12 @@
 
   /* Shared Tokens */
   --accent-blue: #00E6F0;
-  --accent-green: #FF3B3B;
+  --brand-red: #FF3B3B;
   --accent-purple: #C41E3A;
-  --accent-bright-purple: #9041FF; /* For the 'yu' in the logo */
+  --accent-bright-purple: #9041FF; 
   --accent-orange: #FF4D00;
   
-  --accent-glow-green: rgba(255, 59, 59, 0.4);
+  --accent-glow-red: rgba(255, 59, 59, 0.4);
   --accent-glow-purple: rgba(196, 30, 58, 0.4);
   
   /* Radii */
