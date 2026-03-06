@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
+import React, { useState, useEffect, useRef } from 'react';
+import { motion, AnimatePresence, useScroll, useTransform, useSpring } from 'framer-motion';
 import { 
   Dumbbell, 
   Users, 
@@ -292,6 +292,178 @@ const PhoneCarousel = () => {
   );
 };
 
+// Horizontal Scroll Product Journey Component
+const ProductJourney = ({ isMobile }) => {
+  const targetRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: targetRef,
+  });
+
+  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-75%"]);
+
+  return (
+    <section ref={targetRef} style={{ position: 'relative', height: '400vh', background: 'var(--bg-primary)' }}>
+      <div style={{ position: 'sticky', top: 0, display: 'flex', height: '100vh', alignItems: 'center', overflow: 'hidden' }}>
+        <motion.div style={{ x, display: 'flex', gap: '10vw', padding: '0 10vw' }}>
+          
+          {/* Scene 1: The Machine */}
+          <div style={{ width: '80vw', maxWidth: '1000px', flexShrink: 0, display: 'flex', flexDirection: isMobile ? 'column' : 'row', alignItems: 'center', gap: '4rem' }}>
+             <div style={{ flex: 1 }}>
+               <h2 style={{ fontSize: isMobile ? '2.5rem' : '4rem', marginBottom: '1rem' }}><span className="text-gradient">Step 1:</span> <br/>The Smart Vendor</h2>
+               <p style={{ fontSize: '1.25rem' }}>A fully integrated hardware touchpoint placed right where your members train. Always stocked, always online.</p>
+             </div>
+             <div className="device-frame" style={{ width: isMobile ? '280px' : '360px', height: isMobile ? '400px' : '500px', padding: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <AppVendingUI />
+             </div>
+          </div>
+
+          {/* Scene 2: Scan */}
+          <div style={{ width: '80vw', maxWidth: '1000px', flexShrink: 0, display: 'flex', flexDirection: isMobile ? 'column' : 'row', alignItems: 'center', gap: '4rem' }}>
+             <div style={{ flex: 1, order: isMobile ? 1 : 2 }}>
+               <h2 style={{ fontSize: isMobile ? '2.5rem' : '4rem', marginBottom: '1rem' }}><span className="text-gradient">Step 2:</span> <br/>Instant Access</h2>
+               <p style={{ fontSize: '1.25rem' }}>Members simply scan with their Yuguyu app. No cash, no cards, no friction.</p>
+             </div>
+             <div className="device-frame" style={{ order: isMobile ? 2 : 1, width: isMobile ? '280px' : '360px', height: isMobile ? '500px' : '650px', transform: 'scale(0.9)' }}>
+                <AppScannerUI />
+             </div>
+          </div>
+
+          {/* Scene 3: App Experience */}
+          <div style={{ width: '80vw', maxWidth: '1000px', flexShrink: 0, display: 'flex', flexDirection: isMobile ? 'column' : 'row', alignItems: 'center', gap: '4rem' }}>
+             <div style={{ flex: 1 }}>
+               <h2 style={{ fontSize: isMobile ? '2.5rem' : '4rem', marginBottom: '1rem' }}><span className="text-gradient">Step 3:</span> <br/>Auto Macro Logging</h2>
+               <p style={{ fontSize: '1.25rem' }}>Purchases instantly sync to the member's diet log. They get their protein, the app tracks their macros automatically.</p>
+             </div>
+             <div className="device-frame" style={{ width: isMobile ? '280px' : '360px', height: isMobile ? '500px' : '650px', transform: 'scale(0.95)' }}>
+                <AppDietTrackerUI />
+             </div>
+          </div>
+
+          {/* Scene 4: Gym Operations */}
+          <div style={{ width: '80vw', maxWidth: '1000px', flexShrink: 0, display: 'flex', flexDirection: isMobile ? 'column' : 'row', alignItems: 'center', gap: '4rem' }}>
+             <div style={{ flex: 1, order: isMobile ? 1 : 2 }}>
+               <h2 style={{ fontSize: isMobile ? '2.5rem' : '4rem', marginBottom: '1rem' }}><span className="text-gradient">Step 4:</span> <br/>Dashboard Sync</h2>
+               <p style={{ fontSize: '1.25rem' }}>Revenue tracking and inventory are updated instantly in the gym owner's dashboard. Complete operational visibility.</p>
+             </div>
+             <div className="glass-card" style={{ order: isMobile ? 2 : 1, width: isMobile ? '300px' : '450px', height: isMobile ? '250px' : '300px', display: 'flex', flexDirection: 'column', padding: '2rem' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '2rem' }}>
+                   <LayoutDashboard size={28} color="var(--accent-purple)"/>
+                   <span className="ui-text-bold" style={{ fontSize: '1.5rem' }}>Live Revenue</span>
+                </div>
+                <div style={{ fontSize: '3rem', fontWeight: 'bold', color: '#fff', marginBottom: '1rem' }}>+₹1,250</div>
+                <div className="ui-text-muted">Item Sold: Whey Isolate (Vendor 04)</div>
+             </div>
+          </div>
+
+        </motion.div>
+      </div>
+    </section>
+  );
+};
+
+const HeroScene = ({ isMobile }) => {
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      if (!containerRef.current) return;
+      const { left, top, width, height } = containerRef.current.getBoundingClientRect();
+      const x = (e.clientX - left) / width - 0.5;
+      const y = (e.clientY - top) / height - 0.5;
+      setMousePosition({ x, y });
+    };
+
+    if (!isMobile) {
+      window.addEventListener('mousemove', handleMouseMove);
+    }
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, [isMobile]);
+
+  const smoothX = useSpring(mousePosition.x * 40, { stiffness: 50, damping: 20 });
+  const smoothY = useSpring(mousePosition.y * 40, { stiffness: 50, damping: 20 });
+  
+  const midX = useSpring(mousePosition.x * -20, { stiffness: 50, damping: 20 });
+  const midY = useSpring(mousePosition.y * -20, { stiffness: 50, damping: 20 });
+
+  return (
+    <div ref={containerRef} style={{ marginTop: '6rem', position: 'relative', height: '520px', display: 'flex', justifyContent: 'center', maxWidth: '1000px', margin: '6rem auto 0 auto', perspective: '1000px' }}>
+      
+      {/* Background Glow Layer */}
+      <motion.div 
+        style={{ x: smoothX, y: smoothY, position: 'absolute', top: '20%', left: '10%', width: '150px', height: '150px', background: 'var(--accent-red)', filter: 'blur(80px)', opacity: 0.3, zIndex: 0 }}
+      />
+      
+      {/* Admin Operations Panel */}
+      <motion.div 
+         initial={{ opacity: 0, scale: 0.9, rotateY: 10, rotateX: -10 }}
+         animate={{ opacity: 1, scale: 1, rotateY: 0, rotateX: 0 }}
+         transition={{ duration: 1.2, delay: 0.8, ease: "easeOut" }}
+         style={{ 
+           x: isMobile ? 0 : midX, y: isMobile ? 0 : midY,
+           position: 'absolute', 
+           top: isMobile ? '-40px' : '40px', 
+           left: isMobile ? 'auto' : '20px', 
+           width: isMobile ? '200px' : '300px', 
+           height: isMobile ? '160px' : '240px', 
+           zIndex: 2, 
+           transform: isMobile ? 'translateX(-80px)' : 'none'
+         }}
+      >
+        <div className="glass-card" style={{ width: '100%', height: '100%', padding: '1.5rem' }}>
+           <div style={{ display: 'flex', gap: '8px', alignItems: 'center', marginBottom: '1rem' }}>
+             <LayoutDashboard size={20} color="var(--accent-orange)"/>
+             <span className="ui-text-bold" style={{ fontSize: '1.1rem' }}>Operations</span>
+           </div>
+           <div className="ui-text-muted" style={{ marginBottom: '0.25rem' }}>Monthly Revenue</div>
+           <div className="ui-text-bold" style={{ fontSize: '2.5rem', marginBottom: '1rem', color: '#fff' }}>₹42,50k</div>
+           <div className="progress-bar" style={{ height: '6px' }}><div className="progress-fill" style={{ width: '88%', background: 'linear-gradient(90deg, var(--accent-red), var(--accent-orange))' }}></div></div>
+        </div>
+      </motion.div>
+
+      {/* Main App (Centerpiece) */}
+       <motion.div 
+         initial={{ opacity: 0, y: 150 }}
+         animate={{ opacity: 1, y: 0 }}
+         transition={{ duration: 1, delay: 0.4, type: 'spring', stiffness: 50 }}
+         style={{ 
+           x: isMobile ? 0 : smoothX, y: isMobile ? 0 : smoothY,
+           width: isMobile ? '240px' : '320px', 
+           height: isMobile ? '500px' : '640px', 
+           zIndex: 10, 
+           position: 'absolute', 
+           bottom: isMobile ? '-20px' : '-80px', 
+           boxShadow: '0 40px 80px rgba(0,0,0,0.8), 0 0 0 1px rgba(255,255,255,0.1) inset' 
+         }}
+         className="device-frame"
+      >
+         <PhoneCarousel />
+      </motion.div>
+
+      {/* Vending Machine Hardware UI */}
+      <motion.div 
+         initial={{ opacity: 0, scale: 0.9, rotateY: -10, rotateX: 10 }}
+         animate={{ opacity: 1, scale: 1, rotateY: 0, rotateX: 0 }}
+         transition={{ duration: 1.2, delay: 0.6, ease: "easeOut" }}
+         style={{ 
+           x: isMobile ? 0 : smoothX, y: isMobile ? 0 : smoothY,
+           position: 'absolute', 
+           top: isMobile ? '40px' : '20px', 
+           right: isMobile ? 'auto' : 0, 
+           width: isMobile ? '180px' : '280px', 
+           height: isMobile ? '180px' : '280px', 
+           zIndex: 3, 
+           transform: isMobile ? 'translateX(90px) rotate(5deg)' : 'none'
+         }}
+      >
+         <div className="glass-card" style={{ width: '100%', height: '100%', padding: '0', overflow: 'hidden', border: '1px solid var(--border-focus)' }}>
+           <AppVendingUI />
+         </div>
+      </motion.div>
+    </div>
+  );
+};
+
 function App() {
   const isMobile = useMediaQuery('(max-width: 768px)');
   const [isLightMode, setIsLightMode] = useState(false);
@@ -306,12 +478,13 @@ function App() {
 
   return (
     <div className="app-wrapper">
-      <div className="mesh-bg">
-        <div className="mesh-blob blob-1"></div>
-        <div className="mesh-blob blob-2"></div>
+      <div className="bg-gradient-mesh">
+        <div className="aurora-blob aurora-1"></div>
+        <div className="aurora-blob aurora-2"></div>
+        <div className="aurora-blob aurora-3"></div>
       </div>
 
-      <nav style={{ 
+      <nav className="nav-blur" style={{ 
         padding: '1rem 2rem', 
         display: 'flex', 
         justifyContent: 'space-between', 
@@ -320,13 +493,10 @@ function App() {
         top: 0, 
         left: 0, 
         right: 0, 
-        zIndex: 100, 
-        backdropFilter: 'blur(12px)', 
-        borderBottom: '1px solid var(--border-light)', 
-        background: 'var(--glass-bg)' 
+        zIndex: 100 
       }}>
         <div style={{ fontSize: '1.75rem', fontWeight: '800', fontFamily: 'var(--font-logo)', letterSpacing: '-0.04em' }}>
-          <span style={{ color: 'var(--text-primary)' }}>Yugu</span><span style={{ color: 'var(--brand-red)' }}>yu</span>
+          <span style={{ color: 'var(--text-primary)' }}>Yugu</span><span style={{ color: 'var(--accent-red)' }}>yu</span>
         </div>
         <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
           <button 
@@ -335,474 +505,257 @@ function App() {
               width: '40px', 
               height: '40px', 
               borderRadius: '50%', 
-              background: 'var(--bg-tertiary)', 
+              background: 'var(--glass-bg)', 
               display: 'flex', 
               alignItems: 'center', 
               justifyContent: 'center',
-              border: '1px solid var(--border-light)'
+              border: '1px solid var(--border-light)',
+              transition: 'all 0.2s ease'
             }}
           >
             {isLightMode ? <Sun size={18} color="var(--text-primary)"/> : <Moon size={18} color="var(--text-primary)"/>}
           </button>
-          <button className="btn btn-primary" style={{ padding: '0.6rem 1.25rem', fontSize: '0.85rem' }}>Demo</button>
+          <button className="btn btn-primary" style={{ padding: '0.6rem 1.5rem', fontSize: '0.9rem' }}>Demo</button>
         </div>
       </nav>
 
-      {/* 1. THE VISION HERO */}
-      <section className="section flex-center" style={{ minHeight: '100vh', paddingTop: '10rem', paddingBottom: '6rem' }}>
+      {/* 1. CINEMATIC HERO */}
+      <section className="section flex-center" style={{ minHeight: '100vh', paddingTop: '10rem', paddingBottom: '6rem', position: 'relative', overflow: 'hidden' }}>
+        
+        {/* Spotlight behind text */}
+        <div style={{ position: 'absolute', top: '20%', left: '50%', transform: 'translate(-50%, -50%)', width: '600px', height: '600px', background: 'radial-gradient(circle, var(--accent-glow-red) 0%, transparent 60%)', filter: 'blur(60px)', zIndex: 0, opacity: 0.8 }}></div>
+
         <div className="container" style={{ position: 'relative', zIndex: 10 }}>
-          <motion.div 
-             initial={{ opacity: 0, y: 30 }}
-             animate={{ opacity: 1, y: 0 }}
-             transition={{ duration: 0.8 }}
-             style={{ textAlign: 'center', maxWidth: '1000px', margin: '0 auto' }}
-          >
-            <h1 style={{ marginBottom: '1.5rem', lineHeight: 1.1 }}>
-              Infrastructure for the <span className="text-gradient">Next Generation</span> <br/>of Gyms
+          <div style={{ textAlign: 'center', maxWidth: '1000px', margin: '0 auto' }}>
+             
+            {/* Staggered Word Reveal */}
+            <h1 style={{ marginBottom: '1.5rem', lineHeight: 1.1, position: 'relative' }}>
+              <motion.span initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }} style={{ display: 'block', color: 'var(--text-primary)' }}>
+                Protein. <span className="text-gradient-accent">Instantly.</span>
+              </motion.span>
+              <motion.span initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }} style={{ display: 'block', fontSize: 'clamp(2rem, 5vw, 4rem)', marginTop: '0.5rem', color: 'var(--text-secondary)' }}>
+                Smart Fuel For Modern Gyms.
+              </motion.span>
             </h1>
-            <p style={{ fontSize: '1.25rem', marginBottom: '3rem', maxWidth: '700px', margin: '0 auto 3rem auto', color: 'var(--text-secondary)' }}>
-              Yuguyu connects members, gym operations, and in-gym nutrition into an intelligent fitness ecosystem built to power your <span style={{ color: 'var(--accent-green)', fontWeight: 'bold' }}>smart member retention engine</span>.
-            </p>
-            <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center' }}>
-              <button className="btn btn-primary">Request Demo <ArrowRight size={18} style={{ marginLeft: '10px' }}/></button>
-              <button className="btn btn-secondary">See How It Works</button>
-            </div>
-          </motion.div>
-
-          {/* Hero Visuals: Crisp UI elements with stagger */}
-          <div style={{ marginTop: '6rem', position: 'relative', height: '480px', display: 'flex', justifyContent: 'center', maxWidth: '900px', margin: '6rem auto 0 auto' }}>
             
-            {/* Animated Ecosystem SVG Background Connections - Hidden on mobile */}
-            <svg style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0, display: window.innerWidth < 768 ? 'none' : 'block' }} xmlns="http://www.w3.org/2000/svg">
-               <motion.path d="M 140 150 Q 250 150 450 250" fill="none" stroke="var(--accent-green)" strokeWidth="2" className="ecosystem-line" />
-               <motion.path d="M 760 150 Q 650 150 450 250" fill="none" stroke="var(--accent-purple)" strokeWidth="2" className="ecosystem-line" />
-               {/* Vending machine connection removed per separate unit requirement */}
-            </svg>
-
-            {/* Admin App - Responsive positioning */}
+            <motion.p 
+              initial={{ opacity: 0 }} 
+              animate={{ opacity: 1 }} 
+              transition={{ duration: 1, delay: 0.4 }}
+              style={{ fontSize: '1.25rem', marginBottom: '3rem', maxWidth: '700px', margin: '0 auto 3rem auto', color: 'var(--text-secondary)' }}
+            >
+              Yuguyu connects members, automated vending, and gym operations into a premium fitness ecosystem built for ultimate retention.
+            </motion.p>
+            
             <motion.div 
-               initial={{ x: -100, y: 50, opacity: 0 }}
-               animate={{ x: 0, y: 0, opacity: 1 }}
-               transition={{ duration: 0.8, delay: 0.2, type: 'spring', stiffness: 50 }}
-               className="ui-card" style={{ 
-                 position: 'absolute', 
-                 top: window.innerWidth < 768 ? '-40px' : '20px', 
-                 left: window.innerWidth < 768 ? 'auto' : 0, 
-                 width: window.innerWidth < 768 ? '200px' : '280px', 
-                 height: window.innerWidth < 768 ? '160px' : '220px', 
-                 zIndex: 2, 
-                 background: 'var(--bg-secondary)', 
-                 border: '1px solid var(--border-light)', 
-                 boxShadow: '0 20px 40px rgba(0,0,0,0.8)', 
-                 padding: window.innerWidth < 768 ? '1rem' : '1.5rem',
-                 transform: window.innerWidth < 768 ? 'translateX(-80px)' : 'none'
-               }}
+              initial={{ opacity: 0, y: 20 }} 
+              animate={{ opacity: 1, y: 0 }} 
+              transition={{ duration: 0.8, delay: 0.6 }}
+              style={{ display: 'flex', gap: '1rem', justifyContent: 'center' }}
             >
-               <div style={{ display: 'flex', gap: '8px', alignItems: 'center', marginBottom: '0.75rem' }}>
-                 <LayoutDashboard size={window.innerWidth < 768 ? 16 : 20} color="var(--accent-purple)"/>
-                 <span className="ui-text-bold" style={{ fontSize: window.innerWidth < 768 ? '0.8rem' : '1rem' }}>Operations</span>
-               </div>
-               <div className="ui-text-muted" style={{ marginBottom: '0.25rem', fontSize: '0.7rem' }}>Monthly Revenue</div>
-               <div className="ui-text-bold" style={{ fontSize: window.innerWidth < 768 ? '1.25rem' : '2rem', marginBottom: '0.75rem' }}>₹24,50k</div>
-               <div className="progress-bar" style={{ height: '4px' }}><div className="progress-fill" style={{ width: '82%', background: 'var(--accent-purple)' }}></div></div>
-            </motion.div>
-
-            {/* Mobile App (Center piece) */}
-             <motion.div 
-               initial={{ y: 200, opacity: 0 }}
-               animate={{ y: 0, opacity: 1 }}
-               transition={{ duration: 0.8, delay: 0.4, type: 'spring', stiffness: 50 }}
-               className="device-frame" style={{ 
-                 width: window.innerWidth < 768 ? '240px' : '300px', 
-                 height: window.innerWidth < 768 ? '500px' : '620px', 
-                 zIndex: 10, 
-                 position: 'absolute', 
-                 bottom: window.innerWidth < 768 ? '-20px' : '-80px', 
-                 background: 'var(--bg-primary)', 
-                 boxShadow: '0 30px 60px rgba(0,0,0,0.9)' 
-               }}
-            >
-               <PhoneCarousel />
-            </motion.div>
-
-            {/* Vending Machine Hardware UI - Responsive positioning */}
-            <motion.div 
-               initial={{ x: 100, y: 50, opacity: 0 }}
-               animate={{ x: 0, y: 0, opacity: 1 }}
-               transition={{ duration: 0.8, delay: 0.5, type: 'spring', stiffness: 50 }}
-               className="device-frame" style={{ 
-                 position: 'absolute', 
-                 top: window.innerWidth < 768 ? '40px' : '20px', 
-                 right: window.innerWidth < 768 ? 'auto' : 0, 
-                 width: window.innerWidth < 768 ? '180px' : '280px', 
-                 height: window.innerWidth < 768 ? '180px' : '260px', 
-                 borderRadius: '24px', 
-                 zIndex: 3, 
-                 border: '4px solid #282D42', 
-                 boxShadow: '0 20px 40px rgba(0,0,0,0.8)',
-                 transform: window.innerWidth < 768 ? 'translateX(90px) rotate(5deg)' : 'none'
-               }}
-            >
-               <div style={{ transform: window.innerWidth < 768 ? 'scale(0.7)' : 'none', transformOrigin: 'top center' }}>
-                 <AppVendingUI />
-               </div>
+              <motion.button 
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="btn btn-accent" style={{ padding: '1.2rem 2.5rem', fontSize: '1.1rem' }}
+              >
+                Request Access <ArrowRight size={20} style={{ marginLeft: '10px' }}/>
+              </motion.button>
+              <button className="btn btn-secondary">Explore Platform</button>
             </motion.div>
           </div>
+
+          {/* Mouse-Tracked Floating 3D Scene */}
+          <HeroScene isMobile={isMobile} />
         </div>
       </section>
 
-      {/* 3. THE BIG IDEA (Ecosystem Diagram) */}
-      <section className="section" style={{ borderTop: '1px solid var(--border-light)' }}>
-        <div className="container" style={{ textAlign: 'center' }}>
-          <motion.h2 
-             initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once:true }}
-             style={{ marginBottom: '6rem' }}
-          >
-            One System That <br/><span className="text-gradient">Connects Everything</span>
-          </motion.h2>
-          <div style={{ 
-            position: 'relative', 
-            width: '100%', 
-            maxWidth: '1000px', 
-            margin: '4rem auto 0 auto', 
-            padding: '2rem 0', 
-            display: 'flex', 
-            flexDirection: isMobile ? 'column' : 'row',
-            gap: isMobile ? '3rem' : '0',
-            justifyContent: 'space-between', 
-            alignItems: 'center', 
-            minHeight: '300px' 
-          }}>
-            {/* SVG Glowing Connection Network */}
-            {!isMobile && (
-              <svg style={{ position: 'absolute', top: '50%', left: 0, width: '100%', height: '100px', transform: 'translateY(-50%)', zIndex: 0 }} xmlns="http://www.w3.org/2000/svg">
-                 <motion.path d="M 120 50 L 500 50" stroke="url(#blue-grad)" strokeWidth="3" className="ecosystem-line" fill="none" />
-                 <motion.path d="M 880 50 L 500 50" stroke="url(#purple-grad)" strokeWidth="3" className="ecosystem-line" fill="none" />
-                 <defs>
-                   <linearGradient id="blue-grad" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stopColor="var(--accent-green)" /><stop offset="100%" stopColor="var(--accent-purple)" /></linearGradient>
-                   <linearGradient id="purple-grad" x1="1" y1="0" x2="0" y2="0"><stop offset="0%" stopColor="var(--text-primary)" /><stop offset="100%" stopColor="var(--accent-purple)" /></linearGradient>
-                 </defs>
-              </svg>
-            )}
-            
-            <MotionCard index={0} style={{ padding: '2rem 1.5rem', width: isMobile ? '100%' : '220px', textAlign: 'center', background: 'var(--bg-secondary)', border: '1px solid var(--accent-green)', zIndex: 2, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem', boxShadow: '0 0 30px rgba(255, 59, 59, 0.15)' }}>
-               <Smartphone size={32} color="var(--accent-green)"/>
-               <div className="ui-text-bold" style={{ fontSize: '1.1rem' }}>Member App</div>
-            </MotionCard>
-            
-            <MotionCard index={1} style={{ padding: '2rem 1.5rem', width: isMobile ? '100%' : '260px', textAlign: 'center', background: 'var(--bg-tertiary)', border: '2px solid var(--accent-purple)', zIndex: 2, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem', boxShadow: '0 0 40px rgba(196, 30, 58, 0.3)' }}>
-               <Database size={40} color="var(--accent-purple)"/>
-               <div className="ui-text-bold" style={{ fontSize: '1.4rem' }}>Data Engine</div>
-               <div className="ui-text-muted" style={{ fontSize: '0.8rem' }}>The Central Brain</div>
-            </MotionCard>
-            
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem', zIndex: 2, width: isMobile ? '100%' : 'auto' }}>
-                <MotionCard index={2} style={{ padding: '1.5rem', width: isMobile ? '100%' : '220px', textAlign: 'center', background: 'var(--bg-secondary)', border: '1px solid var(--border-light)', display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                   <LayoutDashboard size={24} color="var(--accent-purple)"/>
-                   <div className="ui-text-bold" style={{ fontSize: '1rem' }}>Gym Admin</div>
-                </MotionCard>
-                <MotionCard index={3} style={{ padding: '1.5rem', width: isMobile ? '100%' : '220px', textAlign: 'center', background: 'var(--bg-secondary)', border: '1px solid var(--border-light)', display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                   <Box size={24} color="var(--text-primary)"/>
-                   <div className="ui-text-bold" style={{ fontSize: '1rem' }}>Smart Vending</div>
-                </MotionCard>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* 2. HORIZONTAL SCROLL PRODUCT JOURNEY */}
+      <ProductJourney isMobile={isMobile} />
 
-      {/* 4. PRODUCT REVEAL */}
+      {/* 4. INTERACTIVE FEATURES SECTION */}
       <section className="section" style={{ background: 'var(--bg-secondary)', borderTop: '1px solid var(--border-light)' }}>
         <div className="container">
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '10rem' }}>
-            
-            {/* 4.1 Member App */}
-            <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1.2fr 1fr', gap: isMobile ? '2rem' : '4rem', alignItems: 'center' }}>
-              <div style={{ position: 'relative', height: isMobile ? '450px' : '600px', display: 'flex', justifyContent: 'center', width: '100%', order: isMobile ? 2 : 1 }}>
-                <motion.div initial={{ opacity:0, x:-80, rotate: -5, scale: 0.9 }} whileInView={{ opacity:1, x: isMobile ? -60 : -130, rotate: -8, scale: isMobile ? 0.7 : 0.9 }} viewport={{ once:true }} transition={{ type: "spring", stiffness: 60, damping: 20, delay: 0.1 }} className="device-frame" style={{ height: isMobile ? '400px' : '550px', position: 'absolute', top: '25px', zIndex: 1, boxShadow: '0 20px 40px rgba(0,0,0,0.6)' }}>
-                  <AppWorkoutUI />
-                </motion.div>
-                <motion.div initial={{ opacity:0, y: 80, scale: 0.95 }} whileInView={{ opacity:1, y:0, rotate: 0, scale: isMobile ? 0.8 : 1 }} viewport={{ once:true }} transition={{ type: "spring", stiffness: 60, damping: 20, delay: 0.2 }} className="device-frame" style={{ height: isMobile ? '450px' : '600px', position: 'absolute', zIndex: 3, boxShadow: '0 30px 60px rgba(0,0,0,0.8)' }}>
-                  <AppDietTrackerUI />
-                </motion.div>
-                <motion.div initial={{ opacity:0, x:80, rotate: 5, scale: 0.9 }} whileInView={{ opacity:1, x: isMobile ? 60 : 130, rotate: 8, scale: isMobile ? 0.7 : 0.9 }} viewport={{ once:true }} transition={{ type: "spring", stiffness: 60, damping: 20, delay: 0.3 }} className="device-frame" style={{ height: isMobile ? '400px' : '550px', position: 'absolute', top: '25px', zIndex: 1, boxShadow: '0 20px 40px rgba(0,0,0,0.6)' }}>
-                  <AppHomeScannerUI />
-                </motion.div>
-              </div>
-              <motion.div initial={{ opacity:0, x:50 }} whileInView={{ opacity:1, x:0 }} viewport={{ once:true }} style={{ order: isMobile ? 1 : 2, textAlign: isMobile ? 'center' : 'left' }}>
-                <h2 style={{ fontSize: isMobile ? '2.5rem' : '3rem', marginBottom: '1.5rem', lineHeight: 1.1 }}>Your Fitness. <br/><span className="text-gradient">Fully Connected.</span></h2>
-                <h3 style={{ fontSize: '1.1rem', color: 'var(--accent-green)', marginBottom: '2rem', textTransform: 'uppercase', letterSpacing: '2px' }}>Member App</h3>
-                <ul style={{ listStyle: 'none', margin: '0', padding: 0, color: 'var(--text-secondary)' }}>
-                  <li style={{ display: 'flex', alignItems: 'center', justifyContent: isMobile ? 'center' : 'flex-start', gap: '15px', marginBottom: '1rem', fontSize: '1.1rem' }}><Activity color="var(--text-primary)" size={24}/> Workout tracking & logs</li>
-                  <li style={{ display: 'flex', alignItems: 'center', justifyContent: isMobile ? 'center' : 'flex-start', gap: '15px', marginBottom: '1rem', fontSize: '1.1rem' }}><Utensils color="var(--text-primary)" size={24}/> Diet insights & macros</li>
-                  <li style={{ display: 'flex', alignItems: 'center', justifyContent: isMobile ? 'center' : 'flex-start', gap: '15px', marginBottom: '1rem', fontSize: '1.1rem' }}><Users color="var(--text-primary)" size={24}/> Community events</li>
-                </ul>
-              </motion.div>
-            </div>
+          <div style={{ textAlign: 'center', marginBottom: '6rem' }}>
+             <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+               A Premium Ecosystem <br/><span className="text-gradient">Built For Growth</span>
+             </motion.h2>
+          </div>
 
-            {/* 4.2 Gym Admin Platform */}
-            <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(auto-fit, minmax(320px, 1fr))', gap: '4rem', alignItems: 'center' }}>
-              <motion.div initial={{ opacity:0, x:-50 }} whileInView={{ opacity:1, x:0 }} viewport={{ once:true }} style={{ order: isMobile ? 1 : 2, textAlign: isMobile ? 'center' : 'left' }}>
-                <h2 style={{ fontSize: isMobile ? '2.5rem' : '3rem', marginBottom: '1.5rem', lineHeight: 1.1 }}>Run Your Gym <br/><span className="text-gradient" style={{ color: 'var(--accent-purple)'}}>With Data.</span></h2>
-                <h3 style={{ fontSize: '1.1rem', color: 'var(--accent-purple)', marginBottom: '2rem', textTransform: 'uppercase', letterSpacing: '2px' }}>Retention Engine</h3>
-                <ul style={{ listStyle: 'none', margin: '0', padding: 0, color: 'var(--text-secondary)' }}>
-                  <li style={{ display: 'flex', alignItems: 'center', justifyContent: isMobile ? 'center' : 'flex-start', gap: '15px', marginBottom: '1rem', fontSize: '1.1rem' }}><Users color="var(--text-primary)" size={24}/> Pre-churn detection</li>
-                  <li style={{ display: 'flex', alignItems: 'center', justifyContent: isMobile ? 'center' : 'flex-start', gap: '15px', marginBottom: '1rem', fontSize: '1.1rem' }}><DollarSign color="var(--text-primary)" size={24}/> Automated remarketing</li>
-                </ul>
-              </motion.div>
-              <motion.div initial={{ opacity:0, x:50 }} whileInView={{ opacity:1, x:0 }} viewport={{ once:true }} className="ui-card" style={{ height: '420px', width: '100%', padding: '0', order: 1, overflow: 'hidden', border: '1px solid var(--border-light)', display: 'flex' }}>
-                 <div style={{ width: '80px', background: 'var(--bg-tertiary)', borderRight: '1px solid var(--border-light)', display: 'flex', flexDirection: 'column', alignItems: 'center', paddingTop: '2rem', gap: '2rem' }}>
-                    <LayoutDashboard size={24} color="var(--accent-purple)" />
-                    <Users size={24} color="var(--text-secondary)" />
-                    <LineChart size={24} color="var(--text-secondary)" />
-                 </div>
-                 <div style={{ flex: 1, padding: '2rem', background: 'var(--bg-primary)' }}>
-                    <div className="ui-text-bold" style={{ fontSize: '1.5rem', marginBottom: '2rem' }}>Dashboard</div>
-                    <div style={{ display: 'flex', gap: '1rem', marginBottom: '1rem' }}>
-                       <div style={{ flex: 1, background: 'var(--bg-secondary)', padding: '1rem', borderRadius: '12px', border: '1px solid var(--border-light)' }}>
-                         <div className="ui-text-muted" style={{ marginBottom: '0.5rem' }}>Active Members</div>
-                         <div className="ui-text-bold" style={{ fontSize: '1.5rem' }}>1,245</div>
-                       </div>
-                       <div style={{ flex: 1, background: 'var(--bg-secondary)', padding: '1rem', borderRadius: '12px', border: '1px solid var(--accent-purple)' }}>
-                         <div className="ui-text-muted" style={{ marginBottom: '0.5rem', color: 'var(--text-primary)'}}>MRR Growth</div>
-                         <div className="ui-text-bold" style={{ fontSize: '1.5rem', color: 'var(--accent-purple)'}}>+14.2%</div>
-                       </div>
-                    </div>
-                    <div style={{ height: '180px', background: 'var(--bg-secondary)', borderRadius: '12px', border: '1px solid var(--border-light)', padding: '1rem' }}>
-                       <div className="ui-text-muted">Attendance Overview</div>
-                       <div style={{ marginTop: '2rem', display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', height: '100px', padding: '0 1rem' }}>
-                          <div style={{ width: '20px', height: '40%', background: 'var(--bg-tertiary)', borderRadius: '4px' }}></div>
-                          <div style={{ width: '20px', height: '60%', background: 'var(--bg-tertiary)', borderRadius: '4px' }}></div>
-                          <div style={{ width: '20px', height: '100%', background: 'var(--accent-purple)', borderRadius: '4px' }}></div>
-                          <div style={{ width: '20px', height: '50%', background: 'var(--bg-tertiary)', borderRadius: '4px' }}></div>
-                          <div style={{ width: '20px', height: '80%', background: 'var(--bg-tertiary)', borderRadius: '4px' }}></div>
-                       </div>
-                    </div>
-                 </div>
-              </motion.div>
-            </div>
+          <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, 1fr)', gap: '2rem' }}>
+             
+             {/* Feature Card 1 */}
+             <motion.div 
+               whileHover={{ y: -10, scale: 1.02 }} 
+               className="glass-card" 
+               style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', border: '1px solid rgba(255, 59, 59, 0.2)' }}
+             >
+                <div style={{ width: '60px', height: '60px', borderRadius: '16px', background: 'rgba(225, 29, 72, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                   <Activity size={28} color="var(--accent-red)"/>
+                </div>
+                <h3 style={{ fontSize: '1.5rem' }}>Intelligent Tracking</h3>
+                <p style={{ fontSize: '1rem', color: 'var(--text-secondary)' }}>Automated logging of dietary macros and workout sets directly from user interactions within the gym.</p>
+             </motion.div>
 
-            {/* 4.3 CINEMATIC HARDWARE REVEAL */}
-            <div style={{ marginTop: isMobile ? '5rem' : '10rem', position: 'relative', padding: isMobile ? '3rem 1.5rem' : '6rem 0', background: 'radial-gradient(ellipse at center, rgba(196, 30, 58, 0.1) 0%, rgba(0,0,0,0) 70%)', borderRadius: '40px', border: '1px solid rgba(196, 30, 58, 0.1)' }}>
-               <div style={{ textAlign: 'center', maxWidth: '800px', margin: isMobile ? '0 auto 3rem auto' : '0 auto 6rem auto' }}>
-                  <motion.h2 initial={{ opacity:0, y:30 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true }} style={{ fontSize: isMobile ? '2.5rem' : '3rem', marginBottom: '1.5rem', lineHeight: 1.1 }}>
-                    Partner Hardware <br/><span className="text-gradient">Seamlessly Integrated.</span>
-                  </motion.h2>
-                  <motion.p initial={{ opacity:0, y:20 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true }} transition={{ delay: 0.2 }} style={{ fontSize: '1.1rem', color: 'var(--text-secondary)' }}>
-                     Yuguyu provides a complete hardware ecosystem. Inventory and unit operations are managed directly through the Yuguyu platform, ensuring total control and seamless data integration.
-                  </motion.p>
-               </div>
+             {/* Feature Card 2 */}
+             <motion.div 
+               whileHover={{ y: -10, scale: 1.02 }} 
+               className="glass-card" 
+               style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', border: '1px solid rgba(147, 51, 234, 0.2)' }}
+             >
+                <div style={{ width: '60px', height: '60px', borderRadius: '16px', background: 'rgba(147, 51, 234, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                   <Users size={28} color="var(--accent-purple)"/>
+                </div>
+                <h3 style={{ fontSize: '1.5rem' }}>Community Engine</h3>
+                <p style={{ fontSize: '1rem', color: 'var(--text-secondary)' }}>Drive member retention with built-in challenges, leaderboards, and automated remarketing flows.</p>
+             </motion.div>
 
-               <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'minmax(400px, 1fr) 1fr', gap: isMobile ? '3rem' : '6rem', alignItems: 'center', padding: isMobile ? '0' : '0 4rem' }}>
-                  {/* Sleek Hardware Render Mockup */}                   <motion.div initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once:true }} transition={{ type: 'spring', stiffness: 50 }} style={{ position: 'relative', display: 'flex', justifyContent: 'center' }}>
-                      <div style={{ width: isMobile ? '280px' : '380px', height: isMobile ? '480px' : '650px', background: 'linear-gradient(145deg, #1A1C23, #0A0A0E)', borderRadius: '32px', border: '4px solid #282D42', boxShadow: '0 40px 100px rgba(0,0,0,0.8), inset 0 2px 20px rgba(255,255,255,0.05)', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '1.5rem', position: 'relative', overflow: 'hidden' }}>
-                         <div style={{ transform: isMobile ? 'scale(0.75)' : 'none', transformOrigin: 'top center', width: '100%', height: '100%', display: 'flex', flexDirection: 'column' }}>
-                           {/* Vending Glass Panel */}
-                           <div style={{ width: '100%', height: '65%', background: 'rgba(0,0,0,0.6)', borderRadius: '16px', border: '2px solid #111', boxShadow: 'inset 0 10px 40px rgba(0,0,0,0.9)', position: 'relative', overflow: 'hidden' }}>
-                              {/* Shelf 1 */}
-                              <div style={{ position: 'absolute', top: '33%', left: 0, width: '100%', height: '6px', background: '#111' }}></div>
-                              <div style={{ position: 'absolute', top: '15%', left: '20%', width: '40px', height: '80px', background: 'linear-gradient(180deg, #333, #111)', borderRadius: '6px', boxShadow: '0 0 30px rgba(255, 59, 59, 0.4)' }}></div>
-                              <div style={{ position: 'absolute', top: '48%', left: '50%', width: '40px', height: '80px', background: 'linear-gradient(180deg, #333, #111)', borderRadius: '6px', boxShadow: '0 0 30px rgba(196, 30, 58, 0.4)' }}></div>
-                           </div>
-                           {/* Hardware screen panel - RESTORED SCAN OVERLAY */}
-                           <div style={{ width: '100%', flex: 1, background: '#0B0B0F', borderRadius: '16px', marginTop: '1.5rem', border: '1px solid #333', overflow: 'hidden', padding: '0.5rem', display: 'flex', flexDirection: 'column' }}>
-                              <div style={{ flex: 1, border: '1px solid rgba(255, 59, 59, 0.3)', borderRadius: '12px', padding: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', background: 'rgba(255, 59, 59, 0.05)' }}>
-                                 <QrCode size={40} color="var(--brand-red)" />
-                                 <div className="ui-text-bold" style={{ color: 'var(--brand-red)', fontSize: '1rem', textAlign: 'center', marginTop: '0.5rem' }}>Scan to Buy</div>
-                              </div>
-                           </div>
-                         </div>
-                      </div>
-                   </motion.div>
+             {/* Feature Card 3 */}
+             <motion.div 
+               whileHover={{ y: -10, scale: 1.02 }} 
+               className="glass-card" 
+               style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', border: '1px solid rgba(234, 88, 12, 0.2)' }}
+             >
+                <div style={{ width: '60px', height: '60px', borderRadius: '16px', background: 'rgba(234, 88, 12, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                   <Database size={28} color="var(--accent-orange)"/>
+                </div>
+                <h3 style={{ fontSize: '1.5rem' }}>Unified Data</h3>
+                <p style={{ fontSize: '1rem', color: 'var(--text-secondary)' }}>Every interaction generates structured data, transforming your gym into a powerful data platform.</p>
+             </motion.div>
 
-                  <motion.div initial={{ opacity: 0, x: 50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once:true }} style={{ textAlign: isMobile ? 'center' : 'left' }}>
-                     <h3 style={{ fontSize: '1.1rem', color: 'var(--accent-green)', marginBottom: '2rem', textTransform: 'uppercase', letterSpacing: '2px' }}>Independent Hardware Success</h3>
-                     <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
-                         <div>
-                            <h4 style={{ fontSize: '1.25rem', marginBottom: '0.5rem' }}>Full Inventory Control</h4>
-                            <p style={{ color: 'var(--text-secondary)', fontSize: '1rem' }}>Managed directly through your Yuguyu admin dashboard. No third-party apps required.</p>
-                         </div>
-                         <div>
-                            <h4 style={{ fontSize: '1.25rem', marginBottom: '0.5rem' }}>Ecosystem Bridge</h4>
-                            <p style={{ color: 'var(--text-secondary)', fontSize: '1rem' }}>Yuguyu provides the data bridge to link purchase history with gym operations.</p>
-                         </div>
-                     </div>
-                  </motion.div>
-               </div>
-            </div>
           </div>
         </div>
       </section>
 
-      {/* 5. NETWORK EFFECT SECTION */}
-      <section className="section" style={{ borderTop: '1px solid var(--border-light)', overflow: 'hidden', padding: '10rem 0' }}>
-        <div className="container" style={{ textAlign: 'center' }}>
+      {/* 5. ECOSYSTEM VISUAL FLOW */}
+      <section className="section" style={{ borderTop: '1px solid var(--border-light)', overflow: 'hidden', padding: '10rem 0', position: 'relative' }}>
+        <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: '800px', height: '800px', background: 'radial-gradient(circle, var(--accent-glow-purple) 0%, transparent 60%)', filter: 'blur(80px)', zIndex: 0, opacity: 0.5 }}></div>
+
+        <div className="container" style={{ textAlign: 'center', position: 'relative', zIndex: 10 }}>
           <motion.h2 
              initial={{ opacity:0, y:20 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true }}
              style={{ marginBottom: '6rem', maxWidth: '800px', margin: '0 auto 6rem auto' }}
           >
-            The More Your Gym Runs on Yuguyu, <br/>
-            <span className="text-gradient">The Smarter It Gets</span>
+            The Ecosystem of <br/>
+            <span className="text-gradient">Continuous Engagement</span>
           </motion.h2>
           
-          <div style={{ 
-            position: 'relative', 
-            height: isMobile ? 'auto' : '450px', 
-            display: 'flex', 
-            flexDirection: isMobile ? 'column' : 'row',
-            gap: isMobile ? '2rem' : '0',
-            alignItems: 'center', 
-            justifyContent: 'center', 
-            maxWidth: '1000px', 
-            margin: '0 auto' 
-          }}>
+          {/* Animated Ecosystem Diagram */}
+          <div style={{ position: 'relative', height: isMobile ? 'auto' : '500px', display: 'flex', flexDirection: isMobile ? 'column' : 'row', gap: isMobile ? '2rem' : '0', alignItems: 'center', justifyContent: 'center', maxWidth: '1000px', margin: '0 auto' }}>
             
-            {/* The System Core / Brain */}
+            {/* Center Brain */}
             <motion.div 
-               animate={{ boxShadow: ['0 0 40px rgba(196, 30, 58, 0.2)', '0 0 80px rgba(196, 30, 58, 0.6)', '0 0 40px rgba(196, 30, 58, 0.2)'] }}
+               animate={{ boxShadow: ['0 0 40px rgba(147, 51, 234, 0.2)', '0 0 80px rgba(147, 51, 234, 0.6)', '0 0 40px rgba(147, 51, 234, 0.2)'] }}
                transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-               style={{ width: isMobile ? '140px' : '180px', height: isMobile ? '140px' : '180px', background: 'var(--bg-tertiary)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', border: '3px solid var(--accent-purple)', position: 'relative', zIndex: 10, order: isMobile ? 1 : 'unset' }}
+               style={{ width: isMobile ? '140px' : '200px', height: isMobile ? '140px' : '200px', background: 'var(--bg-tertiary)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', border: '3px solid var(--accent-purple)', position: 'relative', zIndex: 10, order: isMobile ? 1 : 'unset' }}
             >
-               <Database size={isMobile ? 60 : 80} color="var(--text-primary)" />
-               <div style={{ position: 'absolute', bottom: '-30px', fontWeight: 'bold', color: 'var(--text-primary)', letterSpacing: '1px', textTransform: 'uppercase', fontSize: '0.7rem' }}>Infrastructure Core</div>
+               <Database size={isMobile ? 50 : 70} color="var(--text-primary)" />
+               <div style={{ position: 'absolute', bottom: '-40px', fontWeight: 'bold', color: 'var(--text-primary)', letterSpacing: '2px', textTransform: 'uppercase', fontSize: '0.8rem' }}>Data Core</div>
             </motion.div>
 
-            {/* SVG Data Stream Lines - Hidden on Mobile */}
+            {/* Glowing Connection Lines SVG */}
             {!isMobile && (
               <svg style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0 }}>
-                 <motion.path d="M 150 50 Q 300 100 500 225" fill="none" stroke="var(--accent-green)" strokeWidth="2" className="ecosystem-line" />
-                 <motion.path d="M 850 50 Q 700 100 500 225" fill="none" stroke="var(--accent-purple)" strokeWidth="2" className="ecosystem-line" />
-                 <motion.path d="M 500 400 L 500 225" fill="none" stroke="var(--accent-orange)" strokeWidth="2" className="ecosystem-line" />
+                 <motion.path d="M 150 100 Q 300 150 500 250" fill="none" stroke="var(--accent-red)" strokeWidth="3" className="ecosystem-path" strokeLinecap="round" />
+                 <motion.path d="M 850 100 Q 700 150 500 250" fill="none" stroke="var(--accent-purple)" strokeWidth="3" className="ecosystem-path" strokeLinecap="round" />
+                 <motion.path d="M 500 450 L 500 250" fill="none" stroke="var(--accent-orange)" strokeWidth="3" className="ecosystem-path" strokeLinecap="round" />
               </svg>
             )}
 
-            <motion.div initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once:true }} className="ui-card" style={{ position: isMobile ? 'static' : 'absolute', top: 0, left: '5%', padding: '1.25rem', background: 'rgba(11,11,15,0.8)', border: '1px solid var(--accent-green)', borderRadius: '16px', width: isMobile ? '100%' : 'auto', order: isMobile ? 2 : 'unset' }}>
-               <div className="ui-text-bold">Member Activity Feed</div>
-               <div className="ui-text-muted" style={{ fontSize: '0.7rem' }}>Syncing Workout Stats...</div>
+            {/* Cards */}
+            <motion.div initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once:true }} className="glass-card" style={{ position: isMobile ? 'static' : 'absolute', top: '10%', left: '5%', padding: '1.5rem', width: isMobile ? '100%' : '240px', order: isMobile ? 2 : 'unset', backdropFilter: 'blur(30px)' }}>
+               <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '10px' }}>
+                  <Smartphone size={20} color="var(--accent-red)"/>
+                  <div className="ui-text-bold">Member App</div>
+               </div>
+               <div className="ui-text-muted" style={{ fontSize: '0.8rem' }}>Logs workouts & dictates purchases instantly.</div>
             </motion.div>
             
-            <motion.div initial={{ opacity: 0, x: 50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once:true }} className="ui-card" style={{ position: isMobile ? 'static' : 'absolute', top: 0, right: '5%', padding: '1.25rem', background: 'rgba(11,11,15,0.8)', border: '1px solid var(--accent-purple)', borderRadius: '16px', width: isMobile ? '100%' : 'auto', order: isMobile ? 3 : 'unset' }}>
-               <div className="ui-text-bold">Gym Revenue Ledger</div>
-               <div className="ui-text-muted" style={{ fontSize: '0.7rem' }}>Processing Sales Data...</div>
+            <motion.div initial={{ opacity: 0, x: 50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once:true }} className="glass-card" style={{ position: isMobile ? 'static' : 'absolute', top: '10%', right: '5%', padding: '1.5rem', width: isMobile ? '100%' : '240px', order: isMobile ? 3 : 'unset', backdropFilter: 'blur(30px)' }}>
+               <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '10px' }}>
+                  <LayoutDashboard size={20} color="var(--accent-purple)"/>
+                  <div className="ui-text-bold">Gym Ledger</div>
+               </div>
+               <div className="ui-text-muted" style={{ fontSize: '0.8rem' }}>Revenue tracking & member churn prediction.</div>
             </motion.div>
 
-            <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once:true }} className="ui-card" style={{ position: isMobile ? 'static' : 'absolute', bottom: 0, padding: '1.25rem', background: 'rgba(11,11,15,0.8)', border: '1px solid var(--accent-orange)', borderRadius: '16px', width: isMobile ? '100%' : 'auto', order: isMobile ? 4 : 'unset' }}>
-               <div className="ui-text-bold">Hardware Inventory</div>
-               <div className="ui-text-muted" style={{ fontSize: '0.7rem' }}>Monitoring Stock Levels...</div>
+            <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once:true }} className="glass-card" style={{ position: isMobile ? 'static' : 'absolute', bottom: 0, padding: '1.5rem', width: isMobile ? '100%' : '240px', order: isMobile ? 4 : 'unset', backdropFilter: 'blur(30px)' }}>
+               <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '10px' }}>
+                  <Box size={20} color="var(--accent-orange)"/>
+                  <div className="ui-text-bold">Smart Vendor</div>
+               </div>
+               <div className="ui-text-muted" style={{ fontSize: '0.8rem' }}>Automated inventory tracking and sales.</div>
             </motion.div>
           </div>
         </div>
       </section>
-
-      {/* 6. GYM OWNER VALUE (Series A Reveal) */}
-      <section className="section" style={{ background: 'var(--bg-secondary)', borderTop: '1px solid #111', padding: '10rem 0' }}>
-        <div className="container">
-          <div style={{ textAlign: 'center', marginBottom: '8rem' }}>
-            <h2 style={{ marginBottom: '1.5rem' }}>Turn Your Gym Into a <br/><span className="text-gradient">Smart Fitness Hub</span></h2>
-            <p style={{ color: 'var(--text-secondary)', maxWidth: '600px', margin: '0 auto' }}>Yuguyu replaces static operations with a dynamic ecosystem that understands your members better than they do themselves.</p>
-          </div>
-
-          <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: isMobile ? '1.5rem' : '4rem' }}>
-             {[
-               { title: 'Higher Retention', desc: 'Pre-churn detection models identify at-risk members before they cancel.', icon: <Users color="var(--accent-purple)"/> },
-               { title: 'New Revenue', desc: 'In-gym smart vending and integrated diet logs create high-margin revenue.', icon: <DollarSign color="var(--accent-green)"/> },
-               { title: 'Data Assets', desc: 'Your gym starts being a data platform, increasing enterprise value.', icon: <Database color="var(--accent-blue)"/> },
-               { title: 'Full Automation', desc: 'From door access to inventory, Yuguyu automates the repetitive.', icon: <Settings color="#fff"/> }
-             ].map((item, i) => (
-                <motion.div 
-                  key={i}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.1 }}
-                  className="glass-card" 
-                  style={{ display: 'flex', gap: isMobile ? '1rem' : '2rem', padding: isMobile ? '1.5rem' : '3rem', border: '1px solid rgba(255,255,255,0.05)', background: 'rgba(11,11,15,0.4)', alignItems: 'center', borderRadius: '24px' }}
-                >
-                   <div style={{ background: 'var(--bg-tertiary)', padding: '0.75rem', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.1)' }}>{item.icon}</div>
-                   <div>
-                      <h3 style={{ fontSize: isMobile ? '1.1rem' : '1.5rem', marginBottom: '0.5rem' }}>{item.title}</h3>
-                      <p style={{ color: 'var(--text-secondary)', fontSize: isMobile ? '0.85rem' : '1rem' }}>{item.desc}</p>
-                   </div>
-                </motion.div>
-             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 8. FOUNDER VISION (VERY IMPORTANT) */}
-       <section className="section" style={{ borderTop: '1px solid var(--border-light)', padding: isMobile ? '5rem 0' : '10rem 0' }}>
-          <div className="container" style={{ textAlign: 'center', maxWidth: '800px' }}>
-              <motion.h2 
-                initial={{ opacity:0, y:20 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true }}
-                style={{ fontSize: isMobile ? '2rem' : '3.5rem', marginBottom: '1.5rem' }}
-              >
-                The Future of <br/><span className="text-gradient">Fitness Infrastructure</span>
-              </motion.h2>
-              <motion.p 
-                initial={{ opacity:0, y:20 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true }} transition={{ delay: 0.2 }}
-                style={{ fontSize: isMobile ? '1.1rem' : '1.5rem', lineHeight: 1.6, color: 'var(--text-secondary)' }}
-               >
-                Gyms shouldn’t run on spreadsheets. Yuguyu connects training, nutrition, and operations to power your <b>smart member retention engine</b> and vibrant gym community.
-              </motion.p>
-          </div>
-       </section>
 
       {/* 9. FINAL CONVERSION SECTION */}
       <section className="section" style={{ background: 'var(--bg-primary)', padding: isMobile ? '6rem 0' : '12rem 0', position: 'relative', overflow: 'hidden' }}>
-        <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '100%', background: 'radial-gradient(circle at 50% 100%, rgba(196, 30, 58, 0.15) 0%, rgba(0,0,0,0) 70%)', zIndex: 0 }}></div>
+        <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '100%', background: 'radial-gradient(ellipse at bottom, var(--accent-glow-red) 0%, transparent 70%)', zIndex: 0 }}></div>
         <div className="container" style={{ textAlign: 'center', position: 'relative', zIndex: 10 }}>
-          <motion.h2 initial={{ opacity:0, scale:0.95 }} whileInView={{ opacity:1, scale:1 }} viewport={{ once:true }} style={{ fontSize: isMobile ? '3rem' : '5.5rem', marginBottom: '2rem', letterSpacing: '-0.05em' }}>Upgrade Your Gym.</motion.h2>
-          <motion.p initial={{ opacity:0 }} whileInView={{ opacity:1 }} viewport={{ once:true }} transition={{ delay: 0.2 }} style={{ fontSize: '1.1rem', color: 'var(--text-secondary)', marginBottom: '3rem', maxWidth: '600px', margin: '0 auto 3rem auto' }}>Join the infrastructure powering the next generation of smart fitness hubs.</motion.p>
+          <motion.h2 initial={{ opacity:0, scale:0.95 }} whileInView={{ opacity:1, scale:1 }} viewport={{ once:true }} style={{ fontSize: isMobile ? '3rem' : '5rem', marginBottom: '2rem' }}>
+             Elevate Your Gym.
+          </motion.h2>
+          <motion.p initial={{ opacity:0 }} whileInView={{ opacity:1 }} viewport={{ once:true }} transition={{ delay: 0.2 }} style={{ fontSize: '1.25rem', color: 'var(--text-secondary)', marginBottom: '4rem', maxWidth: '600px', margin: '0 auto 4rem auto' }}>
+             Join the ecosystem powering the most advanced, connected fitness hubs in the world.
+          </motion.p>
           <div style={{ display: 'flex', flexDirection: isMobile ? 'column' : 'row', gap: '1.5rem', justifyContent: 'center' }}>
-            <button className="btn btn-primary" style={{ padding: '1.25rem 3rem', fontSize: '1.1rem' }}>Get Started Now <ArrowRight size={20} style={{ marginLeft: '12px' }} /></button>
-            <button className="btn btn-secondary" style={{ padding: '1.25rem 3rem', fontSize: '1.1rem' }}>Partner Inquiry</button>
+            <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="btn btn-accent" style={{ padding: '1.25rem 3rem', fontSize: '1.1rem' }}>Get Started <ArrowRight size={20} style={{ marginLeft: '12px' }} /></motion.button>
+            <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="btn btn-secondary" style={{ padding: '1.25rem 3rem', fontSize: '1.1rem' }}>Contact Sales</motion.button>
           </div>
         </div>
       </section>
 
-      {/* FOOTER */}
-      <footer style={{ padding: isMobile ? '4rem 1.5rem' : '6rem 4rem 4rem 4rem', borderTop: '1px solid var(--border-light)', background: 'var(--bg-secondary)' }}>
-         <div className="container" style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '2fr 1fr 1fr 1fr', gap: isMobile ? '3rem' : '4rem' }}>
+      {/* CINEMATIC FOOTER */}
+      <footer style={{ position: 'relative', overflow: 'hidden', padding: isMobile ? '4rem 1.5rem' : '6rem 4rem 4rem 4rem', background: '#020202' }}>
+         <div style={{ position: 'absolute', top: 0, left: '10%', right: '10%', height: '1px', background: 'linear-gradient(90deg, transparent, var(--accent-red), transparent)', opacity: 0.5 }}></div>
+         <div className="container" style={{ position: 'relative', zIndex: 10, display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '2fr 1fr 1fr 1fr', gap: isMobile ? '3rem' : '4rem' }}>
             <div>
-               <div style={{ fontSize: '1.75rem', fontWeight: '800', fontFamily: 'var(--font-logo)', letterSpacing: '-0.04em', marginBottom: '1.5rem' }}>
-                  <span style={{ color: 'var(--text-primary)' }}>Yugu</span><span style={{ color: 'var(--brand-red)' }}>yu</span>
-               </div>
-               <p style={{ color: 'var(--text-tertiary)', fontSize: '0.9rem', lineHeight: 1.6 }}>The Operating System for Modern Gyms. Connecting members, infrastructure, and revenue into one intelligent ecosystem.</p>
+               <motion.div 
+                 whileHover={{ textShadow: "0px 0px 20px rgba(225, 29, 72, 0.8)" }}
+                 style={{ fontSize: '2rem', fontWeight: '800', fontFamily: 'var(--font-logo)', letterSpacing: '-0.04em', marginBottom: '1.5rem', cursor: 'pointer', transition: 'text-shadow 0.3s' }}
+               >
+                  <span style={{ color: 'var(--text-primary)' }}>Yugu</span><span style={{ color: 'var(--accent-red)' }}>yu</span>
+               </motion.div>
+               <p style={{ color: 'var(--text-tertiary)', fontSize: '1rem', lineHeight: 1.6, maxWidth: '300px' }}>
+                  The Operating System for Modern Gyms. Connecting members, infrastructure, and revenue.
+               </p>
             </div>
+            
             <div className="responsive-grid" style={{ '--grid-cols': 3, '--grid-cols-mobile': 1, '--grid-gap-mobile': '2rem', gridColumn: isMobile ? '1' : '2 / span 3' }}>
                <div>
-                  <div className="ui-text-bold" style={{ marginBottom: '1rem', fontSize: '1rem' }}>Platform</div>
-                  <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.75rem', color: 'var(--text-tertiary)', fontSize: '0.9rem' }}>
-                     <li>Member App</li>
-                     <li>Gym Admin</li>
-                     <li>Smart Vending</li>
+                  <div className="ui-text-bold" style={{ marginBottom: '1.5rem', fontSize: '1.1rem' }}>Platform</div>
+                  <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '1rem', color: 'var(--text-secondary)', fontSize: '0.95rem' }}>
+                     <motion.li whileHover={{ color: '#fff', x: 5 }} style={{ cursor: 'pointer' }}>Member App</motion.li>
+                     <motion.li whileHover={{ color: '#fff', x: 5 }} style={{ cursor: 'pointer' }}>Gym Admin</motion.li>
+                     <motion.li whileHover={{ color: '#fff', x: 5 }} style={{ cursor: 'pointer' }}>Smart Vending</motion.li>
                   </ul>
                </div>
                <div>
-                  <div className="ui-text-bold" style={{ marginBottom: '1rem', fontSize: '1rem' }}>Company</div>
-                  <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.75rem', color: 'var(--text-tertiary)', fontSize: '0.9rem' }}>
-                     <li>About Us</li>
-                     <li>Partners</li>
-                     <li>Contact</li>
+                  <div className="ui-text-bold" style={{ marginBottom: '1.5rem', fontSize: '1.1rem' }}>Company</div>
+                  <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '1rem', color: 'var(--text-secondary)', fontSize: '0.95rem' }}>
+                     <motion.li whileHover={{ color: '#fff', x: 5 }} style={{ cursor: 'pointer' }}>About</motion.li>
+                     <motion.li whileHover={{ color: '#fff', x: 5 }} style={{ cursor: 'pointer' }}>Careers</motion.li>
+                     <motion.li whileHover={{ color: '#fff', x: 5 }} style={{ cursor: 'pointer' }}>Contact</motion.li>
                   </ul>
                </div>
                <div>
-                  <div className="ui-text-bold" style={{ marginBottom: '1rem', fontSize: '1rem' }}>Social</div>
-                  <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.75rem', color: 'var(--text-tertiary)', fontSize: '0.9rem' }}>
-                     <li>Twitter</li>
-                     <li>LinkedIn</li>
+                  <div className="ui-text-bold" style={{ marginBottom: '1.5rem', fontSize: '1.1rem' }}>Social</div>
+                  <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '1rem', color: 'var(--text-secondary)', fontSize: '0.95rem' }}>
+                     <motion.li whileHover={{ color: '#fff', x: 5 }} style={{ cursor: 'pointer' }}>Twitter</motion.li>
+                     <motion.li whileHover={{ color: '#fff', x: 5 }} style={{ cursor: 'pointer' }}>LinkedIn</motion.li>
                   </ul>
                </div>
             </div>
          </div>
-         <div className="container" style={{ marginTop: '4rem', paddingTop: '2rem', borderTop: '1px solid rgba(255,255,255,0.03)', display: 'flex', flexDirection: isMobile ? 'column' : 'row', justifyContent: 'space-between', alignItems: isMobile ? 'center' : 'flex-start', gap: '1rem', color: 'var(--text-tertiary)', fontSize: '0.8rem', textAlign: isMobile ? 'center' : 'left' }}>
+         <div className="container" style={{ position: 'relative', zIndex: 10, marginTop: '6rem', paddingTop: '2rem', borderTop: '1px solid rgba(255,255,255,0.05)', display: 'flex', flexDirection: isMobile ? 'column' : 'row', justifyContent: 'space-between', alignItems: isMobile ? 'center' : 'flex-start', gap: '1rem', color: 'var(--text-tertiary)', fontSize: '0.85rem', textAlign: isMobile ? 'center' : 'left' }}>
             <div>© 2026 Yuguyu Technologies. All rights reserved.</div>
-            <div style={{ display: 'flex', gap: '2rem' }}>
-               <span>Privacy</span>
-               <span>Terms</span>
+            <div style={{ display: 'flex', gap: '2.5rem' }}>
+               <span style={{ cursor: 'pointer' }}>Privacy Policy</span>
+               <span style={{ cursor: 'pointer' }}>Terms of Service</span>
             </div>
          </div>
       </footer>
-
     </div>
   );
 }
