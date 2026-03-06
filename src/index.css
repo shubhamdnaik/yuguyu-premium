@@ -1,20 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&family=Inter:wght@400..700&family=Outfit:wght@700&display=swap');
+
 :root {
-  /* Ultra-Premium Series A Colors */
-  --bg-primary: #0B0B0F; /* Deepest layered dark */
-  --bg-secondary: #12121A; /* Layer 2 dark */
-  --bg-tertiary: #1B1B2A; /* Layer 3 dark */
+  /* Dark Theme (Default) */
+  --bg-primary: #0B0B0F;
+  --bg-secondary: #12121A;
+  --bg-tertiary: #1B1B2A;
   
+  --text-primary: #FFFFFF;
+  --text-secondary: #8B94AD;
+  --text-tertiary: #525C76;
+  
+  --border-light: #282D42;
+  --card-shadow: 0 4px 20px rgba(0,0,0,0.4);
+  --glass-bg: rgba(15, 18, 28, 0.7);
+
+  /* Shared Tokens */
   --accent-blue: #00E6F0;
-  --accent-green: #FF3B3B; /* Bright Scarlet Red */
-  --accent-purple: #C41E3A; /* Deep Cardinal Red */
-  --accent-orange: #FF4D00; 
+  --accent-green: #FF3B3B;
+  --accent-purple: #C41E3A;
+  --accent-bright-purple: #9041FF; /* For the 'yu' in the logo */
+  --accent-orange: #FF4D00;
   
   --accent-glow-green: rgba(255, 59, 59, 0.4);
   --accent-glow-purple: rgba(196, 30, 58, 0.4);
-  
-  --text-primary: #FFFFFF;
-  --text-secondary: #8B94AD; 
-  --text-tertiary: #525C76;
   
   /* Radii */
   --radius-sm: 8px;
@@ -24,11 +32,25 @@
 
   /* Typography */
   --font-heading: 'Space Grotesk', 'Satoshi', 'Inter', sans-serif;
+  --font-logo: 'Outfit', sans-serif;
   --font-body: 'Inter', -apple-system, sans-serif;
+}
+
+body.light-theme {
+  --bg-primary: #F8F9FC;
+  --bg-secondary: #FFFFFF;
+  --bg-tertiary: #F1F3F9;
   
-  /* Borders */
-  --border-light: #282D42; /* Distinct inner card borders seen in the UI */
-  --border-glow: rgba(255, 59, 59, 0.3);
+  --text-primary: #0B0B0F;
+  --text-secondary: #525C76;
+  --text-tertiary: #8B94AD;
+  
+  --border-light: #E2E8F0;
+  --card-shadow: 0 4px 20px rgba(0,0,0,0.05);
+  --glass-bg: rgba(255, 255, 255, 0.8);
+  
+  --accent-glow-green: rgba(255, 59, 59, 0.1);
+  --accent-glow-purple: rgba(196, 30, 58, 0.1);
 }
 
 * {
@@ -93,7 +115,7 @@ img {
 
 /* Gradients */
 .text-gradient {
-  background: linear-gradient(to right, #FFFFFF, var(--text-secondary));
+  background: linear-gradient(to right, var(--text-primary), var(--text-secondary));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;

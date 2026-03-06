@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Smartphone, Activity, Box, ArrowRight, TrendingUp, Users, DollarSign, Settings, LineChart, Database, LayoutDashboard, Utensils, RefreshCw, SmartphoneNfc, Menu, Zap, Target, User, Home, QrCode, Bell, Sun, Flame, Calendar } from 'lucide-react';
+import { Smartphone, Activity, Box, ArrowRight, TrendingUp, Users, DollarSign, Settings, LineChart, Database, LayoutDashboard, Utensils, RefreshCw, SmartphoneNfc, Menu, Zap, Target, User, Home, QrCode, Bell, Sun, Moon, Flame, Calendar } from 'lucide-react';
 import './index.css';
  
 // Hook for responsive JSX
@@ -273,6 +273,16 @@ const PhoneCarousel = () => {
 
 function App() {
   const isMobile = useMediaQuery('(max-width: 768px)');
+  const [isLightMode, setIsLightMode] = useState(false);
+
+  useEffect(() => {
+    if (isLightMode) {
+      document.body.classList.add('light-theme');
+    } else {
+      document.body.classList.remove('light-theme');
+    }
+  }, [isLightMode]);
+
   return (
     <div className="app-wrapper">
       <div className="mesh-bg">
@@ -280,9 +290,8 @@ function App() {
         <div className="mesh-blob blob-2"></div>
       </div>
 
-      {/* Navigation */}
       <nav style={{ 
-        padding: '1.25rem 2rem', 
+        padding: '1rem 2rem', 
         display: 'flex', 
         justifyContent: 'space-between', 
         alignItems: 'center', 
@@ -292,13 +301,28 @@ function App() {
         right: 0, 
         zIndex: 100, 
         backdropFilter: 'blur(12px)', 
-        borderBottom: '1px solid rgba(255,255,255,0.05)', 
-        background: 'rgba(15, 18, 28, 0.7)' 
+        borderBottom: '1px solid var(--border-light)', 
+        background: 'var(--glass-bg)' 
       }}>
-        <div style={{ fontSize: '1.25rem', fontWeight: '800', fontFamily: 'var(--font-heading)', letterSpacing: '-0.03em' }}>
-          <span className="text-primary">Yugu</span><span style={{ color: 'var(--accent-purple)' }}>yu</span>
+        <div style={{ fontSize: '1.75rem', fontWeight: '800', fontFamily: 'var(--font-logo)', letterSpacing: '-0.04em' }}>
+          <span style={{ color: 'var(--text-primary)' }}>Yugu</span><span style={{ color: 'var(--accent-green)' }}>yu</span>
         </div>
         <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+          <button 
+            onClick={() => setIsLightMode(!isLightMode)}
+            style={{ 
+              width: '40px', 
+              height: '40px', 
+              borderRadius: '50%', 
+              background: 'var(--bg-tertiary)', 
+              display: 'flex', 
+              alignItems: 'center', 
+              justifyContent: 'center',
+              border: '1px solid var(--border-light)'
+            }}
+          >
+            {isLightMode ? <Sun size={18} color="var(--text-primary)"/> : <Moon size={18} color="var(--text-primary)"/>}
+          </button>
           <button className="btn btn-primary" style={{ padding: '0.6rem 1.25rem', fontSize: '0.85rem' }}>Demo</button>
         </div>
       </nav>
@@ -331,7 +355,7 @@ function App() {
             <svg style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0, display: window.innerWidth < 768 ? 'none' : 'block' }} xmlns="http://www.w3.org/2000/svg">
                <motion.path d="M 140 150 Q 250 150 450 250" fill="none" stroke="var(--accent-green)" strokeWidth="2" className="ecosystem-line" />
                <motion.path d="M 760 150 Q 650 150 450 250" fill="none" stroke="var(--accent-purple)" strokeWidth="2" className="ecosystem-line" />
-               <motion.path d="M 450 250 Q 450 400 450 500" fill="none" stroke="var(--accent-orange)" strokeWidth="2" className="ecosystem-line" />
+               {/* Vending machine connection removed per separate unit requirement */}
             </svg>
 
             {/* Admin App - Responsive positioning */}
@@ -406,41 +430,6 @@ function App() {
         </div>
       </section>
 
-      {/* 2. THE PROBLEM */}
-      <section className="section" style={{ background: 'var(--bg-secondary)', borderTop: '1px solid var(--border-light)' }}>
-        <div className="container">
-           <motion.div 
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              style={{ textAlign: 'center', marginBottom: '5rem' }}
-           >
-              <h2>Gyms Are Running on <span style={{ color: 'var(--accent-orange)' }}>Broken Systems</span></h2>
-           </motion.div>
- 
-           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem' }}>
-             {[
-               { icon: <Menu size={28}/>, title: 'Spreadsheets For Members' },
-               { icon: <DollarSign size={28}/>, title: 'No Nutrition Tracking' },
-               { icon: <Users size={28}/>, title: 'Poor Engagement' },
-               { icon: <LineChart size={28}/>, title: 'No Live Analytics' },
-             ].map((item, i) => (
-               <motion.div 
-                 key={i} 
-                 initial={{ opacity: 0, y: 30 }}
-                 whileInView={{ opacity: 1, y: 0 }}
-                 viewport={{ once: true }}
-                 transition={{ delay: i * 0.1 }}
-                 style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', padding: '2rem', border: '1px solid rgba(255, 153, 0, 0.15)', background: 'var(--bg-primary)', borderRadius: '20px' }}
-               >
-                 <div style={{ color: 'var(--accent-orange)', background: 'rgba(255,153,0,0.1)', padding: '12px', borderRadius: '12px' }}>{item.icon}</div>
-                 <h3 style={{ fontSize: '1.2rem', margin: 0, color: 'var(--text-primary)' }}>{item.title}</h3>
-               </motion.div>
-             ))}
-           </div>
-        </div>
-      </section>
-
       {/* 3. THE BIG IDEA (Ecosystem Diagram) */}
       <section className="section" style={{ borderTop: '1px solid var(--border-light)' }}>
         <div className="container" style={{ textAlign: 'center' }}>
@@ -450,7 +439,6 @@ function App() {
           >
             One System That <br/><span className="text-gradient">Connects Everything</span>
           </motion.h2>
-          
           <div style={{ 
             position: 'relative', 
             width: '100%', 
@@ -576,10 +564,10 @@ function App() {
             <div style={{ marginTop: isMobile ? '5rem' : '10rem', position: 'relative', padding: isMobile ? '3rem 1.5rem' : '6rem 0', background: 'radial-gradient(ellipse at center, rgba(196, 30, 58, 0.1) 0%, rgba(0,0,0,0) 70%)', borderRadius: '40px', border: '1px solid rgba(196, 30, 58, 0.1)' }}>
                <div style={{ textAlign: 'center', maxWidth: '800px', margin: isMobile ? '0 auto 3rem auto' : '0 auto 6rem auto' }}>
                   <motion.h2 initial={{ opacity:0, y:30 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true }} style={{ fontSize: isMobile ? '2.5rem' : '3rem', marginBottom: '1.5rem', lineHeight: 1.1 }}>
-                    Hardware That Acts <br/><span className="text-gradient">Like Software.</span>
+                    Partner Hardware <br/><span className="text-gradient">Seamlessly Integrated.</span>
                   </motion.h2>
                   <motion.p initial={{ opacity:0, y:20 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true }} transition={{ delay: 0.2 }} style={{ fontSize: '1.1rem', color: 'var(--text-secondary)' }}>
-                    The Yuguyu Smart Vending Machine is a high-margin nutrition center connected directly to member workout profiles and gym ledgers.
+                    Yuguyu integrates with category-leading vending providers. Hardware is managed via a dedicated provider app for specialized inventory control.
                   </motion.p>
                </div>
 
@@ -607,15 +595,15 @@ function App() {
                   </motion.div>
 
                   <motion.div initial={{ opacity: 0, x: 50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once:true }} style={{ textAlign: isMobile ? 'center' : 'left' }}>
-                     <h3 style={{ fontSize: '1.1rem', color: 'var(--accent-green)', marginBottom: '2rem', textTransform: 'uppercase', letterSpacing: '2px' }}>Zero-Friction Nutrition</h3>
+                     <h3 style={{ fontSize: '1.1rem', color: 'var(--accent-green)', marginBottom: '2rem', textTransform: 'uppercase', letterSpacing: '2px' }}>Independent Hardware Success</h3>
                      <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
                          <div>
-                            <h4 style={{ fontSize: '1.25rem', marginBottom: '0.5rem' }}>Auto-synced Macros</h4>
-                            <p style={{ color: 'var(--text-secondary)', fontSize: '1rem' }}>Macros are automatically added to member Diet Trackers on purchase.</p>
+                            <h4 style={{ fontSize: '1.25rem', marginBottom: '0.5rem' }}>Specialized Control App</h4>
+                            <p style={{ color: 'var(--text-secondary)', fontSize: '1rem' }}>Managed by a dedicated unit-specific app from the machine provider.</p>
                          </div>
                          <div>
-                            <h4 style={{ fontSize: '1.25rem', marginBottom: '0.5rem' }}>Direct App Billing</h4>
-                            <p style={{ color: 'var(--text-secondary)', fontSize: '1rem' }}>Purchases charged directly to the card on file. Smooth and cashless.</p>
+                            <h4 style={{ fontSize: '1.25rem', marginBottom: '0.5rem' }}>Ecosystem Bridge</h4>
+                            <p style={{ color: 'var(--text-secondary)', fontSize: '1rem' }}>Yuguyu provides the data bridge to link purchase history with gym operations.</p>
                          </div>
                      </div>
                   </motion.div>
@@ -739,7 +727,7 @@ function App() {
        </section>
 
       {/* 9. FINAL CONVERSION SECTION */}
-      <section className="section" style={{ background: '#050508', padding: isMobile ? '6rem 0' : '12rem 0', position: 'relative', overflow: 'hidden' }}>
+      <section className="section" style={{ background: 'var(--bg-primary)', padding: isMobile ? '6rem 0' : '12rem 0', position: 'relative', overflow: 'hidden' }}>
         <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '100%', background: 'radial-gradient(circle at 50% 100%, rgba(196, 30, 58, 0.15) 0%, rgba(0,0,0,0) 70%)', zIndex: 0 }}></div>
         <div className="container" style={{ textAlign: 'center', position: 'relative', zIndex: 10 }}>
           <motion.h2 initial={{ opacity:0, scale:0.95 }} whileInView={{ opacity:1, scale:1 }} viewport={{ once:true }} style={{ fontSize: isMobile ? '3rem' : '5.5rem', marginBottom: '2rem', letterSpacing: '-0.05em' }}>Upgrade Your Gym.</motion.h2>
@@ -752,11 +740,11 @@ function App() {
       </section>
 
       {/* FOOTER */}
-      <footer style={{ padding: isMobile ? '4rem 1.5rem' : '6rem 4rem 4rem 4rem', borderTop: '1px solid #111', background: '#0B0B0F' }}>
+      <footer style={{ padding: isMobile ? '4rem 1.5rem' : '6rem 4rem 4rem 4rem', borderTop: '1px solid var(--border-light)', background: 'var(--bg-secondary)' }}>
          <div className="container" style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '2fr 1fr 1fr 1fr', gap: isMobile ? '3rem' : '4rem' }}>
             <div>
-               <div style={{ fontSize: '1.5rem', fontWeight: '800', fontFamily: 'var(--font-heading)', letterSpacing: '-0.03em', marginBottom: '1.5rem' }}>
-                  <span className="text-primary">Yugu</span><span style={{ color: 'var(--accent-purple)' }}>yu</span>
+               <div style={{ fontSize: '1.75rem', fontWeight: '800', fontFamily: 'var(--font-logo)', letterSpacing: '-0.04em', marginBottom: '1.5rem' }}>
+                  <span style={{ color: 'var(--text-primary)' }}>Yugu</span><span style={{ color: 'var(--accent-green)' }}>yu</span>
                </div>
                <p style={{ color: 'var(--text-tertiary)', fontSize: '0.9rem', lineHeight: 1.6 }}>The Operating System for Modern Gyms. Connecting members, infrastructure, and revenue into one intelligent ecosystem.</p>
             </div>
