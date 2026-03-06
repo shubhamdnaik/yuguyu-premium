@@ -608,30 +608,6 @@ function App() {
                              mixBlendMode: 'multiply'
                            }} 
                          />
-                         
-                         {/* Integrated Screen Overlay (Positioned to match standard machine layout) */}
-                         <div style={{ 
-                           position: 'absolute', 
-                           bottom: '15%', 
-                           left: '50%', 
-                           transform: 'translateX(-50%)',
-                           width: '70%',
-                           background: 'rgba(11, 11, 15, 0.95)',
-                           borderRadius: '12px',
-                           padding: '1rem',
-                           border: '1px solid rgba(255, 59, 59, 0.3)',
-                           boxShadow: '0 0 20px rgba(255, 59, 59, 0.2)',
-                           backdropFilter: 'blur(10px)',
-                           display: 'flex',
-                           flexDirection: 'column',
-                           alignItems: 'center',
-                           justifyContent: 'center'
-                         }}>
-                            <QrCode size={isMobile ? 24 : 32} color="var(--brand-red)" />
-                            <div className="ui-text-bold" style={{ color: 'var(--brand-red)', fontSize: isMobile ? '0.7rem' : '0.85rem', textAlign: 'center', marginTop: '0.4rem' }}>
-                              Scan to Buy
-                            </div>
-                         </div>
                       </div>
                    </motion.div>
 
