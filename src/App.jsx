@@ -354,23 +354,26 @@ function App() {
              whileInView={{ opacity: 1, y: 0 }}
              viewport={{ once: true }}
              style={{ textAlign: 'center', marginBottom: '5rem' }}
-          >
-            <h2>Gyms Are Running on <span style={{ color: '#ff3366' }}>Broken Systems</span></h2>
-          </motion.div>
-
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem' }}>
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem' }}>
             {[
               { icon: <Menu size={28}/>, title: 'Spreadsheets For Members' },
               { icon: <DollarSign size={28}/>, title: 'No Nutrition Tracking' },
               { icon: <Users size={28}/>, title: 'Poor Engagement' },
               { icon: <LineChart size={28}/>, title: 'No Live Analytics' },
             ].map((item, i) => (
-              <MotionCard key={i} index={i} style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', padding: '2rem', border: '1px solid rgba(255, 51, 102, 0.15)', background: 'var(--bg-primary)' }}>
-                <div style={{ color: '#ff3366', background: 'rgba(255,51,102,0.1)', padding: '12px', borderRadius: '12px' }}>{item.icon}</div>
+              <motion.div 
+                key={i} 
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', padding: '2rem', border: '1px solid rgba(255, 153, 0, 0.15)', background: 'var(--bg-primary)', borderRadius: '20px' }}
+              >
+                <div style={{ color: 'var(--accent-orange)', background: 'rgba(255,153,0,0.1)', padding: '12px', borderRadius: '12px' }}>{item.icon}</div>
                 <h3 style={{ fontSize: '1.2rem', margin: 0, color: 'var(--text-primary)' }}>{item.title}</h3>
-              </MotionCard>
+              </motion.div>
             ))}
-          </div>
+          </div>div>
         </div>
       </section>
 
