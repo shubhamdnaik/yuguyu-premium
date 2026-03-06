@@ -1,6 +1,28 @@
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Smartphone, Activity, Box, ArrowRight, TrendingUp, Users, DollarSign, Settings, LineChart, Database, LayoutDashboard, Utensils, RefreshCw, SmartphoneNfc, Menu, Zap, Target, User, Home, QrCode, Bell, Sun, Moon, Flame, Calendar } from 'lucide-react';
+import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
+import { 
+  Dumbbell, 
+  Users, 
+  Layout, 
+  ArrowRight, 
+  CheckCircle2, 
+  Smartphone, 
+  PieChart, 
+  Box, 
+  Shield, 
+  Zap, 
+  Moon, 
+  Sun,
+  QrCode,
+  Activity,
+  Trophy,
+  Target,
+  ChevronRight,
+  TrendingUp,
+  CreditCard,
+  DollarSign, Settings, LineChart, Database, LayoutDashboard, Utensils, RefreshCw, SmartphoneNfc, Menu, Home, Bell, Flame, Calendar
+} from 'lucide-react';
+import vendingMockup from './assets/vending_machine_user.png';
 import './index.css';
  
 // Hook for responsive JSX
@@ -133,7 +155,7 @@ const AppScannerUI = () => (
      </div>
      
      <div style={{ marginTop: 'auto', width: '100%', display: 'flex', justifyContent: 'space-between', padding: '1rem', background: 'var(--bg-secondary)', borderRadius: '100px', border: '1px solid var(--border-light)' }}>
-         <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'var(--bg-tertiary)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><User size={18}/></div>
+         <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'var(--bg-tertiary)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Users size={18}/></div>
          <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'var(--accent-purple)', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 0 15px rgba(196, 30, 58, 0.4)' }}><Box size={18} color="#fff"/></div>
          <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'var(--bg-tertiary)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Settings size={18}/></div>
      </div>
@@ -204,7 +226,7 @@ const AppHomeScannerUI = () => (
        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '4px', color: 'var(--text-secondary)' }}><Utensils size={20}/><span style={{ fontSize: '0.6rem' }}>Diet</span></div>
        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '4px', color: 'var(--text-secondary)' }}><Activity size={20}/><span style={{ fontSize: '0.6rem' }}>Workout</span></div>
        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '4px', color: 'var(--text-secondary)' }}><Users size={20}/><span style={{ fontSize: '0.6rem' }}>Partner</span></div>
-       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '4px', color: 'var(--text-secondary)' }}><User size={20}/><span style={{ fontSize: '0.6rem' }}>Profile</span></div>
+       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '4px', color: 'var(--text-secondary)' }}><Users size={20}/><span style={{ fontSize: '0.6rem' }}>Profile</span></div>
      </div>
   </div>
 );
@@ -572,27 +594,46 @@ function App() {
                </div>
 
                <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'minmax(400px, 1fr) 1fr', gap: isMobile ? '3rem' : '6rem', alignItems: 'center', padding: isMobile ? '0' : '0 4rem' }}>
-                  {/* Sleek Hardware Render Mockup */}
-                  <motion.div initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once:true }} transition={{ type: 'spring', stiffness: 50 }} style={{ position: 'relative', display: 'flex', justifyContent: 'center' }}>
-                     <div style={{ width: isMobile ? '280px' : '380px', height: isMobile ? '480px' : '650px', background: 'linear-gradient(145deg, #1A1C23, #0A0A0E)', borderRadius: '32px', border: '4px solid #282D42', boxShadow: '0 40px 100px rgba(0,0,0,0.8), inset 0 2px 20px rgba(255,255,255,0.05)', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '1.5rem', position: 'relative', overflow: 'hidden' }}>
-                        <div style={{ transform: isMobile ? 'scale(0.75)' : 'none', transformOrigin: 'top center', width: '100%', height: '100%', display: 'flex', flexDirection: 'column' }}>
-                          {/* Vending Glass Panel */}
-                          <div style={{ width: '100%', height: '65%', background: 'rgba(0,0,0,0.6)', borderRadius: '16px', border: '2px solid #111', boxShadow: 'inset 0 10px 40px rgba(0,0,0,0.9)', position: 'relative', overflow: 'hidden' }}>
-                             {/* Shelf 1 */}
-                             <div style={{ position: 'absolute', top: '33%', left: 0, width: '100%', height: '6px', background: '#111' }}></div>
-                             <div style={{ position: 'absolute', top: '15%', left: '20%', width: '40px', height: '80px', background: 'linear-gradient(180deg, #333, #111)', borderRadius: '6px', boxShadow: '0 0 30px rgba(255, 59, 59, 0.4)' }}></div>
-                             <div style={{ position: 'absolute', top: '48%', left: '50%', width: '40px', height: '80px', background: 'linear-gradient(180deg, #333, #111)', borderRadius: '6px', boxShadow: '0 0 30px rgba(196, 30, 58, 0.4)' }}></div>
-                          </div>
-                          {/* Hardware screen panel */}
-                          <div style={{ width: '100%', flex: 1, background: '#0B0B0F', borderRadius: '16px', marginTop: '1.5rem', border: '1px solid #333', overflow: 'hidden', padding: '0.5rem', display: 'flex', flexDirection: 'column' }}>
-                             <div style={{ flex: 1, border: '1px solid rgba(255, 59, 59, 0.3)', borderRadius: '12px', padding: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', background: 'rgba(255, 59, 59, 0.05)' }}>
-                                <QrCode size={40} color="var(--accent-green)" />
-                                <div className="ui-text-bold" style={{ color: 'var(--accent-green)', fontSize: '1rem', textAlign: 'center', marginTop: '0.5rem' }}>Scan to Buy</div>
-                             </div>
-                          </div>
-                        </div>
-                     </div>
-                  </motion.div>
+                  {/* Sleek Hardware Render Mockup */}                   <motion.div initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once:true }} transition={{ type: 'spring', stiffness: 50 }} style={{ position: 'relative', display: 'flex', justifyContent: 'center' }}>
+                      <div style={{ width: isMobile ? '280px' : '400px', position: 'relative' }}>
+                         {/* Realistic Branded Machine Mockup */}
+                         <img 
+                           src={vendingMockup} 
+                           alt="Yuguyu Vending Machine" 
+                           style={{ 
+                             width: '100%', 
+                             height: 'auto', 
+                             display: 'block',
+                             filter: 'drop-shadow(0 40px 100px rgba(0,0,0,0.8))',
+                             mixBlendMode: 'multiply'
+                           }} 
+                         />
+                         
+                         {/* Integrated Screen Overlay (Positioned to match standard machine layout) */}
+                         <div style={{ 
+                           position: 'absolute', 
+                           bottom: '15%', 
+                           left: '50%', 
+                           transform: 'translateX(-50%)',
+                           width: '70%',
+                           background: 'rgba(11, 11, 15, 0.95)',
+                           borderRadius: '12px',
+                           padding: '1rem',
+                           border: '1px solid rgba(255, 59, 59, 0.3)',
+                           boxShadow: '0 0 20px rgba(255, 59, 59, 0.2)',
+                           backdropFilter: 'blur(10px)',
+                           display: 'flex',
+                           flexDirection: 'column',
+                           alignItems: 'center',
+                           justifyContent: 'center'
+                         }}>
+                            <QrCode size={isMobile ? 24 : 32} color="var(--brand-red)" />
+                            <div className="ui-text-bold" style={{ color: 'var(--brand-red)', fontSize: isMobile ? '0.7rem' : '0.85rem', textAlign: 'center', marginTop: '0.4rem' }}>
+                              Scan to Buy
+                            </div>
+                         </div>
+                      </div>
+                   </motion.div>
 
                   <motion.div initial={{ opacity: 0, x: 50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once:true }} style={{ textAlign: isMobile ? 'center' : 'left' }}>
                      <h3 style={{ fontSize: '1.1rem', color: 'var(--accent-green)', marginBottom: '2rem', textTransform: 'uppercase', letterSpacing: '2px' }}>Independent Hardware Success</h3>
