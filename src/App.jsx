@@ -22,7 +22,6 @@ import {
   CreditCard,
   DollarSign, Settings, LineChart, Database, LayoutDashboard, Utensils, RefreshCw, SmartphoneNfc, Menu, Home, Bell, Flame, Calendar
 } from 'lucide-react';
-import vendingMockup from './assets/vending_machine_new.jpg';
 import './index.css';
  
 // Hook for responsive JSX
@@ -595,18 +594,23 @@ function App() {
 
                <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'minmax(400px, 1fr) 1fr', gap: isMobile ? '3rem' : '6rem', alignItems: 'center', padding: isMobile ? '0' : '0 4rem' }}>
                   {/* Sleek Hardware Render Mockup */}                   <motion.div initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once:true }} transition={{ type: 'spring', stiffness: 50 }} style={{ position: 'relative', display: 'flex', justifyContent: 'center' }}>
-                      <div style={{ width: isMobile ? '280px' : '400px', position: 'relative' }}>
-                         {/* Realistic Branded Machine Mockup */}
-                         <img 
-                           src={vendingMockup} 
-                           alt="Yuguyu Vending Machine" 
-                           style={{ 
-                             width: '100%', 
-                             height: 'auto', 
-                             display: 'block',
-                             filter: 'drop-shadow(0 40px 100px rgba(0,0,0,0.8))'
-                           }} 
-                         />
+                      <div style={{ width: isMobile ? '280px' : '380px', height: isMobile ? '480px' : '650px', background: 'linear-gradient(145deg, #1A1C23, #0A0A0E)', borderRadius: '32px', border: '4px solid #282D42', boxShadow: '0 40px 100px rgba(0,0,0,0.8), inset 0 2px 20px rgba(255,255,255,0.05)', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '1.5rem', position: 'relative', overflow: 'hidden' }}>
+                         <div style={{ transform: isMobile ? 'scale(0.75)' : 'none', transformOrigin: 'top center', width: '100%', height: '100%', display: 'flex', flexDirection: 'column' }}>
+                           {/* Vending Glass Panel */}
+                           <div style={{ width: '100%', height: '65%', background: 'rgba(0,0,0,0.6)', borderRadius: '16px', border: '2px solid #111', boxShadow: 'inset 0 10px 40px rgba(0,0,0,0.9)', position: 'relative', overflow: 'hidden' }}>
+                              {/* Shelf 1 */}
+                              <div style={{ position: 'absolute', top: '33%', left: 0, width: '100%', height: '6px', background: '#111' }}></div>
+                              <div style={{ position: 'absolute', top: '15%', left: '20%', width: '40px', height: '80px', background: 'linear-gradient(180deg, #333, #111)', borderRadius: '6px', boxShadow: '0 0 30px rgba(255, 59, 59, 0.4)' }}></div>
+                              <div style={{ position: 'absolute', top: '48%', left: '50%', width: '40px', height: '80px', background: 'linear-gradient(180deg, #333, #111)', borderRadius: '6px', boxShadow: '0 0 30px rgba(196, 30, 58, 0.4)' }}></div>
+                           </div>
+                           {/* Hardware screen panel - RESTORED SCAN OVERLAY */}
+                           <div style={{ width: '100%', flex: 1, background: '#0B0B0F', borderRadius: '16px', marginTop: '1.5rem', border: '1px solid #333', overflow: 'hidden', padding: '0.5rem', display: 'flex', flexDirection: 'column' }}>
+                              <div style={{ flex: 1, border: '1px solid rgba(255, 59, 59, 0.3)', borderRadius: '12px', padding: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', background: 'rgba(255, 59, 59, 0.05)' }}>
+                                 <QrCode size={40} color="var(--brand-red)" />
+                                 <div className="ui-text-bold" style={{ color: 'var(--brand-red)', fontSize: '1rem', textAlign: 'center', marginTop: '0.5rem' }}>Scan to Buy</div>
+                              </div>
+                           </div>
+                         </div>
                       </div>
                    </motion.div>
 
