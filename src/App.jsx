@@ -560,95 +560,34 @@ const HeroScene = ({ isMobile }) => {
   const smoothX = useSpring(mousePosition.x * 40, { stiffness: 50, damping: 20 });
   const smoothY = useSpring(mousePosition.y * 40, { stiffness: 50, damping: 20 });
   
-  const midX = useSpring(mousePosition.x * -20, { stiffness: 50, damping: 20 });
-  const midY = useSpring(mousePosition.y * -20, { stiffness: 50, damping: 20 });
-
   return (
-    <div ref={containerRef} style={{ marginTop: '6rem', position: 'relative', height: '520px', display: 'flex', justifyContent: 'center', maxWidth: '1000px', margin: '6rem auto 0 auto', perspective: '1000px' }}>
+    <div ref={containerRef} style={{ position: 'relative', height: isMobile ? '500px' : '650px', display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', perspective: '1000px' }}>
       
       {/* Background Glow Layer */}
       <motion.div 
-        style={{ x: smoothX, y: smoothY, position: 'absolute', top: '20%', left: '10%', width: '150px', height: '150px', background: 'var(--accent-red)', filter: 'blur(80px)', opacity: 0.3, zIndex: 0 }}
+        style={{ x: smoothX, y: smoothY, position: 'absolute', width: '250px', height: '250px', background: 'var(--accent-red)', filter: 'blur(100px)', opacity: 0.3, zIndex: 0 }}
       />
       
       {/* Member App Core (Centerpiece) */}
        <motion.div 
-         initial={{ opacity: 0, y: 150 }}
-         animate={{ opacity: 1, y: 0 }}
+         initial={{ opacity: 0, scale: 0.9 }}
+         animate={{ opacity: 1, scale: 1 }}
          transition={{ duration: 1, delay: 0.2, type: 'spring', stiffness: 50 }}
          style={{ 
            x: isMobile ? 0 : smoothX, y: isMobile ? 0 : smoothY,
-           width: isMobile ? '240px' : '320px', 
-           height: isMobile ? '500px' : '640px', 
+           width: isMobile ? '280px' : '320px', 
+           height: isMobile ? '560px' : '640px', 
            zIndex: 10, 
-           position: 'absolute', 
-           bottom: isMobile ? '-20px' : '-80px', 
+           position: 'relative', 
            boxShadow: '0 40px 80px rgba(0,0,0,0.8), 0 0 0 1px rgba(255,255,255,0.1) inset' 
          }}
          className="device-frame"
       >
-         <PhoneCarousel />
-      </motion.div>
-
-      {/* Analytics Panel (Left Wing) */}
-      <motion.div 
-         initial={{ opacity: 0, scale: 0.9, x: -100, rotateY: 10, rotateX: -10 }}
-         animate={{ opacity: 1, scale: 1, x: 0, rotateY: 0, rotateX: 0 }}
-         transition={{ duration: 1.2, delay: 0.6, ease: "easeOut" }}
-         style={{ 
-           x: isMobile ? 0 : midX, y: isMobile ? 0 : midY,
-           position: 'absolute', 
-           top: isMobile ? '10px' : '60px', 
-           left: isMobile ? 'auto' : '20px', 
-           width: isMobile ? '200px' : '280px', 
-           height: isMobile ? '200px' : '240px', 
-           zIndex: 2, 
-           transform: isMobile ? 'translateX(-90px)' : 'none'
-         }}
-      >
-        <div className="glass-card" style={{ width: '100%', height: '100%', padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem', border: '1px solid rgba(225, 29, 72, 0.3)' }}>
-           <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
-             <LayoutDashboard size={20} color="var(--accent-red)"/>
-             <span className="ui-text-bold" style={{ fontSize: '1rem' }}>Retention Rate</span>
-           </div>
-           
-           <div style={{ display: 'flex', alignItems: 'flex-end', gap: '0.5rem' }}>
-             <div className="ui-text-bold" style={{ fontSize: '2.5rem', color: '#fff', lineHeight: '1' }}>94%</div>
-             <div style={{ color: 'var(--accent-red)', fontWeight: 'bold', fontSize: '1rem', marginBottom: '0.2rem' }}>↑ +2%</div>
-           </div>
-           
-           <div style={{ flex: 1, display: 'flex', alignItems: 'flex-end', gap: '6px' }}>
-              {[40, 60, 45, 80, 75, 90, 95].map((h, i) => (
-                 <div key={i} style={{ flex: 1, height: `${h}%`, background: i === 6 ? 'var(--accent-red)' : 'var(--bg-tertiary)', borderRadius: '4px' }}></div>
-              ))}
-           </div>
-        </div>
-      </motion.div>
-
-
-      {/* Reward Node (Right Wing) */}
-      <motion.div 
-         initial={{ opacity: 0, scale: 0.9, x: 100, rotateY: -10, rotateX: 10 }}
-         animate={{ opacity: 1, scale: 1, x: 0, rotateY: 0, rotateX: 0 }}
-         transition={{ duration: 1.2, delay: 0.8, ease: "easeOut" }}
-         style={{ 
-           x: isMobile ? 0 : smoothX, y: isMobile ? 0 : smoothY,
-           position: 'absolute', 
-           top: isMobile ? '60px' : '80px', 
-           right: isMobile ? 'auto' : '20px', 
-           width: isMobile ? '160px' : '220px', 
-           height: isMobile ? 'auto' : 'auto', 
-           zIndex: 11, 
-           transform: isMobile ? 'translateX(100px)' : 'none'
-         }}
-      >
-         <div className="glass-card" style={{ width: '100%', padding: '1.5rem', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem', border: '1px solid rgba(225, 29, 72, 0.3)', background: 'linear-gradient(180deg, rgba(225, 29, 72, 0.05), rgba(0,0,0,0.4))' }}>
-           <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'rgba(225, 29, 72, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '0.5rem' }}>
-              <Box size={20} color="var(--brand-red)"/>
-           </div>
-           <span className="ui-text-bold" style={{ fontSize: '1rem', textAlign: 'center' }}>Smart Reward Unlocked</span>
-           <span className="ui-text-muted" style={{ fontSize: '0.8rem', textAlign: 'center' }}>Post-Workout</span>
+         {/* Dynamic Island */}
+         <div style={{ position: 'absolute', top: '15px', left: '50%', transform: 'translateX(-50%)', width: '30%', height: '28px', background: '#000', borderRadius: '20px', zIndex: 100, boxShadow: 'inset 0 0 4px rgba(255,255,255,0.2)' }}>
+            <div style={{ position: 'absolute', right: '8px', top: '50%', transform: 'translateY(-50%)', width: '8px', height: '8px', borderRadius: '50%', background: 'rgba(255,255,255,0.1)' }}></div>
          </div>
+         <PhoneCarousel />
       </motion.div>
     </div>
   );
@@ -713,49 +652,54 @@ function App() {
       <section className="section flex-center" style={{ minHeight: '100vh', paddingTop: '10rem', paddingBottom: '6rem', position: 'relative', overflow: 'hidden' }}>
         
         {/* Spotlight behind text */}
-        <div style={{ position: 'absolute', top: '20%', left: '50%', transform: 'translate(-50%, -50%)', width: '600px', height: '600px', background: 'radial-gradient(circle, var(--accent-glow-red) 0%, transparent 60%)', filter: 'blur(60px)', zIndex: 0, opacity: 0.8 }}></div>
+        <div style={{ position: 'absolute', top: '20%', left: '30%', width: '600px', height: '600px', background: 'radial-gradient(circle, var(--accent-glow-red) 0%, transparent 60%)', filter: 'blur(60px)', zIndex: 0, opacity: 0.8 }}></div>
 
         <div className="container" style={{ position: 'relative', zIndex: 10 }}>
-          <div style={{ textAlign: 'center', maxWidth: '1000px', margin: '0 auto' }}>
-             
-            {/* Staggered Word Reveal */}
-            <h1 style={{ marginBottom: '1.5rem', lineHeight: 1.1, position: 'relative' }}>
-              <motion.span initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }} style={{ display: 'block', color: 'var(--text-primary)' }}>
-                Turn Gyms Into Smart
-              </motion.span>
-              <motion.span initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }} style={{ display: 'block', fontSize: 'clamp(2rem, 5vw, 4rem)', marginTop: '0.5rem' }}>
-                <span className="text-gradient">Fitness Ecosystems.</span>
-              </motion.span>
-            </h1>
+          <div style={{ display: 'flex', flexDirection: isMobile ? 'column' : 'row', alignItems: 'center', gap: '4rem', maxWidth: '1200px', margin: '0 auto' }}>
             
-            <motion.p 
-              initial={{ opacity: 0 }} 
-              animate={{ opacity: 1 }} 
-              transition={{ duration: 1, delay: 0.4 }}
-              style={{ fontSize: '1.25rem', marginBottom: '3rem', maxWidth: '750px', margin: '0 auto 3rem auto', color: 'var(--text-secondary)' }}
-            >
-              A member app, deeply integrated workout tracking, native community features, and automated smart vending for the modern gym.
-            </motion.p>
-            
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }} 
-              animate={{ opacity: 1, y: 0 }} 
-              transition={{ duration: 0.8, delay: 0.6 }}
-              style={{ display: 'flex', gap: '1rem', justifyContent: 'center' }}
-            >
-              <motion.button 
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="btn btn-accent" style={{ padding: '1.2rem 2.5rem', fontSize: '1.1rem' }}
+            {/* Left Column: Text Content */}
+            <div style={{ flex: 1, textAlign: isMobile ? 'center' : 'left' }}>
+              <h1 style={{ marginBottom: '1.5rem', lineHeight: 1.1, position: 'relative' }}>
+                <motion.span initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }} style={{ display: 'block', color: 'var(--text-primary)' }}>
+                  Turn Gyms Into Smart
+                </motion.span>
+                <motion.span initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }} style={{ display: 'block', fontSize: 'clamp(2rem, 5vw, 4rem)', marginTop: '0.5rem' }}>
+                  <span className="text-gradient">Fitness Ecosystems.</span>
+                </motion.span>
+              </h1>
+              
+              <motion.p 
+                initial={{ opacity: 0 }} 
+                animate={{ opacity: 1 }} 
+                transition={{ duration: 1, delay: 0.4 }}
+                style={{ fontSize: '1.25rem', marginBottom: '3rem', maxWidth: '750px', color: 'var(--text-secondary)' }}
               >
-                Request Access <ArrowRight size={20} style={{ marginLeft: '10px' }}/>
-              </motion.button>
-              <button className="btn btn-secondary">Explore Platform</button>
-            </motion.div>
-          </div>
+                A member app, deeply integrated workout tracking, native community features, and automated smart vending for the modern gym.
+              </motion.p>
+              
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }} 
+                animate={{ opacity: 1, y: 0 }} 
+                transition={{ duration: 0.8, delay: 0.6 }}
+                style={{ display: 'flex', gap: '1rem', justifyContent: isMobile ? 'center' : 'flex-start' }}
+              >
+                <motion.button 
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="btn btn-accent" style={{ padding: '1.2rem 2.5rem', fontSize: '1.1rem' }}
+                >
+                  Request Access <ArrowRight size={20} style={{ marginLeft: '10px' }}/>
+                </motion.button>
+                <button className="btn btn-secondary">Explore Platform</button>
+              </motion.div>
+            </div>
 
-          {/* Mouse-Tracked Floating 3D Scene */}
-          <HeroScene isMobile={isMobile} />
+            {/* Right Column: Hero Scene */}
+            <div style={{ flex: 1, width: '100%', display: 'flex', justifyContent: 'center' }}>
+              <HeroScene isMobile={isMobile} />
+            </div>
+
+          </div>
         </div>
       </section>
 
