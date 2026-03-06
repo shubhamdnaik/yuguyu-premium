@@ -1107,12 +1107,11 @@ function App() {
           <div style={{ display: 'flex', gap: '2rem', alignItems: 'center' }}>
             {[
               { label: 'Features', href: '#features' },
-              { label: 'For Gyms', href: '#for-gyms' },
+              { label: 'For Gyms', href: '#insights' },
               { label: 'Ecosystem', href: '#ecosystem' }
             ].map((link) => (
               <a key={link.label} href={link.href} style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', fontWeight: 500, fontFamily: 'var(--font-heading)', letterSpacing: '-0.01em', transition: 'color 0.2s', cursor: 'pointer' }} onMouseEnter={e => e.target.style.color = 'var(--text-primary)'} onMouseLeave={e => e.target.style.color = 'var(--text-secondary)'}>{link.label}</a>
             ))}
-            <a onClick={() => setShowContact(true)} style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', fontWeight: 500, fontFamily: 'var(--font-heading)', letterSpacing: '-0.01em', transition: 'color 0.2s', cursor: 'pointer' }} onMouseEnter={e => e.target.style.color = 'var(--text-primary)'} onMouseLeave={e => e.target.style.color = 'var(--text-secondary)'}>Contact</a>
           </div>
         )}
 
@@ -1210,6 +1209,7 @@ function App() {
       <ProductJourney isMobile={isMobile} />
 
       {/* 4. LIVE GYM INSIGHTS DASHBOARD */}
+      <div id="insights"></div>
       <LiveGymInsights isMobile={isMobile} />
 
       {/* 4. GYM OWNER BENEFITS */}
