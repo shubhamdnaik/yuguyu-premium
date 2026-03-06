@@ -1141,7 +1141,7 @@ function App() {
           <motion.button 
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="btn btn-accent" 
+            onClick={() => setShowContact(true)} className="btn btn-accent" 
             style={{ padding: isMobile ? '0.5rem 1rem' : '0.6rem 1.5rem', fontSize: isMobile ? '0.8rem' : '0.9rem', boxShadow: '0 0 20px var(--accent-glow-red), 0 0 60px rgba(225, 29, 72, 0.1)' }}
           >
             <Zap size={14} style={{ marginRight: '6px' }}/> Book Demo
