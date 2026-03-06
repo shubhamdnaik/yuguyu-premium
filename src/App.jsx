@@ -978,7 +978,7 @@ const HeroScene = ({ isMobile }) => {
            top: isMobile ? '60px' : '80px', 
            right: isMobile ? 'auto' : '20px', 
            width: isMobile ? '160px' : '220px', 
-           height: isMobile ? 'auto' : 'auto', 
+           height: isMobile ? '160px' : '180px', 
            zIndex: 11, 
            transform: isMobile ? 'translateX(100px)' : 'none'
          }}
@@ -1056,10 +1056,10 @@ function App() {
             {/* Staggered Word Reveal */}
             <h1 style={{ marginBottom: '1.5rem', lineHeight: 1.1, position: 'relative' }}>
               <motion.span initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }} style={{ display: 'block', color: 'var(--text-primary)' }}>
-                Turn Gyms Into Smart
+                Your Gym. Smarter.
               </motion.span>
               <motion.span initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }} style={{ display: 'block', fontSize: 'clamp(2rem, 5vw, 4rem)', marginTop: '0.5rem' }}>
-                <span className="text-gradient">Fitness Ecosystems.</span>
+                <span className="text-gradient">Connected. Rewarding.</span>
               </motion.span>
             </h1>
             
@@ -1067,9 +1067,17 @@ function App() {
               initial={{ opacity: 0 }} 
               animate={{ opacity: 1 }} 
               transition={{ duration: 1, delay: 0.4 }}
-              style={{ fontSize: '1.25rem', marginBottom: '3rem', maxWidth: '750px', margin: '0 auto 3rem auto', color: 'var(--text-secondary)' }}
+              style={{ fontSize: '1.15rem', marginBottom: '1.5rem', maxWidth: '750px', margin: '0 auto 1.5rem auto', color: 'var(--text-secondary)' }}
             >
-              A member app, deeply integrated workout tracking, native community features, and streamlined membership tools for the modern gym.
+              With Yuguyu, members scan in, log workouts, track diet, join the gym community, and instantly buy protein or supplements from smart vending machines — all through one app.
+            </motion.p>
+            <motion.p 
+              initial={{ opacity: 0 }} 
+              animate={{ opacity: 1 }} 
+              transition={{ duration: 1, delay: 0.5 }}
+              style={{ fontSize: '1.15rem', marginBottom: '3rem', maxWidth: '750px', margin: '0 auto 3rem auto', color: 'var(--text-secondary)' }}
+            >
+              Meanwhile gym owners get a powerful dashboard to manage members, engagement, and revenue.
             </motion.p>
             
             <motion.div 
