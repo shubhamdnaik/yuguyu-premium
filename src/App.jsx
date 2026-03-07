@@ -1016,10 +1016,29 @@ const HeroScene = ({ isMobile }) => {
 const ContactPage = ({ onClose, isMobile }) => {
   const [formData, setFormData] = useState({ name: '', email: '', gymName: '', phone: '', message: '' });
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmitted(true);
+    setIsSubmitting(true);
+    try {
+      const response = await fetch("https://formspree.io/f/xnjgqrzv", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(formData)
+      });
+      if (response.ok) {
+        setSubmitted(true);
+      } else {
+        alert("Oops! There was a problem submitting your form");
+      }
+    } catch (error) {
+      console.error("Error submitting form", error);
+      alert("Oops! There was a problem submitting your form");
+    }
+    setIsSubmitting(false);
   };
 
   return (
@@ -1079,8 +1098,8 @@ const ContactPage = ({ onClose, isMobile }) => {
               <label style={{ display: 'block', fontSize: '0.85rem', color: 'var(--text-secondary)', marginBottom: '0.5rem', fontWeight: 600 }}>Message *</label>
               <textarea required value={formData.message} onChange={e => setFormData({...formData, message: e.target.value})} placeholder="Tell us about your gym and how we can help..." rows={4} style={{ width: '100%', padding: '0.9rem 1rem', borderRadius: '12px', background: 'var(--bg-secondary)', border: '1px solid var(--border-light)', color: 'var(--text-primary)', fontSize: '1rem', fontFamily: 'var(--font-body)', outline: 'none', resize: 'vertical', transition: 'border 0.2s' }} />
             </div>
-            <motion.button whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} type="submit" className="btn btn-accent" style={{ padding: '1rem', fontSize: '1.05rem', marginTop: '0.5rem', width: '100%' }}>
-              Send Message <ArrowRight size={18} style={{ marginLeft: '8px' }} />
+            <motion.button whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} type="submit" disabled={isSubmitting} className="btn btn-accent" style={{ padding: '1rem', fontSize: '1.05rem', marginTop: '0.5rem', width: '100%', opacity: isSubmitting ? 0.7 : 1 }}>
+              {isSubmitting ? 'Sending...' : 'Send Message'} <ArrowRight size={18} style={{ marginLeft: '8px' }} />
             </motion.button>
             <p style={{ fontSize: '0.8rem', color: 'var(--text-tertiary)', textAlign: 'center' }}>By submitting, you agree to our Privacy Policy.</p>
           </motion.form>
