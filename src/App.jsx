@@ -1025,7 +1025,8 @@ const ContactPage = ({ onClose, isMobile }) => {
       const response = await fetch("https://formspree.io/f/xnjgqrzv", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
+          "Accept": "application/json"
         },
         body: JSON.stringify(formData)
       });
