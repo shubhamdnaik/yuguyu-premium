@@ -23,6 +23,29 @@ import {
   DollarSign, Settings, LineChart, Database, LayoutDashboard, Utensils, RefreshCw, SmartphoneNfc, Menu, Home, Bell, Flame, Calendar
 } from 'lucide-react';
 import './index.css';
+
+class ErrorBoundary extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false, error: null };
+  }
+  static getDerivedStateFromError(error) {
+    return { hasError: true, error };
+  }
+  componentDidCatch(error, info) {
+    console.error('React Error:', error, info);
+  }
+  render() {
+    if (this.state.hasError) {
+      return React.createElement('div', { style: { padding: '2rem', color: 'red', background: '#111', minHeight: '100vh' } },
+        React.createElement('h1', null, 'Something went wrong'),
+        React.createElement('pre', { style: { whiteSpace: 'pre-wrap', fontSize: '0.8rem' } }, String(this.state.error))
+      );
+    }
+    return this.props.children;
+  }
+}
+
  
 // Hook for responsive JSX
 const useMediaQuery = (query) => {
@@ -1364,4 +1387,5 @@ function App() {
   );
 }
 
-export default App;
+const WrappedApp = () => <ErrorBoundary><App /></ErrorBoundary>;
+export default WrappedApp;
