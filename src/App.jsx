@@ -1077,26 +1077,26 @@ const ContactPage = ({ onClose, isMobile }) => {
             <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: '1.25rem' }}>
               <div>
                 <label style={{ display: 'block', fontSize: '0.85rem', color: 'var(--text-secondary)', marginBottom: '0.5rem', fontWeight: 600 }}>Full Name *</label>
-                <input required value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} placeholder="John Doe" style={{ width: '100%', padding: '0.9rem 1rem', borderRadius: '12px', background: 'var(--bg-secondary)', border: '1px solid var(--border-light)', color: 'var(--text-primary)', fontSize: '1rem', fontFamily: 'var(--font-body)', outline: 'none', transition: 'border 0.2s' }} />
+                <input name="name" required value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} placeholder="John Doe" style={{ width: '100%', padding: '0.9rem 1rem', borderRadius: '12px', background: 'var(--bg-secondary)', border: '1px solid var(--border-light)', color: 'var(--text-primary)', fontSize: '1rem', fontFamily: 'var(--font-body)', outline: 'none', transition: 'border 0.2s' }} />
               </div>
               <div>
                 <label style={{ display: 'block', fontSize: '0.85rem', color: 'var(--text-secondary)', marginBottom: '0.5rem', fontWeight: 600 }}>Email *</label>
-                <input required type="email" value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})} placeholder="john@gym.com" style={{ width: '100%', padding: '0.9rem 1rem', borderRadius: '12px', background: 'var(--bg-secondary)', border: '1px solid var(--border-light)', color: 'var(--text-primary)', fontSize: '1rem', fontFamily: 'var(--font-body)', outline: 'none', transition: 'border 0.2s' }} />
+                <input name="email" required type="email" value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})} placeholder="john@gym.com" style={{ width: '100%', padding: '0.9rem 1rem', borderRadius: '12px', background: 'var(--bg-secondary)', border: '1px solid var(--border-light)', color: 'var(--text-primary)', fontSize: '1rem', fontFamily: 'var(--font-body)', outline: 'none', transition: 'border 0.2s' }} />
               </div>
             </div>
             <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: '1.25rem' }}>
               <div>
                 <label style={{ display: 'block', fontSize: '0.85rem', color: 'var(--text-secondary)', marginBottom: '0.5rem', fontWeight: 600 }}>Gym / Business Name</label>
-                <input value={formData.gymName} onChange={e => setFormData({...formData, gymName: e.target.value})} placeholder="Elite Fitness" style={{ width: '100%', padding: '0.9rem 1rem', borderRadius: '12px', background: 'var(--bg-secondary)', border: '1px solid var(--border-light)', color: 'var(--text-primary)', fontSize: '1rem', fontFamily: 'var(--font-body)', outline: 'none', transition: 'border 0.2s' }} />
+                <input name="gymName" value={formData.gymName} onChange={e => setFormData({...formData, gymName: e.target.value})} placeholder="Elite Fitness" style={{ width: '100%', padding: '0.9rem 1rem', borderRadius: '12px', background: 'var(--bg-secondary)', border: '1px solid var(--border-light)', color: 'var(--text-primary)', fontSize: '1rem', fontFamily: 'var(--font-body)', outline: 'none', transition: 'border 0.2s' }} />
               </div>
               <div>
                 <label style={{ display: 'block', fontSize: '0.85rem', color: 'var(--text-secondary)', marginBottom: '0.5rem', fontWeight: 600 }}>Phone</label>
-                <input type="tel" value={formData.phone} onChange={e => setFormData({...formData, phone: e.target.value})} placeholder="+91 98765 43210" style={{ width: '100%', padding: '0.9rem 1rem', borderRadius: '12px', background: 'var(--bg-secondary)', border: '1px solid var(--border-light)', color: 'var(--text-primary)', fontSize: '1rem', fontFamily: 'var(--font-body)', outline: 'none', transition: 'border 0.2s' }} />
+                <input name="phone" type="tel" value={formData.phone} onChange={e => setFormData({...formData, phone: e.target.value})} placeholder="+91 98765 43210" style={{ width: '100%', padding: '0.9rem 1rem', borderRadius: '12px', background: 'var(--bg-secondary)', border: '1px solid var(--border-light)', color: 'var(--text-primary)', fontSize: '1rem', fontFamily: 'var(--font-body)', outline: 'none', transition: 'border 0.2s' }} />
               </div>
             </div>
             <div>
               <label style={{ display: 'block', fontSize: '0.85rem', color: 'var(--text-secondary)', marginBottom: '0.5rem', fontWeight: 600 }}>Message *</label>
-              <textarea required value={formData.message} onChange={e => setFormData({...formData, message: e.target.value})} placeholder="Tell us about your gym and how we can help..." rows={4} style={{ width: '100%', padding: '0.9rem 1rem', borderRadius: '12px', background: 'var(--bg-secondary)', border: '1px solid var(--border-light)', color: 'var(--text-primary)', fontSize: '1rem', fontFamily: 'var(--font-body)', outline: 'none', resize: 'vertical', transition: 'border 0.2s' }} />
+              <textarea name="message" required value={formData.message} onChange={e => setFormData({...formData, message: e.target.value})} placeholder="Tell us about your gym and how we can help..." rows={4} style={{ width: '100%', padding: '0.9rem 1rem', borderRadius: '12px', background: 'var(--bg-secondary)', border: '1px solid var(--border-light)', color: 'var(--text-primary)', fontSize: '1rem', fontFamily: 'var(--font-body)', outline: 'none', resize: 'vertical', transition: 'border 0.2s' }} />
             </div>
             <motion.button whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} type="submit" disabled={isSubmitting} className="btn btn-accent" style={{ padding: '1rem', fontSize: '1.05rem', marginTop: '0.5rem', width: '100%', opacity: isSubmitting ? 0.7 : 1 }}>
               {isSubmitting ? 'Sending...' : 'Send Message'} <ArrowRight size={18} style={{ marginLeft: '8px' }} />
