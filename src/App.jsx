@@ -550,7 +550,7 @@ const LiveGymInsights = ({ isMobile }) => {
             {/* Header */}
             <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
                <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once:true }} className="ui-text-bold" style={{ color: 'var(--accent-purple)', letterSpacing: '2px', textTransform: 'uppercase', marginBottom: '1rem' }}>Live Gym Insights</motion.div>
-               <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once:true }} transition={{ delay: 0.1 }} style={{ fontSize: isMobile ? '2.5rem' : '4rem', lineHeight: 1.1, marginBottom: '1.5rem' }}>
+               <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once:true }} transition={{ delay: 0.1 }} style={{ fontSize: isMobile ? '2.2rem' : '4rem', lineHeight: 1.1, marginBottom: '1.5rem' }}>
                   The Data Core of your <span className="text-gradient">Gym.</span>
                </motion.h2>
                <motion.p initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once:true }} transition={{ delay: 0.2 }} style={{ fontSize: '1.25rem', color: 'var(--text-secondary)', maxWidth: '700px', margin: '0 auto' }}>
@@ -722,9 +722,9 @@ const ProductJourney = ({ isMobile }) => {
         <motion.div style={{ x, display: 'flex', gap: '10vw', padding: '0 10vw' }}>
           
           {/* Scene 1: Scan */}
-          <div style={{ width: '80vw', maxWidth: '1000px', flexShrink: 0, display: 'flex', flexDirection: isMobile ? 'column' : 'row', alignItems: 'center', gap: '4rem' }}>
+          <div style={{ width: isMobile ? '90vw' : '80vw', maxWidth: '1000px', flexShrink: 0, display: 'flex', flexDirection: isMobile ? 'column' : 'row', alignItems: 'center', gap: isMobile ? '2rem' : '4rem', scrollSnapAlign: 'center' }}>
              <div style={{ flex: 1 }}>
-               <h2 style={{ fontSize: isMobile ? '2.5rem' : '4rem', marginBottom: '1rem' }}><span className="text-gradient">Step 1:</span> <br/>Scan In.</h2>
+               <h2 style={{ fontSize: isMobile ? '2.2rem' : '4rem', marginBottom: '1rem' }}><span className="text-gradient">Step 1:</span> <br/>Scan In.</h2>
                <p style={{ fontSize: '1.25rem' }}>Members enter the gym and seamlessly scan a QR code. Their personalized fitness journey begins the moment they walk through the doors.</p>
              </div>
              <div className="device-frame" style={{ width: isMobile ? '280px' : '360px', height: isMobile ? '500px' : '650px', transform: 'scale(0.9)' }}>
@@ -733,9 +733,9 @@ const ProductJourney = ({ isMobile }) => {
           </div>
 
           {/* Scene 2: Track */}
-          <div style={{ width: '80vw', maxWidth: '1000px', flexShrink: 0, display: 'flex', flexDirection: isMobile ? 'column' : 'row', alignItems: 'center', gap: '4rem' }}>
+          <div style={{ width: isMobile ? '90vw' : '80vw', maxWidth: '1000px', flexShrink: 0, display: 'flex', flexDirection: isMobile ? 'column' : 'row', alignItems: 'center', gap: isMobile ? '2rem' : '4rem', scrollSnapAlign: 'center' }}>
              <div style={{ flex: 1, order: isMobile ? 1 : 2 }}>
-               <h2 style={{ fontSize: isMobile ? '2.5rem' : '4rem', marginBottom: '1rem' }}><span className="text-gradient">Step 2:</span> <br/>Log & Track.</h2>
+               <h2 style={{ fontSize: isMobile ? '2.2rem' : '4rem', marginBottom: '1rem' }}><span className="text-gradient">Step 2:</span> <br/>Log & Track.</h2>
                <p style={{ fontSize: '1.25rem' }}>The Yuguyu app acts as their digital coach. Tracking every set, rep, and macro meal plan natively within your gym's walled garden.</p>
              </div>
              <div className="device-frame" style={{ order: isMobile ? 2 : 1, width: isMobile ? '280px' : '360px', height: isMobile ? '450px' : '550px', transform: 'scale(0.95)' }}>
@@ -744,9 +744,9 @@ const ProductJourney = ({ isMobile }) => {
           </div>
 
           {/* Scene 3: Connect */}
-          <div style={{ width: '80vw', maxWidth: '1000px', flexShrink: 0, display: 'flex', flexDirection: isMobile ? 'column' : 'row', alignItems: 'center', gap: '4rem' }}>
+          <div style={{ width: isMobile ? '90vw' : '80vw', maxWidth: '1000px', flexShrink: 0, display: 'flex', flexDirection: isMobile ? 'column' : 'row', alignItems: 'center', gap: isMobile ? '2rem' : '4rem', scrollSnapAlign: 'center' }}>
              <div style={{ flex: 1 }}>
-               <h2 style={{ fontSize: isMobile ? '2.5rem' : '4rem', marginBottom: '1rem' }}><span className="text-gradient">Step 3:</span> <br/>Community.</h2>
+               <h2 style={{ fontSize: isMobile ? '2.2rem' : '4rem', marginBottom: '1rem' }}><span className="text-gradient">Step 3:</span> <br/>Community.</h2>
                <p style={{ fontSize: '1.25rem' }}>Members engage with leaderboards, challenges, and gym-wide events. A highly engaged member is a member that never churns.</p>
              </div>
              <div className="glass-card" style={{ width: isMobile ? '300px' : '400px', height: isMobile ? '400px' : '500px', padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
@@ -769,9 +769,9 @@ const ProductJourney = ({ isMobile }) => {
           </div>
 
           {/* Scene 4: Subscriptions */}
-          <div style={{ width: '80vw', maxWidth: '1000px', flexShrink: 0, display: 'flex', flexDirection: isMobile ? 'column' : 'row', alignItems: 'center', gap: '4rem' }}>
+          <div style={{ width: isMobile ? '90vw' : '80vw', maxWidth: '1000px', flexShrink: 0, display: 'flex', flexDirection: isMobile ? 'column' : 'row', alignItems: 'center', gap: isMobile ? '2rem' : '4rem', scrollSnapAlign: 'center' }}>
              <div style={{ flex: 1, order: isMobile ? 1 : 2 }}>
-               <h2 style={{ fontSize: isMobile ? '2.5rem' : '4rem', marginBottom: '1rem' }}><span className="text-gradient">Step 4:</span> <br/>Manage & Grow.</h2>
+               <h2 style={{ fontSize: isMobile ? '2.2rem' : '4rem', marginBottom: '1rem' }}><span className="text-gradient">Step 4:</span> <br/>Manage & Grow.</h2>
                <p style={{ fontSize: '1.25rem' }}>Give members full control over their memberships natively within the app. Automated renewals, seamless upgrades, and reduced admin overhead.</p>
              </div>
              <div className="device-frame" style={{ order: isMobile ? 2 : 1, width: isMobile ? '280px' : '360px', height: isMobile ? '450px' : '550px', transform: 'scale(0.95)' }}>
@@ -780,9 +780,9 @@ const ProductJourney = ({ isMobile }) => {
           </div>
 
           {/* Scene 5: Purchase */}
-          <div style={{ width: '80vw', maxWidth: '1000px', flexShrink: 0, display: 'flex', flexDirection: isMobile ? 'column' : 'row', alignItems: 'center', gap: '4rem' }}>
+          <div style={{ width: isMobile ? '90vw' : '80vw', maxWidth: '1000px', flexShrink: 0, display: 'flex', flexDirection: isMobile ? 'column' : 'row', alignItems: 'center', gap: isMobile ? '2rem' : '4rem', scrollSnapAlign: 'center' }}>
              <div style={{ flex: 1, order: isMobile ? 1 : 2 }}>
-               <h2 style={{ fontSize: isMobile ? '2.5rem' : '4rem', marginBottom: '1rem' }}><span className="text-gradient">Step 5:</span> <br/>Refuel.</h2>
+               <h2 style={{ fontSize: isMobile ? '2.2rem' : '4rem', marginBottom: '1rem' }}><span className="text-gradient">Step 5:</span> <br/>Refuel.</h2>
                <p style={{ fontSize: '1.25rem' }}>Post-workout, members can conveniently purchase a premium protein shake or snack directly from the smart vendor. Revenue for the gym, instant fuel for the member.</p>
              </div>
              <div className="device-frame" style={{ order: isMobile ? 2 : 1, width: isMobile ? '280px' : '360px', height: isMobile ? '350px' : '400px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
